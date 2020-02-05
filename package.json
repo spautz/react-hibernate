@@ -1,0 +1,28 @@
+{
+  "name": "react-router-hibernating-switch",
+  "version": "0.0.1",
+  "description": "desc",
+  "keywords": [],
+  "license": "MIT",
+  "homepage": "https://github.com/spautz/react-router-hibernating-switch#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/spautz/react-router-hibernating-switch.git"
+  },
+  "bugs": {
+    "url": "https://github.com/spautz/react-router-hibernating-switch/issues"
+  },
+  "author": "Steven Pautz <spautz@gmail.com>",
+  "files": [],
+  "scripts": {
+    "format": "prettier --write \"**/*.{css,html,js,jsx,json,less,md,scss,ts,tsx}\"",
+    "format:check": "prettier --list-different \"**/*.{css,html,js,jsx,json,less,md,scss,ts,tsx}\""
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "prettier": "^1.19.1"
+  },
+  "peerDependencies": {
+    "react": ">=16.8.0"
+  }
+}
