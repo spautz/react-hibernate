@@ -1,13 +1,13 @@
-# Hibernating Switch for React Router
+# Hibernating Components for React Router
 
 **This package is in active development, and is not yet available.**
 
 A react-router Switch which can leave inactive routes mounted-but-inactive until you navigate back
 
-[![npm version](https://img.shields.io/npm/v/react-router-hibernating-switch.svg)](https://www.npmjs.com/package/react-router-hibernating-switch)
-[![build status](https://img.shields.io/travis/spautz/react-router-hibernating-switch.svg)](https://travis-ci.com/spautz/react-router-hibernating-switch)
-[![test coverage](https://img.shields.io/coveralls/github/spautz/react-router-hibernating-switch.svg)](https://coveralls.io/github/spautz/react-router-hibernating-switch)
-[![gzip size](https://img.shields.io/bundlephobia/minzip/react-router-hibernating-switch)](https://bundlephobia.com/result?p=react-router-hibernating-switch@latest)
+[![npm version](https://img.shields.io/npm/v/react-router-hibernate.svg)](https://www.npmjs.com/package/react-router-hibernate)
+[![build status](https://img.shields.io/travis/spautz/react-router-hibernate.svg)](https://travis-ci.com/spautz/react-router-hibernate)
+[![test coverage](https://img.shields.io/coveralls/github/spautz/react-router-hibernate.svg)](https://coveralls.io/github/spautz/react-router-hibernate)
+[![gzip size](https://img.shields.io/bundlephobia/minzip/react-router-hibernate)](https://bundlephobia.com/result?p=react-router-hibernate@latest)
 
 ## Overview
 
@@ -21,7 +21,7 @@ local state and all.
 ## Example
 
 ```javascript
-import { HibernatingSwitch, HibernatingRoute } from 'react-router-hibernating-switch';
+import { HibernatingSwitch, HibernatingRoute } from 'react-router-hibernate';
 
 // then render:
 <HibernatingSwitch maxCacheTime={60000}>
@@ -98,4 +98,4 @@ Read more: [@TODO: move most of this section to docs]
 [ ] Initial release
 [ ] Explore: `useHibernatingEffect` hook
 [ ] Explore: `maxCacheTime` override per-route
-[ ] Explore: `maxCacheTime` override per-route
+[ ] Explore: React-Router v6
