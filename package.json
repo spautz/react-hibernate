@@ -1,7 +1,7 @@
 {
   "name": "react-router-hibernating-switch",
   "version": "0.0.1",
-  "description": "desc",
+  "description": "A react-router Switch which can leave inactive routes mounted-but-inactive until you navigate back",
   "keywords": [],
   "license": "MIT",
   "homepage": "https://github.com/spautz/react-router-hibernating-switch#readme",
@@ -13,16 +13,106 @@
     "url": "https://github.com/spautz/react-router-hibernating-switch/issues"
   },
   "author": "Steven Pautz <spautz@gmail.com>",
-  "files": [],
+  "files": [
+    "dist/",
+    "LICENSE",
+    "README.md"
+  ],
+  "source": "src/index.ts",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.esm.js",
+  "jsnext:main": "dist/index.esm.js",
+  "types": "dist/index.d.ts",
+  "sideEffects": false,
   "scripts": {
-    "format": "prettier --write \"**/*.{css,html,js,jsx,json,less,md,scss,ts,tsx}\"",
-    "format:check": "prettier --list-different \"**/*.{css,html,js,jsx,json,less,md,scss,ts,tsx}\""
+    "____ BASE COMMANDS _________________________________________________": "",
+    "build": "echo TODO",
+    "clean": "rimraf dist/",
+    "format": "prettier --write \"**/*.*\"",
+    "format:check": "prettier --list-different \"**/*.*\"",
+    "lint": "eslint \"**/*.{js,jsx,json,ts,tsx}\"",
+    "prepare": "yon build",
+    "release": "standard-version --sign --release-as ",
+    "test": "jest",
+    "test:clean": "rimraf coverage/",
+    "test:coverage": "jest --coverage",
+    "test:report": "jest --coverage --coverageReporters=text-lcov | coveralls",
+    "test:watch": "jest --watch",
+    "types": "tsc --noEmit --p tsconfig.json",
+    "____ HOOKS _________________________________________________________": "",
+    "prebuild": "yon clean",
+    "prerelease": "yon clean",
+    "prepublishOnly": "yon check && yon build",
+    "pretest": "yon test:clean",
+    "____ INTEGRATION ___________________________________________________": "",
+    "dev": "yon run format && yon run types && yon run lint",
+    "check": "yon format:check && yon run types && yon run lint",
+    "ci": "yon run check && yon run test:report && yon run build",
+    "all": "yon run dev && yon run test:coverage && yon run build"
   },
   "dependencies": {},
   "devDependencies": {
-    "prettier": "^1.19.1"
+    "@types/jest": "^25.1.1",
+    "@types/node": "^13.7.0",
+    "@types/react": "^16.9.19",
+    "@typescript-eslint/eslint-plugin": "^2.19.0",
+    "@typescript-eslint/parser": "^2.19.0",
+    "coveralls": "^3.0.9",
+    "eslint": "^6.8.0",
+    "eslint-config-prettier": "^6.10.0",
+    "eslint-plugin-prettier": "^3.1.2",
+    "husky": "^4.2.1",
+    "jest": "^25.1.0",
+    "lint-staged": "^10.0.7",
+    "prettier": "^1.19.1",
+    "react": "^16.12.0",
+    "react-hooks-testing-library": "^0.6.0",
+    "react-test-renderer": "^16.12.0",
+    "rimraf": "^3.0.1",
+    "standard-version": "^7.1.0",
+    "ts-jest": "^25.2.0",
+    "tslib": "^1.10.0",
+    "typescript": "^3.7.5",
+    "yarn-or-npm": "^3.0.1"
   },
   "peerDependencies": {
     "react": ">=16.8.0"
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.tsx?$": "ts-jest"
+    },
+    "testRegex": "(/__tests__/.*|/tests/.*|(\\.|/)(test|spec))\\.[jt]sx?$",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json",
+      "node"
+    ],
+    "modulePathIgnorePatterns": [
+      "dist/"
+    ],
+    "collectCoverage": true,
+    "coverageReporters": [
+      "json",
+      "html"
+    ]
+  },
+  "lint-staged": {
+    "**/*.{css,html,js,jsx,json,less,md,scss,ts,tsx}": [
+      "prettier --write"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "standard-version": {
+    "scripts": {
+      "postchangelog": "yon format"
+    }
   }
 }
