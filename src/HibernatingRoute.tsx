@@ -1,7 +1,12 @@
 import * as React from 'react';
-import { Route } from 'react-router';
+import { ReactElement } from 'react';
+import { Route, RouteProps } from 'react-router';
 
-const HibernatingRoute: React.FC<{}> = (props) => {
+type HibernatingRouteProps = RouteProps;
+
+const HibernatingRoute: React.FC<HibernatingRouteProps> = (
+  props: HibernatingRouteProps,
+): ReactElement => {
   // This component is used ONLY as an indicator to HibernatingSwitch that it needs to keep this subtree around
   // even after the element itself unmounts. HibernatingSwitch will replace each <HibernatingRoute> with a standard
   // <Route> (with the extra wiring to make hibernation happen) -- so this component should never actually render.
@@ -14,7 +19,8 @@ const HibernatingRoute: React.FC<{}> = (props) => {
     );
   }
 
-  return <Route isHibernatingRoute {...props} />;
+  return <Route {...props} />;
 };
 
 export default HibernatingRoute;
+export { HibernatingRouteProps };

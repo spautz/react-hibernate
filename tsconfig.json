@@ -29,6 +29,6 @@
     /* Advanced Options */
     "forceConsistentCasingInFileNames": true
   },
-  "include": ["src", "tests"],
+  "include": ["src", "stories", "tests"],
   "exclude": ["node_modules", "**/*.test.tsx?"]
 }
