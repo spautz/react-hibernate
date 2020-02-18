@@ -52,30 +52,35 @@
     "all": "yon run dev && yon run test:coverage && yon run build"
   },
   "dependencies": {
-    "prop-types": "^15.7.2"
+    "limited-cache": "^0.2.1",
+    "prop-types": "^15.7.2",
+    "react-is": "^16.12.0",
+    "react-reverse-portal": "^1.0.5"
   },
   "devDependencies": {
-    "@types/jest": "^25.1.1",
-    "@types/node": "^13.7.0",
+    "@types/jest": "^25.1.2",
+    "@types/node": "^13.7.1",
     "@types/react": "^16.9.19",
+    "@types/react-is": "^16.7.1",
     "@types/react-router": "^5.1.4",
-    "@typescript-eslint/eslint-plugin": "^2.19.0",
-    "@typescript-eslint/parser": "^2.19.0",
+    "@typescript-eslint/eslint-plugin": "^2.20.0",
+    "@typescript-eslint/parser": "^2.20.0",
     "coveralls": "^3.0.9",
     "eslint": "^6.8.0",
     "eslint-config-prettier": "^6.10.0",
     "eslint-plugin-prettier": "^3.1.2",
     "eslint-plugin-react": "^7.18.3",
-    "husky": "^4.2.1",
+    "husky": "^4.2.3",
     "jest": "^25.1.0",
     "lint-staged": "^10.0.7",
     "microbundle": "^0.12.0-next.8",
     "prettier": "^1.19.1",
     "react": "^16.12.0",
+    "react-dom": "^16.12.0",
     "react-hooks-testing-library": "^0.6.0",
     "react-router-dom": "^5.1.2",
     "react-test-renderer": "^16.12.0",
-    "rimraf": "^3.0.1",
+    "rimraf": "^3.0.2",
     "standard-version": "^7.1.0",
     "ts-jest": "^25.2.0",
     "tslib": "^1.10.0",
@@ -84,6 +89,7 @@
   },
   "peerDependencies": {
     "react": ">=16.8.0",
+    "react-dom": ">=16.8.0",
     "react-router": ">=5.0.0"
   },
   "jest": {

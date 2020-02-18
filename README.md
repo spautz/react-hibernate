@@ -90,12 +90,12 @@ Read more: [@TODO: move most of this section to docs]
 
 ## Roadmap
 
-[x] Proof of concept
-[ ] Project scaffolding <- In progress
-[ ] Core functionality
-[ ] Tests
-[ ] Demos
-[ ] Initial release
-[ ] Explore: `useHibernatingEffect` hook
-[ ] Explore: `maxCacheTime` override per-route
-[ ] Explore: React-Router v6
+- [x] Proof of concept
+- [ ] Project scaffolding <- In progress
+- [ ] Core functionality
+- [ ] Tests
+- [ ] Demos
+- [ ] Initial release
+- [ ] Explore: `useHibernatingEffect` hook (successfully prototyped)
+- [ ] Explore: `maxCacheTime` override per-route (successfully prototyped)
+- [ ] Explore: React-Router v6
