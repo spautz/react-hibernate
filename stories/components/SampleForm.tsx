@@ -2,12 +2,14 @@ import * as React from 'react';
 import { ReactElement } from 'react';
 
 interface SampleFormProps {
-  title?: string;
+  title: string;
 }
 
 let instanceCounter = 0;
 
 const SampleForm: React.FC<SampleFormProps> = (props: SampleFormProps): ReactElement => {
+  const { title } = props;
+
   // A simple per-Component instance counter
   const instanceNumRef = React.useRef(0);
   if (!instanceNumRef.current) {
@@ -16,22 +18,28 @@ const SampleForm: React.FC<SampleFormProps> = (props: SampleFormProps): ReactEle
   }
   const instanceNum = instanceNumRef.current;
 
-  const { title = `#${instanceNum}` } = props;
+  const titleWithInstanceNum = `${title} (#${instanceNum})`;
+
+  const mountTimeString = React.useRef(new Date().toUTCString()).current;
+  const renderCount = ++React.useRef(0).current;
 
   React.useEffect((): (() => void) => {
-    console.log(`SampleForm ${title} mounted`);
-    return (): void => console.log(`SampleForm ${title} unmounted`);
+    console.log(`SampleForm ${titleWithInstanceNum} mounted`);
+    return (): void => console.log(`SampleForm ${titleWithInstanceNum} unmounted`);
   }, []);
 
   React.useEffect(() => {
-    console.log(`SampleForm ${title} rendered`);
+    console.log(`SampleForm ${titleWithInstanceNum} rendered`);
   });
 
   const [value1, setValue1] = React.useState('');
 
   return (
     <fieldset>
-      <legend>SampleForm: {title}</legend>
+      <legend>SampleForm: {titleWithInstanceNum}</legend>
+      <p>
+        Mounted at {mountTimeString}, rendered {renderCount} times.
+      </p>
       <label>
         <p>Controlled input: value is in component state</p>
         <input
@@ -43,7 +51,7 @@ const SampleForm: React.FC<SampleFormProps> = (props: SampleFormProps): ReactEle
         />
       </label>
       <label>
-        <p>Plain input: value is in dom state only</p>
+        <p>Plain input: value is in dom only</p>
         <input name={`value2-${instanceNum}`} />
       </label>
     </fieldset>

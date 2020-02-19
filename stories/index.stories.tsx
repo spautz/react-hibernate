@@ -12,21 +12,53 @@ export default {
   component: HibernatingSwitch,
 };
 
+export const FiveSecondsForLastLink = (): ReactNode => (
+  <MemoryRouter initialEntries={['/form1']}>
+    <NavLink to="/route1">Route1</NavLink>
+    {' | '}
+    <NavLink to="/route2">Route2</NavLink>
+    {' | '}
+    <NavLink to="/route3/1">Route3 id=1</NavLink>
+    {' | '}
+    <NavLink to="/route3/2">Route3 id=2</NavLink>
+    {' | '}
+    <NavLink to="/route3/3">Route3 id=3</NavLink>
+
+    <HibernatingSwitch maxCacheSize={2} maxCacheTime={5000}>
+      <HibernatingRoute path="/route1">
+        <SampleForm title="Route 1" />
+      </HibernatingRoute>
+      <HibernatingRoute path="/route2">
+        <SampleForm title="Route 2" />
+      </HibernatingRoute>
+      <HibernatingRoute path="/route3/:id">
+        <SampleForm title="Route 3" />
+      </HibernatingRoute>
+    </HibernatingSwitch>
+  </MemoryRouter>
+);
+
 export const MaxCacheTimeOneMinute = (): ReactNode => (
   <MemoryRouter initialEntries={['/form1']}>
-    <NavLink to="/form1">One</NavLink>
-    <NavLink to="/form2">Two</NavLink>
-    <NavLink to="/form3">Three</NavLink>
+    <NavLink to="/route1">Route1</NavLink>
+    {' | '}
+    <NavLink to="/route2">Route2</NavLink>
+    {' | '}
+    <NavLink to="/route3/1">Route3 id=1</NavLink>
+    {' | '}
+    <NavLink to="/route3/2">Route3 id=2</NavLink>
+    {' | '}
+    <NavLink to="/route3/3">Route3 id=3</NavLink>
 
-    <HibernatingSwitch maxCacheTime={60 * 1000}>
-      <HibernatingRoute path="/form1">
-        <SampleForm title="One" />
+    <HibernatingSwitch maxCacheSize={-1} maxCacheTime={60 * 1000}>
+      <HibernatingRoute path="/route1">
+        <SampleForm title="Route 1" />
       </HibernatingRoute>
-      <HibernatingRoute path="/form2">
-        <SampleForm title="Two" />
+      <HibernatingRoute path="/route2">
+        <SampleForm title="Route 2" />
       </HibernatingRoute>
-      <HibernatingRoute>
-        <SampleForm title="Three" />
+      <HibernatingRoute path="/route3/:id">
+        <SampleForm title="Route 3" />
       </HibernatingRoute>
     </HibernatingSwitch>
   </MemoryRouter>
@@ -34,19 +66,25 @@ export const MaxCacheTimeOneMinute = (): ReactNode => (
 
 export const MaxCacheSizeOne = (): ReactNode => (
   <MemoryRouter initialEntries={['/form1']}>
-    <NavLink to="/form1">One</NavLink>
-    <NavLink to="/form2">Two</NavLink>
-    <NavLink to="/form3">Three</NavLink>
+    <NavLink to="/route1">Route1</NavLink>
+    {' | '}
+    <NavLink to="/route2">Route2</NavLink>
+    {' | '}
+    <NavLink to="/route3/1">Route3 id=1</NavLink>
+    {' | '}
+    <NavLink to="/route3/2">Route3 id=2</NavLink>
+    {' | '}
+    <NavLink to="/route3/3">Route3 id=3</NavLink>
 
-    <HibernatingSwitch maxCacheSize={2}>
-      <HibernatingRoute path="/form1">
-        <SampleForm title="One" />
+    <HibernatingSwitch maxCacheSize={2} maxCacheTime={-1}>
+      <HibernatingRoute path="/route1">
+        <SampleForm title="Route 1" />
       </HibernatingRoute>
-      <HibernatingRoute path="/form2">
-        <SampleForm title="Two" />
+      <HibernatingRoute path="/route2">
+        <SampleForm title="Route 2" />
       </HibernatingRoute>
-      <HibernatingRoute>
-        <SampleForm title="Three" />
+      <HibernatingRoute path="/route3/:id">
+        <SampleForm title="Route 3" />
       </HibernatingRoute>
     </HibernatingSwitch>
   </MemoryRouter>
@@ -54,22 +92,25 @@ export const MaxCacheSizeOne = (): ReactNode => (
 
 export const SaveEverythingForever = (): ReactNode => (
   <MemoryRouter initialEntries={['/form1']}>
-    <NavLink to="/form1">One</NavLink>
-    <NavLink to="/form2">Two</NavLink>
-    <NavLink to="/form3">Three</NavLink>
+    <NavLink to="/route1">Route1</NavLink>
+    {' | '}
+    <NavLink to="/route2">Route2</NavLink>
+    {' | '}
+    <NavLink to="/route3/1">Route3 id=1</NavLink>
+    {' | '}
+    <NavLink to="/route3/2">Route3 id=2</NavLink>
+    {' | '}
+    <NavLink to="/route3/3">Route3 id=3</NavLink>
 
-    <HibernatingSwitch
-      maxCacheSize={Number.MAX_SAFE_INTEGER}
-      maxCacheTime={Number.MAX_SAFE_INTEGER}
-    >
-      <HibernatingRoute path="/form1">
-        <SampleForm title="One" />
+    <HibernatingSwitch maxCacheSize={0} maxCacheTime={0}>
+      <HibernatingRoute path="/route1">
+        <SampleForm title="Route 1" />
       </HibernatingRoute>
-      <HibernatingRoute path="/form2">
-        <SampleForm title="Two" />
+      <HibernatingRoute path="/route2">
+        <SampleForm title="Route 2" />
       </HibernatingRoute>
-      <HibernatingRoute>
-        <SampleForm title="Three" />
+      <HibernatingRoute path="/route3/:id">
+        <SampleForm title="Route 3" />
       </HibernatingRoute>
     </HibernatingSwitch>
   </MemoryRouter>

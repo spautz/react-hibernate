@@ -91,11 +91,12 @@ Read more: [@TODO: move most of this section to docs]
 ## Roadmap
 
 - [x] Proof of concept
-- [ ] Project scaffolding <- In progress
-- [ ] Core functionality
+- [x] Project scaffolding
+- [x] Core functionality
 - [ ] Tests
-- [ ] Demos
+- [x] Demos
 - [ ] Initial release
 - [ ] Explore: `useHibernatingEffect` hook (successfully prototyped)
 - [ ] Explore: `maxCacheTime` override per-route (successfully prototyped)
+- [ ] Explore: Options to better control which/when to add a subtree
 - [ ] Explore: React-Router v6

@@ -7660,10 +7660,10 @@ levn@^0.3.0, levn@~0.3.0:
     prelude-ls "~1.1.2"
     type-check "~0.3.2"
 
-limited-cache@^0.2.1:
-  version "0.2.1"
-  resolved "https://registry.yarnpkg.com/limited-cache/-/limited-cache-0.2.1.tgz#ea585242f318c21a58377aab21744d26b7cf441a"
-  integrity sha512-XQLp+GY8XZ4Z2wkAJJtSFg+eJcR8Kx2WOXbuGOxIcU2x9de7OVbguVo7hT7ZghS1MLs3ga084V2oFm/IhZQKfA==
+limited-cache@^0.3.0:
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/limited-cache/-/limited-cache-0.3.0.tgz#5f3642401560207be60a1dc2ec5019af83d2de2a"
+  integrity sha512-Ou5yaOXJUe2t/uuf0OIKqBSPnQu6A2991QafK/BFz0zGQPwVd3IbIkQxUETYTdLX/EAEbEBLClspIGz9e+yBxA==
 
 lines-and-columns@^1.1.6:
   version "1.1.6"
