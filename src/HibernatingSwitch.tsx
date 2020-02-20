@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ReactElement, ReactNode } from 'react';
+import { ReactNode } from 'react';
 import { useLimitedCache } from 'limited-cache/hooks';
 import { isElement } from 'react-is';
 import { createPortalNode, InPortal, OutPortal, PortalNode } from 'react-reverse-portal';
@@ -70,23 +70,26 @@ const HibernatingSwitch: React.FC<HibernatingSwitchProps> = ({
   };
 
   const childrenWithHibernation = React.Children.map(children, (child) => {
-    const {
-      type,
-      props: routeProps,
-      props: { children, component, render, ...allOtherRouteProps },
-    } = child as ReactElement;
+    if (isElement(child)) {
+      const {
+        type,
+        props: routeProps,
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        props: { children, component, isHibernatingRoute, render, ...allOtherRouteProps },
+      } = child;
 
-    if (isElement(child) && (type === HibernatingRoute || routeProps.isHibernatingRoute)) {
-      // Replace it: it will activate the remote node when the route matches
-      return (
-        <Route
-          {...allOtherRouteProps}
-          render={(routerProps): null => {
-            activateComponent(routerProps, routeProps);
-            return null;
-          }}
-        />
-      );
+      if (isElement(child) && (type === HibernatingRoute || isHibernatingRoute)) {
+        // Replace it: it will activate the remote node when the route matches
+        return (
+          <Route
+            {...allOtherRouteProps}
+            render={(routerProps): null => {
+              activateComponent(routerProps, routeProps);
+              return null;
+            }}
+          />
+        );
+      }
     }
     return child;
   });
