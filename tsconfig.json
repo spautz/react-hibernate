@@ -5,8 +5,8 @@
     "module": "esnext",
     "lib": ["dom", "es2017"],
     "allowJs": true,
-    "jsx": "react",
     "declaration": true,
+    "jsx": "react",
     "sourceMap": true,
     "removeComments": false,
     /* Strict Type-Checking Options */
@@ -30,5 +30,5 @@
     "forceConsistentCasingInFileNames": true
   },
   "include": ["src", "stories", "tests"],
-  "exclude": ["node_modules", "**/*.test.tsx?"]
+  "exclude": ["node_modules"]
 }

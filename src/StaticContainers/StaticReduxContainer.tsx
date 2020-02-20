@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 
 const StaticReduxContainer: React.FC<{}> = ({ children }) => {
-  return <>{children}</>;
+  return <React.Fragment>{children}</React.Fragment>;
 };
 
 StaticReduxContainer.propTypes = {
