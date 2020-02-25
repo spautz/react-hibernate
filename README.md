@@ -5,7 +5,7 @@
 A react-router Switch which can leave inactive routes mounted-but-inactive until you navigate back
 
 [![npm version](https://img.shields.io/npm/v/react-router-hibernate.svg)](https://www.npmjs.com/package/react-router-hibernate)
-[![build status](https://img.shields.io/travis/spautz/react-router-hibernate.svg)](https://travis-ci.com/spautz/react-router-hibernate)
+[![build status](https://img.shields.io/travis/com/spautz/react-router-hibernate.svg)](https://travis-ci.com/spautz/react-router-hibernate)
 [![test coverage](https://img.shields.io/coveralls/github/spautz/react-router-hibernate.svg)](https://coveralls.io/github/spautz/react-router-hibernate)
 [![gzip size](https://img.shields.io/bundlephobia/minzip/react-router-hibernate)](https://bundlephobia.com/result?p=react-router-hibernate@latest)
 
