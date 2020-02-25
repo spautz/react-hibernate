@@ -7,6 +7,20 @@ interface SampleFormProps {
 
 let instanceCounter = 0;
 
+const SampleNestedButton: React.FC = (): ReactElement => {
+  const [counterValue, setCounterValue] = React.useState(0);
+
+  return (
+    <button
+      onClick={(): void => {
+        setCounterValue((value) => value + 1);
+      }}
+    >
+      I&apos;ve been clicked {counterValue} {counterValue === 1 ? 'time' : 'times'}
+    </button>
+  );
+};
+
 const SampleForm: React.FC<SampleFormProps> = (props: SampleFormProps): ReactElement => {
   const { title } = props;
 
@@ -39,6 +53,9 @@ const SampleForm: React.FC<SampleFormProps> = (props: SampleFormProps): ReactEle
       <legend>SampleForm: {titleWithInstanceNum}</legend>
       <p>
         Mounted at {mountTimeString}, rendered {renderCount} times.
+      </p>
+      <p>
+        Nested component with its own state: <SampleNestedButton />
       </p>
       <label>
         <p>Controlled input: value is in component state</p>

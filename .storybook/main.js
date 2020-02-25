@@ -14,6 +14,8 @@ module.exports = {
         },
       ],
     });
+
+    config.performance.hints = false;
     config.resolve.extensions.push('.ts', '.tsx');
     return config;
   },

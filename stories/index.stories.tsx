@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { ReactNode } from 'react';
+import { MemoryRouter, Route } from 'react-router';
 import { NavLink } from 'react-router-dom';
 
 import { HibernatingRoute, HibernatingSwitch } from '../src';
 
-import SampleForm from './components/SampleForm';
-import { MemoryRouter } from 'react-router';
+import SampleForm from '../util/components/SampleForm';
 
 export default {
   title: 'maxCacheSize stories',
@@ -13,7 +13,7 @@ export default {
 };
 
 export const MaxCacheTimeOneMinute = (): ReactNode => (
-  <MemoryRouter initialEntries={['/form1']}>
+  <MemoryRouter initialEntries={['/route1']}>
     <NavLink to="/route1">Route1</NavLink>
     {' | '}
     <NavLink to="/route2">Route2</NavLink>
@@ -39,7 +39,7 @@ export const MaxCacheTimeOneMinute = (): ReactNode => (
 );
 
 export const MaxCacheSizeOne = (): ReactNode => (
-  <MemoryRouter initialEntries={['/form1']}>
+  <MemoryRouter initialEntries={['/route1']}>
     <NavLink to="/route1">Route1</NavLink>
     {' | '}
     <NavLink to="/route2">Route2</NavLink>
@@ -64,8 +64,8 @@ export const MaxCacheSizeOne = (): ReactNode => (
   </MemoryRouter>
 );
 
-export const SaveEverythingForever = (): ReactNode => (
-  <MemoryRouter initialEntries={['/form1']}>
+export const MixRoutesAndHibernatingRoutes = (): ReactNode => (
+  <MemoryRouter initialEntries={['/route1']}>
     <NavLink to="/route1">Route1</NavLink>
     {' | '}
     <NavLink to="/route2">Route2</NavLink>
@@ -77,12 +77,12 @@ export const SaveEverythingForever = (): ReactNode => (
     <NavLink to="/route3/3">Route3 id=3</NavLink>
 
     <HibernatingSwitch maxCacheSize={0} maxCacheTime={0}>
-      <HibernatingRoute path="/route1">
+      <Route path="/route1">
         <SampleForm title="Route 1" />
-      </HibernatingRoute>
-      <HibernatingRoute path="/route2">
+      </Route>
+      <Route path="/route2">
         <SampleForm title="Route 2" />
-      </HibernatingRoute>
+      </Route>
       <HibernatingRoute path="/route3/:id">
         <SampleForm title="Route 3" />
       </HibernatingRoute>
