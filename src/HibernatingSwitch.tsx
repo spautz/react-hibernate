@@ -3,9 +3,17 @@ import { ReactNode } from 'react';
 import { useLimitedCache } from 'limited-cache/hooks';
 import { isElement } from 'react-is';
 import { createPortalNode, InPortal, OutPortal, PortalNode } from 'react-reverse-portal';
-import { Route, RouteComponentProps, RouteProps, Switch, SwitchProps } from 'react-router';
+import {
+  Redirect,
+  Route,
+  RouteComponentProps,
+  RouteProps,
+  Switch,
+  SwitchProps,
+} from 'react-router';
 
 import HibernatingRoute from './HibernatingRoute';
+import renderRoute from './renderRoute';
 
 interface HibernatingSwitchProps extends SwitchProps {
   children: ReactNode;
@@ -32,9 +40,12 @@ const HibernatingSwitch: React.FC<HibernatingSwitchProps> = ({
 
   const currentPathKeyRef = React.useRef<string>();
   const currentPathKey = currentPathKeyRef.current;
-  const [currentPortalRecord, setCurrentPortalRecord] = React.useState<PortalRecord>();
+  const [currentPortalRecord, setCurrentPortalRecord] = React.useState<PortalRecord | null>(null);
 
-  const activateComponent = (routerProps: RouteComponentProps, routeProps: RouteProps): void => {
+  const activatePortalForComponent = (
+    routerProps: RouteComponentProps,
+    routeProps: RouteProps,
+  ): void => {
     // We don't really care about the *path* that was matched. Instead, we care about the *url* that activated us
     const pathKey = routerProps.match.url;
 
@@ -69,6 +80,18 @@ const HibernatingSwitch: React.FC<HibernatingSwitchProps> = ({
     }
   };
 
+  const deactivatePortal = (): void => {
+    if (currentPathKey && currentPortalRecord) {
+      portalRecordCache.set(currentPathKey, currentPortalRecord);
+      // We need to unmount the old OutPortal *immediately* so that it can swap in its original dom node,
+      // or else React hits an error trying to unmount in the incorrect node
+      currentPortalRecord.portalNode.unmount();
+
+      currentPathKeyRef.current = '';
+      setCurrentPortalRecord(null);
+    }
+  };
+
   const childrenWithHibernation = React.Children.map(children, (child) => {
     if (isElement(child)) {
       const {
@@ -78,19 +101,36 @@ const HibernatingSwitch: React.FC<HibernatingSwitchProps> = ({
         props: { children, component, isHibernatingRoute, render, ...allOtherRouteProps },
       } = child;
 
-      if (isElement(child) && (type === HibernatingRoute || isHibernatingRoute)) {
+      if (type === HibernatingRoute || isHibernatingRoute) {
         // Replace it: it will activate the remote node when the route matches
         return (
           <Route
             {...allOtherRouteProps}
             render={(routerProps): null => {
-              activateComponent(routerProps, routeProps);
+              activatePortalForComponent(routerProps, routeProps);
               return null;
             }}
           />
         );
       }
+
+      if (type !== Redirect && isHibernatingRoute !== false) {
+        // Every child should either be a Hibernating Route, vanilla Route, or Redirect -- and if it's neither a
+        // vanilla route nor a Hibernating Route, it's probably a custom wrapper around Route.
+        // If it's any non-Hibernating route Route then we need to deactivate any portal which might be active from
+        // a Hibernating Route. But no matter what it might be, we want to deactivate before rendering, to be safe.
+        return (
+          <Route
+            {...allOtherRouteProps}
+            render={(routerProps: RouteComponentProps): ReactNode => {
+              deactivatePortal();
+              return renderRoute(routerProps, routeProps);
+            }}
+          />
+        );
+      }
     }
+    // If it's a Redirect, or anything we can't recognize, let it pass through as-is
     return child;
   });
 
@@ -108,34 +148,23 @@ const HibernatingSwitch: React.FC<HibernatingSwitchProps> = ({
         {allPortalKeys.map((pathKey) => {
           const portalRecord =
             pathKey === currentPathKey ? currentPortalRecord : portalRecordCacheFull[pathKey];
+
+          if (!portalRecord) {
+            console.warn(`portalRecord is missing for pathKey "${pathKey}"`);
+            return null;
+          }
+
           const { portalNode, routerProps, routeProps } = portalRecord;
 
           return (
             <InPortal key={pathKey} node={portalNode}>
-              {/* this is based on https://github.com/ReactTraining/react-router/blob/7a9170d759af1a02a473d631f411459aeaa562c2/packages/react-router/modules/Route.js#L56-L72 */}
-              {routerProps.match
-                ? routeProps.children
-                  ? typeof routeProps.children === 'function'
-                    ? process.env.NODE_ENV !== 'production'
-                      ? routeProps.children(routerProps) || null
-                      : routeProps.children(routerProps)
-                    : routeProps.children
-                  : routeProps.component
-                  ? React.createElement(routeProps.component, routerProps)
-                  : routeProps.render
-                  ? routeProps.render(routerProps)
-                  : null
-                : typeof children === 'function'
-                ? process.env.NODE_ENV !== 'production'
-                  ? routeProps.children(routerProps) || null
-                  : routeProps.children(routerProps)
-                : null}
+              {renderRoute(routerProps, routeProps)}
             </InPortal>
           );
         })}
-      </React.Fragment>
 
-      {!!currentPortalRecord && <OutPortal node={currentPortalRecord.portalNode} />}
+        {!!currentPortalRecord && <OutPortal node={currentPortalRecord.portalNode} />}
+      </React.Fragment>
     </React.Fragment>
   );
 };

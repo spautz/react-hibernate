@@ -1,12 +1,4 @@
-import * as React from 'react';
-import PropTypes from 'prop-types';
+import ReactStaticContainer from 'static-container';
 
-const StaticComponentContainer: React.FC<{}> = ({ children }) => {
-  return <React.Fragment>{children}</React.Fragment>;
-};
-
-StaticComponentContainer.propTypes = {
-  children: PropTypes.node.isRequired,
-};
-
-export default StaticComponentContainer;
+// Re-exported for convenience only
+export default ReactStaticContainer;
