@@ -55,11 +55,14 @@ const HibernatingSwitch: React.FC<HibernatingSwitchProps> = ({
       (currentPortalRecord as PortalRecord).routeProps = routeProps;
     } else {
       // New route! Stash the old and move to the new
+      // But first, pull any previous portal record for the 'new' screen (in case it's in the cache) --
+      // otherwise it might get removed when we add the old portal record, if the cache size is small.
+      const previousPortalRecord = portalRecordCache.get(pathKey);
+
       if (currentPathKey) {
         portalRecordCache.set(currentPathKey, currentPortalRecord);
       }
 
-      const previousPortalRecord = portalRecordCache.get(pathKey);
       let newPortalRecord;
       if (previousPortalRecord) {
         // Reactivate the prior subtree

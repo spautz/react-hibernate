@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { ReactElement } from 'react';
 
-interface SampleFormProps {
+export interface SampleFormProps {
   title: string;
 }
 

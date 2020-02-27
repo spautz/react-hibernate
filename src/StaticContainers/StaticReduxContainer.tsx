@@ -27,7 +27,7 @@ const StaticReduxContainer: React.FC<StaticContainerProps> = ({
       // We're somehow being rendered in an initially-inactive state: that can't be right
       if (process.env.NODE_ENV !== 'production') {
         console.warn(
-          'StaticReduxContainer is being mounted with shouldUpdate=false: this is probably a bug',
+          'StaticReduxContainer is being mounted with shouldUpdate=false. This is probably a bug.',
         );
       }
       return null;
