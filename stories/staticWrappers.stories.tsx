@@ -1,38 +1,22 @@
 import React, { ReactElement, ReactNode } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import { MemoryRouter, Redirect, Route, RouteProps } from 'react-router';
 import { NavLink } from 'react-router-dom';
+import Typography from '@material-ui/core/Typography';
 
-import { HibernatingRoute, HibernatingSwitch } from '../src';
+import 'typeface-roboto';
 
-import { SampleForm, SampleFormProps } from '../helpers/components';
-import { reduxDecorator, countAction } from '../helpers/redux';
-import StaticReduxContainer from '../src/StaticContainers/StaticReduxContainer';
+import {
+  HibernatingRoute,
+  HibernatingSwitch,
+  StaticReduxContainer,
+  StaticComponentContainer,
+} from '../src';
 
-const SampleWithRedux: React.FC<SampleFormProps> = (props: SampleFormProps) => {
-  const state = useSelector((state) => state);
-  console.log('state = ', state);
-  const dispatch = useDispatch();
-
-  return (
-    <div>
-      <SampleForm {...props}>
-        <button
-          onClick={(): void => {
-            dispatch(countAction());
-          }}
-        >
-          Increment Redux count
-        </button>
-        <pre>{JSON.stringify(state, null, 2)}</pre>
-      </SampleForm>
-    </div>
-  );
-};
+import { DemoContainer } from '../helpers/components';
+import { reduxDecorator } from '../helpers/redux';
 
 export default {
-  title: 'With Redux',
-  component: HibernatingSwitch,
+  title: 'Static Wrappers',
   decorators: [reduxDecorator],
 };
 
@@ -48,21 +32,25 @@ export const WithNoWrapper = (): ReactNode => (
     {' | '}
     <NavLink to="/route3/3">Route3 id=3</NavLink>
 
+    <Typography variant="subtitle1">
+      With no StaticWrapper set, components will rerender when you return to them
+    </Typography>
+
     <HibernatingSwitch StaticWrapper={null}>
       <HibernatingRoute path="/route1">
-        <SampleWithRedux title="Route 1" />
+        <DemoContainer withRedux title="Route 1" />
       </HibernatingRoute>
       <HibernatingRoute path="/route2">
-        <SampleWithRedux title="Route 2" />
+        <DemoContainer withRedux title="Route 2" />
       </HibernatingRoute>
       <HibernatingRoute path="/route3/:id">
-        <SampleWithRedux title="Route 3" />
+        <DemoContainer withRedux title="Route 3" />
       </HibernatingRoute>
     </HibernatingSwitch>
   </MemoryRouter>
 );
 
-export const WithDefaultWrapper = (): ReactNode => (
+export const WithStaticWrapper = (): ReactNode => (
   <MemoryRouter initialEntries={['/route1']}>
     <NavLink to="/route1">Route1</NavLink>
     {' | '}
@@ -74,15 +62,20 @@ export const WithDefaultWrapper = (): ReactNode => (
     {' | '}
     <NavLink to="/route3/3">Route3 id=3</NavLink>
 
-    <HibernatingSwitch>
+    <Typography variant="subtitle1">
+      With the StaticComponentContainer, components do not automatically rerender when you return to
+      them
+    </Typography>
+
+    <HibernatingSwitch StaticWrapper={StaticComponentContainer}>
       <HibernatingRoute path="/route1">
-        <SampleWithRedux title="Route 1" />
+        <DemoContainer withRedux title="Route 1" />
       </HibernatingRoute>
       <HibernatingRoute path="/route2">
-        <SampleWithRedux title="Route 2" />
+        <DemoContainer withRedux title="Route 2" />
       </HibernatingRoute>
       <HibernatingRoute path="/route3/:id">
-        <SampleWithRedux title="Route 3" />
+        <DemoContainer withRedux title="Route 3" />
       </HibernatingRoute>
     </HibernatingSwitch>
   </MemoryRouter>
@@ -100,15 +93,21 @@ export const WithReduxWrapper = (): ReactNode => (
     {' | '}
     <NavLink to="/route3/3">Route3 id=3</NavLink>
 
+    <Typography variant="subtitle1">
+      With the StaticReduxContainer, redux updates do not cause a rerender in hibernating routes.
+      Due to the freezing/unfreezing of redux, however, the render count goes up by two when
+      switching (once when entering hibernation, once when leaving it)
+    </Typography>
+
     <HibernatingSwitch StaticWrapper={StaticReduxContainer}>
       <HibernatingRoute path="/route1">
-        <SampleWithRedux title="Route 1" />
+        <DemoContainer withRedux title="Route 1" />
       </HibernatingRoute>
       <HibernatingRoute path="/route2">
-        <SampleWithRedux title="Route 2" />
+        <DemoContainer withRedux title="Route 2" />
       </HibernatingRoute>
       <HibernatingRoute path="/route3/:id">
-        <SampleWithRedux title="Route 3" />
+        <DemoContainer withRedux title="Route 3" />
       </HibernatingRoute>
     </HibernatingSwitch>
   </MemoryRouter>
@@ -118,9 +117,9 @@ const MyCustomRoute = (props: RouteProps): ReactElement => <Route {...props} />;
 
 export const MixRoutesWithStaticWrapper = (): ReactNode => (
   <MemoryRouter initialEntries={['/not-matched']}>
-    <NavLink to="/route1">Default Route</NavLink>
+    <NavLink to="/route1">Non-hibernating Route 1</NavLink>
     {' | '}
-    <NavLink to="/route2">Custom Route</NavLink>
+    <NavLink to="/route2">Non-hibernating Route 2</NavLink>
     {' | '}
     <NavLink to="/route3/1">Hibernating id=1</NavLink>
     {' | '}
@@ -128,15 +127,19 @@ export const MixRoutesWithStaticWrapper = (): ReactNode => (
     {' | '}
     <NavLink to="/route3/3">Hibernating id=3</NavLink>
 
+    <Typography variant="subtitle1">
+      The first two screens are never retained, the last three are
+    </Typography>
+
     <HibernatingSwitch StaticWrapper={StaticReduxContainer}>
       <Route path="/route1">
-        <SampleWithRedux title="Route 1" />
+        <DemoContainer withRedux title="Route 1" />
       </Route>
       <MyCustomRoute path="/route2">
-        <SampleWithRedux title="Route 2" />
+        <DemoContainer withRedux title="Route 2" />
       </MyCustomRoute>
       <HibernatingRoute path="/route3/:id">
-        <SampleWithRedux title="Route 3" />
+        <DemoContainer withRedux title="Route 3" />
       </HibernatingRoute>
       <Redirect to="/route1" />
     </HibernatingSwitch>

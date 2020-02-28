@@ -93,7 +93,7 @@ Read more: [@TODO: move most of this section to docs]
 - [x] Proof of concept
 - [x] Project scaffolding
 - [x] Core functionality
-- [ ] Tests
+- [ ] Tests <-- in progress
 - [x] Demos
 - [ ] Initial release
 - [ ] Explore: `useHibernatingEffect` hook (successfully prototyped)
