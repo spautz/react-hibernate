@@ -1,5 +1,4 @@
-import * as React from 'react';
-import { ReactElement } from 'react';
+import React, { ReactElement } from 'react';
 
 export interface SampleFormProps {
   title: string;

@@ -12,27 +12,30 @@ const StaticReduxContainer: React.FC<StaticContainerProps> = ({
   const staticStoreRef = React.useRef<Store>();
   const wasActiveRef = React.useRef<boolean>();
 
-  if (!shouldUpdate) {
+  const stateWhenLastActive = React.useRef<Store>();
+
+  if (shouldUpdate) {
+    // Track stuff for when we go inactive
+    stateWhenLastActive.current = store.getState();
+  } else {
     if (wasActiveRef.current) {
-      // We're going inactive: freeze the store contents as best we can
-      console.log('freezing store...', store);
-      const stateAtFreeze = store.getState();
+      // We're going inactive: freeze the store contents to the last-active state
       staticStoreRef.current = {
         ...store,
-        getState: (): ReturnType<typeof store.getState> => stateAtFreeze,
+        getState: (): ReturnType<typeof store.getState> => stateWhenLastActive.current,
       };
-
-      wasActiveRef.current = false;
     } else {
       // We're somehow being rendered in an initially-inactive state: that can't be right
       if (process.env.NODE_ENV !== 'production') {
         console.warn(
-          'StaticReduxContainer is being mounted with shouldUpdate=false. This is probably a bug.',
+          'StaticReduxContainer is being mounted with shouldUpdate=false: this is probably a bug',
         );
       }
       return null;
     }
   }
+
+  wasActiveRef.current = shouldUpdate;
   return (
     <Provider store={shouldUpdate ? store : (staticStoreRef.current as Store)}>{children}</Provider>
   );

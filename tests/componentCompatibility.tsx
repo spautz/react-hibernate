@@ -11,8 +11,8 @@ import HibernatingSwitch from '../src/HibernatingSwitch';
 import {
   restoreReactUnmountErrors,
   suppressReactUnmountErrors,
-} from '../util/test/suppressReactDevErrors';
-import renderWithRouterContext from '../util/test/renderWithRouterContext';
+  renderWithRouterContext,
+} from '../helpers/test';
 
 describe('Compatibility with react-router components', () => {
   // We only suppress the unmount errors between tests: if they happen within any test, we want to know

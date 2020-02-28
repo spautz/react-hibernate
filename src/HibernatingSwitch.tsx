@@ -1,5 +1,4 @@
-import * as React from 'react';
-import { ReactNode } from 'react';
+import React, { ReactNode } from 'react';
 import { useLimitedCache } from 'limited-cache/hooks';
 import { isElement } from 'react-is';
 import { createPortalNode, InPortal, OutPortal, PortalNode } from 'react-reverse-portal';
@@ -14,11 +13,13 @@ import {
 
 import HibernatingRoute from './HibernatingRoute';
 import renderRoute from './renderRoute';
+import { ReactComponentLike } from 'prop-types';
 
 interface HibernatingSwitchProps extends SwitchProps {
   children: ReactNode;
   maxCacheSize?: number;
   maxCacheTime?: number;
+  StaticWrapper?: ReactComponentLike | null;
 }
 
 type PortalRecord = {
@@ -31,6 +32,7 @@ const HibernatingSwitch: React.FC<HibernatingSwitchProps> = ({
   children,
   maxCacheSize,
   maxCacheTime,
+  StaticWrapper,
   ...allOtherProps
 }: HibernatingSwitchProps) => {
   const portalRecordCache = useLimitedCache({
@@ -41,6 +43,16 @@ const HibernatingSwitch: React.FC<HibernatingSwitchProps> = ({
   const currentPathKeyRef = React.useRef<string>();
   const currentPathKey = currentPathKeyRef.current;
   const [currentPortalRecord, setCurrentPortalRecord] = React.useState<PortalRecord | null>(null);
+
+  if (process.env.NODE_ENV !== 'production') {
+    const InitialStaticWrapperRef = React.useRef(StaticWrapper);
+    if (StaticWrapper !== InitialStaticWrapperRef.current) {
+      console.warn(
+        'The StaticWrapper component changed between renders: this will cause a remount',
+      );
+      InitialStaticWrapperRef.current = StaticWrapper;
+    }
+  }
 
   const activatePortalForComponent = (
     routerProps: RouteComponentProps,
@@ -153,15 +165,24 @@ const HibernatingSwitch: React.FC<HibernatingSwitchProps> = ({
             pathKey === currentPathKey ? currentPortalRecord : portalRecordCacheFull[pathKey];
 
           if (!portalRecord) {
-            console.warn(`portalRecord is missing for pathKey "${pathKey}"`);
+            if (process.env.NODE_ENV !== 'production') {
+              console.warn(`portalRecord is missing for pathKey "${pathKey}"`);
+            }
             return null;
           }
 
           const { portalNode, routerProps, routeProps } = portalRecord;
 
+          const routeContent = renderRoute(routerProps, routeProps);
+          const wrappedRouteContent = StaticWrapper ? (
+            <StaticWrapper shouldUpdate={pathKey === currentPathKey}>{routeContent}</StaticWrapper>
+          ) : (
+            routeContent
+          );
+
           return (
             <InPortal key={pathKey} node={portalNode}>
-              {renderRoute(routerProps, routeProps)}
+              {wrappedRouteContent}
             </InPortal>
           );
         })}
@@ -174,6 +195,7 @@ const HibernatingSwitch: React.FC<HibernatingSwitchProps> = ({
 HibernatingSwitch.defaultProps = {
   maxCacheSize: 5,
   maxCacheTime: 5 * 60 * 1000,
+  StaticWrapper: null,
 };
 
 export default HibernatingSwitch;

@@ -1,7 +1,5 @@
-import { createMemoryHistory } from 'history';
-import * as React from 'react';
-import { ReactElement, ComponentType } from 'react';
-import { MemoryHistoryBuildOptions } from 'history';
+import React, { ReactElement, ComponentType } from 'react';
+import { createMemoryHistory, MemoryHistoryBuildOptions } from 'history';
 import { isElement } from 'react-is';
 import { Router } from 'react-router';
 import { render } from '@testing-library/react';

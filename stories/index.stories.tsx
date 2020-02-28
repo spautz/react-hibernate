@@ -6,7 +6,7 @@ import { withKnobs, number } from '@storybook/addon-knobs';
 
 import { HibernatingRoute, HibernatingSwitch } from '../src';
 
-import SampleForm from '../util/components/SampleForm';
+import SampleForm from '../helpers/components/SampleForm';
 
 export default {
   title: 'Basic usage',

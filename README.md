@@ -100,3 +100,10 @@ Read more: [@TODO: move most of this section to docs]
 - [ ] Explore: `maxCacheTime` override per-route (successfully prototyped)
 - [ ] Explore: Options to better control which/when to add a subtree
 - [ ] Explore: React-Router v6
+
+#### Known Issues
+
+"Cannot update a component from inside the function body of a different component" warning in React 16.13
+
+- This will be addressed as part of supporting React-Router v6, when subtree activation will need to be done via a
+  component instead of a callback.
