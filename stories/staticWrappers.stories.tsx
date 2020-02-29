@@ -10,7 +10,7 @@ import {
   HibernatingSwitch,
   StaticReduxContainer,
   StaticComponentContainer,
-} from '../src';
+} from '../packages/react-router-hibernate/src';
 
 import { DemoContainer } from '../helpers/components';
 import { reduxDecorator } from '../helpers/redux';

@@ -29,6 +29,6 @@
     /* Advanced Options */
     "forceConsistentCasingInFileNames": true
   },
-  "include": ["src", "stories", "tests"],
+  "include": ["packages/*/src", "packages/*/tests", "stories"],
   "exclude": ["node_modules"]
 }

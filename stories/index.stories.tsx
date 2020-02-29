@@ -7,7 +7,7 @@ import { withKnobs, number } from '@storybook/addon-knobs';
 
 import 'typeface-roboto';
 
-import { HibernatingRoute, HibernatingSwitch } from '../src';
+import { HibernatingRoute, HibernatingSwitch } from '../packages/react-router-hibernate/src';
 
 import DemoContainer from '../helpers/components/DemoContainer';
 

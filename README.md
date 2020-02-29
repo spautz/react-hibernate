@@ -51,7 +51,7 @@ Set a falsy value to disable.
 
 Time after which a subtree is removed from the cache. Set a falsy value to disable.
 
-#### `StaticWrapperComponent` (React component, default: [StaticComponentContainer](./src/StaticContainers/StaticComponentContainer.tsx))
+#### `StaticWrapperComponent` (React component, default: none)
 
 A component which wraps all potentially-hibernatable routes. It receives a `shouldUpdate` prop. See the
 "Preventing Extra Work" section below.
