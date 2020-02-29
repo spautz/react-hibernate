@@ -10,10 +10,10 @@ import {
   HibernatingSwitch,
   StaticReduxContainer,
   StaticComponentContainer,
-} from '../packages/react-router-hibernate/src';
+} from '../../react-router-hibernate/src';
 
-import { DemoContainer } from '../helpers/components';
-import { reduxDecorator } from '../helpers/redux';
+import { DemoContainer } from '../../helpers/src/components';
+import { reduxDecorator } from '../../helpers/src/redux';
 
 export default {
   title: 'Static Wrappers',

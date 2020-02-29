@@ -12,7 +12,7 @@ import {
   restoreReactUnmountErrors,
   suppressReactUnmountErrors,
   renderWithRouterContext,
-} from '../../../helpers/test';
+} from '../../helpers/src/jest';
 
 describe('Compatibility with react-router components', () => {
   // We only suppress the unmount errors between tests: if they happen within any test, we want to know

@@ -16,13 +16,34 @@
   ],
   "sideEffects": false,
   "scripts": {
-    "prepare": "lerna bootstrap"
+    "____ BASE COMMANDS _________________________________________________": "",
+    "build:all": "lerna exec yarn build",
+    "clean:all": "lerna exec yarn clean && rimraf storybook-static/",
+    "test:all": "lerna exec yarn test",
+    "format": "prettier --write \"**/*.*\"",
+    "format:check": "prettier --list-different \"**/*.*\"",
+    "lint": "eslint \"**/*.{js,jsx,json,ts,tsx}\"",
+    "release": "standard-version --sign --release-as ",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook",
+    "types": "tsc --noEmit --p tsconfig.json --jsx react",
+    "____ HOOKS _________________________________________________________": "",
+    "prepare": "lerna bootstrap",
+    "____ INTEGRATION ___________________________________________________": ""
   },
   "dependencies": {},
   "devDependencies": {
-    "lerna": "^3.20.2"
+    "@storybook/addon-knobs": "^5.3.14",
+    "@storybook/addons": "^5.3.14",
+    "@storybook/preset-typescript": "^1.2.0",
+    "@storybook/react": "^5.3.14",
+    "husky": "^4.2.3",
+    "lerna": "^3.20.2",
+    "lint-staged": "^10.0.7",
+    "rimraf": "^3.0.2",
+    "standard-version": "^7.1.0",
+    "yarn-or-npm": "^3.0.1"
   },
-  "peerDependencies": {},
   "lint-staged": {
     "**/*.{css,html,js,jsx,json,less,md,scss,ts,tsx}": [
       "prettier --write"

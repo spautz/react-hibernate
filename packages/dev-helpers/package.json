@@ -1,0 +1,36 @@
+{
+  "name": "react-hibernate-dev-helpers",
+  "version": "0.0.2",
+  "description": "A react-router Switch which can leave inactive routes mounted-but-inactive until you navigate back",
+  "keywords": [],
+  "license": "MIT",
+  "homepage": "https://github.com/spautz/react-router-hibernate/packages/dev-helpers#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/spautz/react-router-hibernate.git"
+  },
+  "bugs": {
+    "url": "https://github.com/spautz/react-router-hibernate/issues"
+  },
+  "author": "Steven Pautz <spautz@gmail.com>",
+  "files": [
+    "dist/",
+    "src/",
+    "LICENSE",
+    "README.md"
+  ],
+  "source": "src/index.ts",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.esm.js",
+  "jsnext:main": "dist/index.esm.js",
+  "types": "dist/src/index.d.ts",
+  "sideEffects": false,
+  "scripts": {
+    "____ BASE COMMANDS _________________________________________________": "",
+    "____ HOOKS _________________________________________________________": "",
+    "____ INTEGRATION ___________________________________________________": ""
+  },
+  "dependencies": {},
+  "devDependencies": {},
+  "peerDependencies": {}
+}
