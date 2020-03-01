@@ -15,6 +15,14 @@ module.exports = {
   },
 
   rules: {},
+  ignorePatterns: [
+    'build/',
+    'dist/',
+    'coverage/',
+    'coverage-local/',
+    'node_modules/',
+    'storybook-static/',
+  ],
   overrides: [
     {
       files: ['*.js'],
