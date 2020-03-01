@@ -5,15 +5,11 @@ import Typography from '@material-ui/core/Typography';
 
 import 'typeface-roboto';
 
-import {
-  HibernatingRoute,
-  HibernatingSwitch,
-  StaticReduxContainer,
-  StaticComponentContainer,
-} from '../../react-router-hibernate/src';
+import { HibernatingRoute, HibernatingSwitch } from 'react-router-hibernate';
 
-import { DemoContainer } from '../../helpers/src/components';
-import { reduxDecorator } from '../../helpers/src/redux';
+import { StaticReduxContainer, StaticComponentContainer } from '../src';
+
+import { DemoContainer, reduxDecorator } from 'react-hibernate-dev-helpers';
 
 export default {
   title: 'Static Wrappers',

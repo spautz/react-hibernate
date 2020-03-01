@@ -27,10 +27,35 @@
   "sideEffects": false,
   "scripts": {
     "____ BASE COMMANDS _________________________________________________": "",
+    "build": "microbundle build --jsx React.createElement",
+    "build:watch": "microbundle watch --jsx React.createElement",
+    "clean": "rimraf dist/",
+    "format": "prettier --write \"**/*.*\"",
+    "format:check": "prettier --list-different \"**/*.*\"",
+    "lint": "eslint \"**/*.{js,jsx,json,ts,tsx}\"",
+    "prepare": "yon build",
+    "test": "jest",
+    "test:clean": "rimraf coverage/",
+    "test:coverage": "jest --coverage",
+    "test:report": "jest --coverage --coverageReporters=text-lcov | coveralls",
+    "test:watch": "jest --watch",
+    "types": "tsc --noEmit --p tsconfig.json --jsx react",
     "____ HOOKS _________________________________________________________": "",
     "____ INTEGRATION ___________________________________________________": ""
   },
   "dependencies": {},
-  "devDependencies": {},
-  "peerDependencies": {}
+  "devDependencies": {
+    "@material-ui/core": "^4.9.4",
+    "typeface-roboto": "^0.0.75"
+  },
+  "peerDependencies": {
+    "react": ">=16.8.0",
+    "react-dom": ">=16.8.0",
+    "react-redux": ">=7.0.0"
+  },
+  "peerDependenciesMeta": {
+    "react-redux": {
+      "optional": true
+    }
+  }
 }
