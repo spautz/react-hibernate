@@ -11,14 +11,12 @@
     "url": "https://github.com/spautz/react-hibernate/issues"
   },
   "author": "Steven Pautz <spautz@gmail.com>",
-  "workspaces": [
-    "packages/*"
-  ],
   "sideEffects": false,
   "scripts": {
     "____ BASE COMMANDS _________________________________________________": "",
     "build:all": "lerna exec yarn build",
     "clean:all": "lerna exec yarn clean && rimraf storybook-static/",
+    "prepare:all": "lerna exec yarn prepare",
     "test": "jest --projects ./packages/*/",
     "test:all": "lerna exec yarn test",
     "format": "prettier --write \"**/*.*\"",
@@ -29,12 +27,14 @@
     "build-storybook": "build-storybook",
     "types": "tsc --noEmit --p tsconfig.json --jsx react",
     "____ HOOKS _________________________________________________________": "",
-    "prepare": "lerna bootstrap && yon build:all",
+    "prepare": "lerna bootstrap && yarn prepare:all",
     "____ INTEGRATION ___________________________________________________": ""
   },
   "dependencies": {},
   "devDependencies": {
-    "@babel/core": "^7.8.4",
+    "@babel/core": "^7.8.6",
+    "@babel/preset-react": "^7.8.3",
+    "@babel/preset-typescript": "^7.8.3",
     "@storybook/addon-knobs": "^5.3.14",
     "@storybook/addons": "^5.3.14",
     "@storybook/preset-typescript": "^1.2.0",
@@ -43,7 +43,7 @@
     "@testing-library/react": "^9.4.1",
     "@types/history": "^4.7.5",
     "@types/jest": "^25.1.3",
-    "@types/node": "^13.7.6",
+    "@types/node": "^13.7.7",
     "@types/react": "^16.9.23",
     "@types/react-is": "^16.7.1",
     "@types/react-redux": "^7.1.7",
@@ -57,7 +57,7 @@
     "eslint-config-prettier": "^6.10.0",
     "eslint-plugin-prettier": "^3.1.2",
     "eslint-plugin-react": "^7.18.3",
-    "fork-ts-checker-webpack-plugin": "^4.0.4",
+    "fork-ts-checker-webpack-plugin": "^4.0.5",
     "history": "^4.10.1",
     "husky": "^4.2.3",
     "jest": "^25.1.0",
@@ -77,8 +77,8 @@
     "standard-version": "^7.1.0",
     "ts-jest": "^25.2.1",
     "ts-loader": "^6.2.1",
-    "tslib": "^1.10.0",
-    "typescript": "^3.7.5",
+    "tslib": "^1.11.1",
+    "typescript": "^3.8.3",
     "yarn-or-npm": "^3.0.1"
   },
   "lint-staged": {
@@ -95,5 +95,8 @@
     "scripts": {
       "postchangelog": "yon format"
     }
-  }
+  },
+  "workspaces": [
+    "packages/*"
+  ]
 }

@@ -5,9 +5,9 @@ import { NavLink } from 'react-router-dom';
 import Typography from '@material-ui/core/Typography';
 import { withKnobs, number } from '@storybook/addon-knobs';
 
-import { DemoContainer } from 'dev-helpers';
-
 import 'typeface-roboto';
+
+import { DemoContainer } from 'react-hibernate-dev-helpers';
 
 import { HibernatingRoute, HibernatingSwitch } from '../src';
 

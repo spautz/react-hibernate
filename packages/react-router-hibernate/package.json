@@ -20,10 +20,10 @@
     "README.md"
   ],
   "source": "src/index.ts",
-  "main": "dist/index.cjs.js",
+  "main": "dist/index.js",
   "module": "dist/index.esm.js",
   "jsnext:main": "dist/index.esm.js",
-  "types": "dist/src/index.d.ts",
+  "types": "dist/react-router-hibernate/src/index.d.ts",
   "sideEffects": false,
   "scripts": {
     "____ BASE COMMANDS _________________________________________________": "",

@@ -20,10 +20,10 @@
     "README.md"
   ],
   "source": "src/index.ts",
-  "main": "dist/index.cjs.js",
+  "main": "dist/index.js",
   "module": "dist/index.esm.js",
   "jsnext:main": "dist/index.esm.js",
-  "types": "dist/src/index.d.ts",
+  "types": "dist/react-hibernate-dev-helpers/src/index.d.ts",
   "sideEffects": false,
   "scripts": {
     "____ BASE COMMANDS _________________________________________________": "",
@@ -34,28 +34,33 @@
     "format:check": "prettier --list-different \"**/*.*\"",
     "lint": "eslint \"**/*.{js,jsx,json,ts,tsx}\"",
     "prepare": "yon build",
-    "test": "jest",
+    "test": "echo \"@TODO: tests for dev-helpers\"",
     "test:clean": "rimraf coverage/",
     "test:coverage": "jest --coverage",
     "test:report": "jest --coverage --coverageReporters=text-lcov | coveralls",
     "test:watch": "jest --watch",
     "types": "tsc --noEmit --p tsconfig.json --jsx react",
     "____ HOOKS _________________________________________________________": "",
+    "prebuild": "yon clean",
+    "prerelease": "yon clean",
+    "prepublishOnly": "yon check && yon build",
+    "pretest": "yon test:clean",
     "____ INTEGRATION ___________________________________________________": ""
   },
-  "dependencies": {},
-  "devDependencies": {
+  "dependencies": {
     "@material-ui/core": "^4.9.4",
+    "@testing-library/react": "^9.4.1",
+    "history": "^4.10.1",
+    "react-is": "^16.13.0",
+    "react-redux": "^7.2.0",
+    "react-router": "^5.1.2",
+    "redux": "^4.0.5",
+    "redux-devtools-extension": "^2.13.8",
     "typeface-roboto": "^0.0.75"
   },
+  "devDependencies": {},
   "peerDependencies": {
     "react": ">=16.8.0",
-    "react-dom": ">=16.8.0",
-    "react-redux": ">=7.0.0"
-  },
-  "peerDependenciesMeta": {
-    "react-redux": {
-      "optional": true
-    }
+    "react-dom": ">=16.8.0"
   }
 }

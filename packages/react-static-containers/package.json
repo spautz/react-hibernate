@@ -20,10 +20,10 @@
     "README.md"
   ],
   "source": "src/index.ts",
-  "main": "dist/index.cjs.js",
+  "main": "dist/index.js",
   "module": "dist/index.esm.js",
   "jsnext:main": "dist/index.esm.js",
-  "types": "dist/src/index.d.ts",
+  "types": "dist/react-static-containers/src/index.d.ts",
   "sideEffects": false,
   "scripts": {
     "____ BASE COMMANDS _________________________________________________": "",
@@ -35,7 +35,7 @@
     "lint": "eslint \"**/*.{js,jsx,json,ts,tsx}\"",
     "prepare": "yon build",
     "release": "standard-version --sign --release-as ",
-    "test": "jest",
+    "test": "echo \"@TODO: tests for static-containers\"",
     "test:clean": "rimraf coverage/",
     "test:coverage": "jest --coverage",
     "test:report": "jest --coverage --coverageReporters=text-lcov | coveralls",
@@ -54,7 +54,8 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "react-hibernate-dev-helpers": "0.0.2"
+    "react-hibernate-dev-helpers": "0.0.2",
+    "react-router-hibernate": "0.0.2"
   },
   "peerDependencies": {
     "react": ">=16.8.0",
