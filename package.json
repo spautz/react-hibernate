@@ -1,68 +1,53 @@
 {
-  "name": "react-router-hibernate",
-  "version": "0.0.2",
-  "description": "A react-router Switch which can leave inactive routes mounted-but-inactive until you navigate back",
-  "keywords": [],
+  "name": "react-hibernate-workspace",
+  "private": true,
   "license": "MIT",
-  "homepage": "https://github.com/spautz/react-router-hibernate#readme",
+  "homepage": "https://github.com/spautz/react-hibernate#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/spautz/react-router-hibernate.git"
+    "url": "git+https://github.com/spautz/react-hibernate.git"
   },
   "bugs": {
-    "url": "https://github.com/spautz/react-router-hibernate/issues"
+    "url": "https://github.com/spautz/react-hibernate/issues"
   },
   "author": "Steven Pautz <spautz@gmail.com>",
-  "files": [
-    "dist/",
-    "src/",
-    "LICENSE",
-    "README.md"
-  ],
-  "source": "src/index.ts",
-  "main": "dist/index.cjs.js",
-  "module": "dist/index.esm.js",
-  "jsnext:main": "dist/index.esm.js",
-  "types": "dist/src/index.d.ts",
   "sideEffects": false,
   "scripts": {
     "____ BASE COMMANDS _________________________________________________": "",
-    "build": "microbundle build --jsx React.createElement",
-    "build:watch": "microbundle watch --jsx React.createElement",
-    "clean": "rimraf dist/ storybook-static/",
-    "format": "prettier --write \"**/*.*\"",
-    "format:check": "prettier --list-different \"**/*.*\"",
-    "lint": "eslint \"**/*.{js,jsx,json,ts,tsx}\"",
-    "prepare": "yon build",
-    "release": "standard-version --sign --release-as ",
-    "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook",
+    "build:all": "lerna exec yon build",
+    "clean:all": "rimraf storybook-static/ && lerna exec yon clean",
+    "prepare:all": "lerna exec yon prepare",
     "test": "jest",
     "test:clean": "rimraf coverage/",
     "test:coverage": "jest --coverage",
     "test:report": "jest --coverage --coverageReporters=text-lcov | coveralls",
     "test:watch": "jest --watch",
+    "format": "prettier --write \"**/*.*\"",
+    "format:checkup": "prettier --list-different \"**/*.*\"",
+    "lint": "eslint \"**/*.{js,jsx,json,ts,tsx}\"",
+    "release": "standard-version --sign --release-as ",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook",
     "types": "tsc --noEmit --p tsconfig.json --jsx react",
     "____ HOOKS _________________________________________________________": "",
-    "prebuild": "yon clean",
-    "prerelease": "yon clean",
-    "prepublishOnly": "yon check && yon build",
+    "prepare": "lerna bootstrap && yon prepare:all",
+    "prepublishOnly": "yon checkup:all && yon build:all",
+    "prerelease": "yon clean:all",
     "pretest": "yon test:clean",
     "____ INTEGRATION ___________________________________________________": "",
     "dev": "yon run format && yon run types && yon run lint",
-    "check": "yon format:check && yon run types && yon run lint",
-    "ci": "yon run check && yon run test:report && yon run build && yon run build-storybook",
-    "all": "yon run dev && yon run test:coverage && yon run build && yon run build-storybook"
+    "checkup": "yon format:checkup && yon run types && yon run lint",
+    "all": "yon run dev && yon run test:coverage",
+    "dev:all": "yon dev && lerna exec yon dev",
+    "checkup:all": "yon checkup && lerna exec yon checkup",
+    "all:all": "yon all && lerna exec yon all",
+    "ci": "yon run checkup:all && yon run test:report && yon run build:all && yon run build-storybook"
   },
-  "dependencies": {
-    "limited-cache": "^0.3.0",
-    "prop-types": "^15.7.2",
-    "react-is": "^16.12.0",
-    "react-reverse-portal": "^1.0.5"
-  },
+  "dependencies": {},
   "devDependencies": {
-    "@babel/core": "^7.8.4",
-    "@material-ui/core": "^4.9.4",
+    "@babel/core": "^7.8.6",
+    "@babel/preset-react": "^7.8.3",
+    "@babel/preset-typescript": "^7.8.3",
     "@storybook/addon-knobs": "^5.3.14",
     "@storybook/addons": "^5.3.14",
     "@storybook/preset-typescript": "^1.2.0",
@@ -71,7 +56,7 @@
     "@testing-library/react": "^9.4.1",
     "@types/history": "^4.7.5",
     "@types/jest": "^25.1.3",
-    "@types/node": "^13.7.6",
+    "@types/node": "^13.7.7",
     "@types/react": "^16.9.23",
     "@types/react-is": "^16.7.1",
     "@types/react-redux": "^7.1.7",
@@ -85,10 +70,11 @@
     "eslint-config-prettier": "^6.10.0",
     "eslint-plugin-prettier": "^3.1.2",
     "eslint-plugin-react": "^7.18.3",
-    "fork-ts-checker-webpack-plugin": "^4.0.4",
+    "fork-ts-checker-webpack-plugin": "^4.0.5",
     "history": "^4.10.1",
     "husky": "^4.2.3",
     "jest": "^25.1.0",
+    "lerna": "^3.20.2",
     "lint-staged": "^10.0.7",
     "microbundle": "^0.12.0-next.8",
     "prettier": "^1.19.1",
@@ -104,46 +90,9 @@
     "standard-version": "^7.1.0",
     "ts-jest": "^25.2.1",
     "ts-loader": "^6.2.1",
-    "tslib": "^1.10.0",
-    "typeface-roboto": "^0.0.75",
-    "typescript": "^3.7.5",
+    "tslib": "^1.11.1",
+    "typescript": "^3.8.3",
     "yarn-or-npm": "^3.0.1"
-  },
-  "peerDependencies": {
-    "react": ">=16.8.0",
-    "react-dom": ">=16.8.0",
-    "react-redux": ">=7.0.0",
-    "react-router": ">=5.0.0"
-  },
-  "peerDependenciesMeta": {
-    "react-redux": {
-      "optional": true
-    }
-  },
-  "jest": {
-    "transform": {
-      "^.+\\.tsx?$": "ts-jest"
-    },
-    "testRegex": "(/__tests__/.*|/tests/.*|(\\.|/)(test|spec))\\.[jt]sx?$",
-    "moduleFileExtensions": [
-      "ts",
-      "tsx",
-      "js",
-      "jsx",
-      "json",
-      "node"
-    ],
-    "modulePathIgnorePatterns": [
-      "dist/"
-    ],
-    "collectCoverage": true,
-    "coveragePathIgnorePatterns": [
-      "/util/"
-    ],
-    "coverageReporters": [
-      "json",
-      "html"
-    ]
   },
   "lint-staged": {
     "**/*.{css,html,js,jsx,json,less,md,scss,ts,tsx}": [
@@ -159,5 +108,8 @@
     "scripts": {
       "postchangelog": "yon format"
     }
-  }
+  },
+  "workspaces": [
+    "packages/*"
+  ]
 }

@@ -1,0 +1,66 @@
+{
+  "name": "react-router-hibernate",
+  "version": "0.0.2",
+  "description": "A react-router Switch which can leave inactive routes mounted-but-inactive until you navigate back",
+  "keywords": [],
+  "license": "MIT",
+  "homepage": "https://github.com/spautz/react-router-hibernate/packages/react-router-hibernate#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/spautz/react-router-hibernate.git"
+  },
+  "bugs": {
+    "url": "https://github.com/spautz/react-router-hibernate/issues"
+  },
+  "author": "Steven Pautz <spautz@gmail.com>",
+  "files": [
+    "dist/",
+    "src/",
+    "LICENSE",
+    "README.md"
+  ],
+  "source": "src/index.ts",
+  "main": "dist/index.js",
+  "module": "dist/index.esm.js",
+  "jsnext:main": "dist/index.esm.js",
+  "types": "dist/react-router-hibernate/src/index.d.ts",
+  "sideEffects": false,
+  "scripts": {
+    "____ BASE COMMANDS _________________________________________________": "",
+    "build": "microbundle build --jsx React.createElement",
+    "build:watch": "microbundle watch --jsx React.createElement",
+    "clean": "rimraf dist/",
+    "format": "prettier --write \"**/*.*\"",
+    "format:checkup": "prettier --list-different \"**/*.*\"",
+    "lint": "eslint \"**/*.{js,jsx,json,ts,tsx}\"",
+    "test": "jest",
+    "test:clean": "rimraf coverage-local/",
+    "test:coverage": "jest --coverage",
+    "test:watch": "jest --watch",
+    "types": "tsc --noEmit --p tsconfig.json --jsx react",
+    "____ HOOKS _________________________________________________________": "",
+    "prepare": "yon build",
+    "prebuild": "yon clean",
+    "prerelease": "yon clean",
+    "prepublishOnly": "yon checkup && yon build",
+    "pretest": "yon test:clean",
+    "____ INTEGRATION ___________________________________________________": "",
+    "dev": "yon run format && yon run types && yon run lint",
+    "checkup": "yon format:checkup && yon run types && yon run lint",
+    "all": "yon run dev && yon run test:coverage && yon run build"
+  },
+  "dependencies": {
+    "limited-cache": "^0.3.0",
+    "prop-types": "^15.7.2",
+    "react-is": "^16.12.0",
+    "react-reverse-portal": "^1.0.5"
+  },
+  "devDependencies": {
+    "react-hibernate-dev-helpers": "0.0.2"
+  },
+  "peerDependencies": {
+    "react": ">=16.8.0",
+    "react-dom": ">=16.8.0",
+    "react-router": ">=5.0.0"
+  }
+}

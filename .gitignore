@@ -6,5 +6,6 @@
 build/
 dist/
 coverage/
+coverage-local/
 node_modules/
 storybook-static/

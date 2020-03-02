@@ -29,6 +29,6 @@
     /* Advanced Options */
     "forceConsistentCasingInFileNames": true
   },
-  "include": ["src", "stories", "tests"],
+  "include": ["packages/*/src", "packages/*/tests", "packages/react-static-containers/stories"],
   "exclude": ["node_modules"]
 }
