@@ -1,7 +1,7 @@
 import { createStore } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
-// We only need one action: this is all to demonstrate that updates can be frozen
+// We only need one action: this is only to demonstrate that updates can be frozen
 const COUNT_ACTION = 'COUNT_ACTION';
 
 export type HelperState = {
