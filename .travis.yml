@@ -6,4 +6,5 @@ node_js:
 cache: yarn
 
 script:
+  - "yarn prepare"
   - "yarn ci"
