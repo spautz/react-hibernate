@@ -2,12 +2,12 @@ import React, { PropsWithChildren, ReactElement } from 'react';
 import { Store } from 'redux';
 import { Provider, useStore } from 'react-redux';
 
-import { StaticContainerProps } from './types';
+import { PauseableContainerProps } from './types';
 
-const StaticReduxContainer: React.FC<StaticContainerProps> = ({
+const PauseableReduxContainer: React.FC<PauseableContainerProps> = ({
   shouldUpdate,
   children,
-}: PropsWithChildren<StaticContainerProps>): ReactElement | null => {
+}: PropsWithChildren<PauseableContainerProps>): ReactElement | null => {
   const store = useStore();
   const staticStoreRef = React.useRef<Store>();
   const wasActiveRef = React.useRef<boolean>();
@@ -28,7 +28,7 @@ const StaticReduxContainer: React.FC<StaticContainerProps> = ({
       // We're somehow being rendered in an initially-inactive state: that can't be right
       if (process.env.NODE_ENV !== 'production') {
         console.warn(
-          'StaticReduxContainer is being mounted with shouldUpdate=false: this is probably a bug',
+          'PauseableReduxContainer is being mounted with shouldUpdate=false: this is probably a bug',
         );
       }
       return null;
@@ -41,4 +41,4 @@ const StaticReduxContainer: React.FC<StaticContainerProps> = ({
   );
 };
 
-export default StaticReduxContainer;
+export default PauseableReduxContainer;

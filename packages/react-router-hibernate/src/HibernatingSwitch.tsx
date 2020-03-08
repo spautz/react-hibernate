@@ -19,7 +19,7 @@ interface HibernatingSwitchProps extends SwitchProps {
   children: ReactNode;
   maxCacheSize?: number;
   maxCacheTime?: number;
-  StaticWrapper?: ReactComponentLike | null;
+  WrapperComponent?: ReactComponentLike | null;
 }
 
 type PortalRecord = {
@@ -32,7 +32,7 @@ const HibernatingSwitch: React.FC<HibernatingSwitchProps> = ({
   children,
   maxCacheSize,
   maxCacheTime,
-  StaticWrapper,
+  WrapperComponent,
   ...allOtherProps
 }: HibernatingSwitchProps) => {
   const portalRecordCache = useLimitedCache({
@@ -45,12 +45,12 @@ const HibernatingSwitch: React.FC<HibernatingSwitchProps> = ({
   const [currentPortalRecord, setCurrentPortalRecord] = React.useState<PortalRecord | null>(null);
 
   if (process.env.NODE_ENV !== 'production') {
-    const InitialStaticWrapperRef = React.useRef(StaticWrapper);
-    if (StaticWrapper !== InitialStaticWrapperRef.current) {
+    const InitialWrapperComponentRef = React.useRef(WrapperComponent);
+    if (WrapperComponent !== InitialWrapperComponentRef.current) {
       console.warn(
-        'The StaticWrapper component changed between renders: this will cause a remount',
+        'The WrapperComponent component changed between renders: this will cause a remount',
       );
-      InitialStaticWrapperRef.current = StaticWrapper;
+      InitialWrapperComponentRef.current = WrapperComponent;
     }
   }
 
@@ -174,8 +174,10 @@ const HibernatingSwitch: React.FC<HibernatingSwitchProps> = ({
           const { portalNode, routerProps, routeProps } = portalRecord;
 
           const routeContent = renderRoute(routerProps, routeProps);
-          const wrappedRouteContent = StaticWrapper ? (
-            <StaticWrapper shouldUpdate={pathKey === currentPathKey}>{routeContent}</StaticWrapper>
+          const wrappedRouteContent = WrapperComponent ? (
+            <WrapperComponent shouldUpdate={pathKey === currentPathKey}>
+              {routeContent}
+            </WrapperComponent>
           ) : (
             routeContent
           );
@@ -195,7 +197,7 @@ const HibernatingSwitch: React.FC<HibernatingSwitchProps> = ({
 HibernatingSwitch.defaultProps = {
   maxCacheSize: 5,
   maxCacheTime: 5 * 60 * 1000,
-  StaticWrapper: null,
+  WrapperComponent: null,
 };
 
 export default HibernatingSwitch;

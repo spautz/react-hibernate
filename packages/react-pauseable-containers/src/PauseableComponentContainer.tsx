@@ -1,10 +1,10 @@
 import React, { ReactNode } from 'react';
 
-import { StaticContainerProps } from './types';
+import { PauseableContainerProps } from './types';
 
 // This is based on https://github.com/reactjs/react-static-container/ -- but with types
-class StaticComponentContainer extends React.Component<StaticContainerProps> {
-  shouldComponentUpdate(nextProps: StaticContainerProps): boolean {
+class PauseableComponentContainer extends React.Component<PauseableContainerProps> {
+  shouldComponentUpdate(nextProps: PauseableContainerProps): boolean {
     return nextProps.shouldUpdate;
   }
 
@@ -17,4 +17,4 @@ class StaticComponentContainer extends React.Component<StaticContainerProps> {
   }
 }
 
-export default StaticComponentContainer;
+export default PauseableComponentContainer;

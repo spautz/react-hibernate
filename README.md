@@ -1,12 +1,11 @@
 # Hibernating Components for React Router
 
-**This package is in active development, and is not yet available.**
+**These packages are in active development. Things will change rapidly, and it is not yet production-ready. Feedback is welcome.**
 
-A react-router Switch which can leave inactive routes mounted-but-inactive until you navigate back
+Detach a subtree when it unmounts, and bring it back -- state and all -- when it remounts.
 
-[![npm version](https://img.shields.io/npm/v/react-router-hibernate.svg)](https://www.npmjs.com/package/react-router-hibernate)
-[![build status](https://img.shields.io/travis/com/spautz/react-router-hibernate.svg)](https://travis-ci.com/spautz/react-router-hibernate)
-[![test coverage](https://img.shields.io/coveralls/github/spautz/react-router-hibernate.svg)](https://coveralls.io/github/spautz/react-router-hibernate)
+[![build status](https://img.shields.io/travis/com/spautz/react-router-hibernate/master.svg)](https://travis-ci.com/spautz/react-router-hibernate/branches)
+[![test coverage](https://img.shields.io/coveralls/github/spautz/react-router-hibernate/master.svg)](https://coveralls.io/github/spautz/react-router-hibernate?branch=master)
 [![gzip size](https://img.shields.io/bundlephobia/minzip/react-router-hibernate)](https://bundlephobia.com/result?p=react-router-hibernate@latest)
 
 ## Overview
@@ -17,6 +16,24 @@ If you return to it, it will be recreated from scratch.
 This library adds `<HibernatingSwitch>` and `<HibernatingRoute>`: drop-in replacements for `<Switch>` and `<Route>`
 which do not immediately unmount components when you navigate away. If you return, the prior tree will be restored,
 local state and all.
+
+## Packages
+
+#### [react-hibernate](./packages/react-hibernate-core/) [![npm version](https://img.shields.io/npm/v/react-hibernate.svg)](https://www.npmjs.com/package/react-hibernate)
+
+Restore previously-unmounted subtrees -- state and all -- on remount.
+
+#### [react-router-hibernate](./packages/react-router-hibernate/) [![npm version](https://img.shields.io/npm/v/react-router-hibernate.svg)](https://www.npmjs.com/package/react-router-hibernate)
+
+A react-router Switch which can leave inactive routes mounted-but-inactive until you navigate back.
+
+#### [react-pauseable-containers](./packages/react-pauseable-containers/) [![npm version](https://img.shields.io/npm/v/react-pauseable-containers.svg)](https://www.npmjs.com/package/react-pauseable-containers)
+
+Prevent subtrees from rerendering when their parent changes, or when certain context values change.
+
+#### [redux-pauseable-store](./packages/redux-pauseable-store/) [![npm version](https://img.shields.io/npm/v/redux-pauseable-store.svg)](https://www.npmjs.com/package/redux-pauseable-store)
+
+Derive one redux store from another, then pause it.
 
 ## Example
 
@@ -39,71 +56,3 @@ import { HibernatingSwitch, HibernatingRoute } from 'react-router-hibernate';
 
 </HibernatingSwitch>
 ```
-
-## Props for HibernatingSwitch
-
-#### `maxCacheSize` (number, default: 5)
-
-Number of subtrees to keep in the cache, including the current one. `path` is used for the cache keys.
-Set a falsy value to disable.
-
-#### `maxCacheTime` (milliseconds, default: 5 minutes)
-
-Time after which a subtree is removed from the cache. Set a falsy value to disable.
-
-#### `StaticWrapperComponent` (React component, default: none)
-
-A component which wraps all potentially-hibernatable routes. It receives a `shouldUpdate` prop. See the
-"Preventing Extra Work" section below.
-
-## How it Works
-
-Each route's subtree is rendered via a [React-Reverse-Portal](https://github.com/httptoolkit/react-reverse-portal),
-and the portal nodes are stored and rotated via a [Limited-Cache](https://github.com/spautz/limited-cache).
-
-When you revisit a route which is still in the cache, its prior subtree is reattached. Because the elements and
-instances were not destroyed, all prior state is still present -- both React state and dom state.
-
-## Preventing Extra Work in Inactive Routes
-
-Previously-rendered trees are still mounted when inactive: they're just not attached to the dom.
-
-`HibernatingRoute` will suppress the normal render cycle for inactive subtrees, but if a component in the subtree
-experiences a state change or [context](https://reactjs.org/docs/context.html) update then it will rerun.
-This is fundamental to React and cannot be avoided.
-
-For example: react-redux's [useSelector hook](https://react-redux.js.org/next/api/hooks#useselector) works by
-[forcing a rerender](https://github.com/reduxjs/react-redux/blob/5402f24db139f7ff01c7f873d136ea7ee3b8d1cb/src/hooks/useSelector.js#L15)
-outside of the normal render cycle by changing local state -- so suppressing the normal render cycle is not enough.
-
-In most cases this is fine -- inactive subtrees still use minimal resources -- but if the component itself performs
-a lot of work and has an expensive render then you may want to avoid running it at all.
-
-You can do this by replacing the contexts for inactive subtrees via `StaticWrapperComponent`. For example, you can
-suppress all redux-related updates by providing a new store whose contents are frozen at whatever moment the subtree
-became inactive. This library includes a `StaticReduxContainer` which does exactly that.
-
-This will cause one extra render cycle when a component becomes inactive (since the context values it receives will not
-strictly equal what it received before) but with memoization you can skip most of the work.
-
-Read more: [@TODO: move most of this section to docs]
-
-## Roadmap
-
-- [x] Proof of concept
-- [x] Project scaffolding
-- [x] Core functionality
-- [ ] Tests <-- in progress
-- [x] Demos
-- [ ] Initial release
-- [ ] Explore: `useHibernatingEffect` hook (successfully prototyped)
-- [ ] Explore: `maxCacheTime` override per-route (successfully prototyped)
-- [ ] Explore: Options to better control which/when to add a subtree
-- [ ] Explore: React-Router v6
-
-#### Known Issues
-
-"Cannot update a component from inside the function body of a different component" warning in React 16.13
-
-- This will be addressed as part of supporting React-Router v6, when subtree activation will need to be done via a
-  component instead of a callback.
