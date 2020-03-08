@@ -8,10 +8,10 @@ import 'typeface-roboto';
 import { DemoContainer, reduxDecorator } from 'react-hibernate-dev-helpers';
 import { HibernatingRoute, HibernatingSwitch } from 'react-router-hibernate';
 
-import { StaticReduxContainer, StaticComponentContainer } from '../src';
+import { PauseableReduxContainer, PauseableComponentContainer } from '../src';
 
 export default {
-  title: 'Static Wrappers',
+  title: 'Pauseable Containers',
   decorators: [reduxDecorator],
 };
 
@@ -28,10 +28,10 @@ export const WithNoWrapper = (): ReactNode => (
     <NavLink to="/route3/3">Route3 id=3</NavLink>
 
     <Typography variant="subtitle1">
-      With no StaticWrapper set, components will rerender when you return to them
+      With no WrapperComponent set, components will rerender when you return to them
     </Typography>
 
-    <HibernatingSwitch StaticWrapper={null}>
+    <HibernatingSwitch WrapperComponent={null}>
       <HibernatingRoute path="/route1">
         <DemoContainer withRedux title="Route 1" />
       </HibernatingRoute>
@@ -45,7 +45,7 @@ export const WithNoWrapper = (): ReactNode => (
   </MemoryRouter>
 );
 
-export const WithStaticWrapper = (): ReactNode => (
+export const WithWrapperComponent = (): ReactNode => (
   <MemoryRouter initialEntries={['/route1']}>
     <NavLink to="/route1">Route1</NavLink>
     {' | '}
@@ -58,11 +58,11 @@ export const WithStaticWrapper = (): ReactNode => (
     <NavLink to="/route3/3">Route3 id=3</NavLink>
 
     <Typography variant="subtitle1">
-      With the StaticComponentContainer, components do not automatically rerender when you return to
-      them
+      With the PauseableComponentContainer, components do not automatically rerender when you return
+      to them
     </Typography>
 
-    <HibernatingSwitch StaticWrapper={StaticComponentContainer}>
+    <HibernatingSwitch WrapperComponent={PauseableComponentContainer}>
       <HibernatingRoute path="/route1">
         <DemoContainer withRedux title="Route 1" />
       </HibernatingRoute>
@@ -89,12 +89,12 @@ export const WithReduxWrapper = (): ReactNode => (
     <NavLink to="/route3/3">Route3 id=3</NavLink>
 
     <Typography variant="subtitle1">
-      With the StaticReduxContainer, redux updates do not cause a rerender in hibernating routes.
+      With the PauseableReduxContainer, redux updates do not cause a rerender in hibernating routes.
       Due to the freezing/unfreezing of redux, however, the render count goes up by two when
       switching (once when entering hibernation, once when leaving it)
     </Typography>
 
-    <HibernatingSwitch StaticWrapper={StaticReduxContainer}>
+    <HibernatingSwitch WrapperComponent={PauseableReduxContainer}>
       <HibernatingRoute path="/route1">
         <DemoContainer withRedux title="Route 1" />
       </HibernatingRoute>
@@ -110,7 +110,7 @@ export const WithReduxWrapper = (): ReactNode => (
 
 const MyCustomRoute = (props: RouteProps): ReactElement => <Route {...props} />;
 
-export const MixRoutesWithStaticWrapper = (): ReactNode => (
+export const MixRoutesWithWrapperComponent = (): ReactNode => (
   <MemoryRouter initialEntries={['/not-matched']}>
     <NavLink to="/route1">Non-hibernating Route 1</NavLink>
     {' | '}
@@ -126,7 +126,7 @@ export const MixRoutesWithStaticWrapper = (): ReactNode => (
       The first two screens are never retained, the last three are
     </Typography>
 
-    <HibernatingSwitch StaticWrapper={StaticReduxContainer}>
+    <HibernatingSwitch WrapperComponent={PauseableReduxContainer}>
       <Route path="/route1">
         <DemoContainer withRedux title="Route 1" />
       </Route>

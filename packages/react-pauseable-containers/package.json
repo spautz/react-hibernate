@@ -1,10 +1,10 @@
 {
-  "name": "react-static-containers",
+  "name": "react-pauseable-containers",
   "version": "0.0.2",
   "description": "A react-router Switch which can leave inactive routes mounted-but-inactive until you navigate back",
   "keywords": [],
   "license": "MIT",
-  "homepage": "https://github.com/spautz/react-router-hibernate/packages/react-static-containers#readme",
+  "homepage": "https://github.com/spautz/react-router-hibernate/packages/react-pauseable-containers#readme",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/spautz/react-router-hibernate.git"
@@ -23,7 +23,7 @@
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
   "jsnext:main": "dist/index.esm.js",
-  "types": "dist/react-static-containers/src/index.d.ts",
+  "types": "dist/react-pauseable-containers/src/index.d.ts",
   "sideEffects": false,
   "scripts": {
     "____ BASE COMMANDS _________________________________________________": "",
@@ -34,10 +34,10 @@
     "format:checkup": "prettier --list-different \"**/*.*\"",
     "lint": "eslint \"**/*.{js,jsx,json,ts,tsx}\"",
     "release": "standard-version --sign --release-as ",
-    "test": "echo \"@TODO: tests for static-containers\"",
+    "test": "echo \"@TODO: tests for pauseable-containers\"",
     "test:clean": "rimraf coverage-local/",
-    "test:coverage": "echo \"@TODO: tests for static-containers\"",
-    "test:watch": "echo \"@TODO: tests for static-containers\"",
+    "test:coverage": "echo \"@TODO: tests for pauseable-containers\"",
+    "test:watch": "echo \"@TODO: tests for pauseable-containers\"",
     "types": "tsc --noEmit --p tsconfig.json --jsx react",
     "____ HOOKS _________________________________________________________": "",
     "prepare": "yon build",

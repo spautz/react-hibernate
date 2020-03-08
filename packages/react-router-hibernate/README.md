@@ -51,7 +51,7 @@ Set a falsy value to disable.
 
 Time after which a subtree is removed from the cache. Set a falsy value to disable.
 
-#### `StaticWrapperComponent` (React component, default: none)
+#### `WrapperComponent` (React component, default: none)
 
 A component which wraps all potentially-hibernatable routes. It receives a `shouldUpdate` prop. See the
 "Preventing Extra Work" section below.
@@ -79,9 +79,9 @@ outside of the normal render cycle by changing local state -- so suppressing the
 In most cases this is fine -- inactive subtrees still use minimal resources -- but if the component itself performs
 a lot of work and has an expensive render then you may want to avoid running it at all.
 
-You can do this by replacing the contexts for inactive subtrees via `StaticWrapperComponent`. For example, you can
+You can do this by replacing the contexts for inactive subtrees via `WrapperComponent`. For example, you can
 suppress all redux-related updates by providing a new store whose contents are frozen at whatever moment the subtree
-became inactive. This library includes a `StaticReduxContainer` which does exactly that.
+became inactive. This library includes a `PauseableReduxContainer` which does exactly that.
 
 This will cause one extra render cycle when a component becomes inactive (since the context values it receives will not
 strictly equal what it received before) but with memoization you can skip most of the work.
