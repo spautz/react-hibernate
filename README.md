@@ -4,8 +4,8 @@
 
 Detach a subtree when it unmounts, and bring it back -- state and all -- when it remounts.
 
-[![build status](https://img.shields.io/travis/com/spautz/react-router-hibernate/master.svg)](https://travis-ci.com/spautz/react-router-hibernate/branches)
-[![test coverage](https://img.shields.io/coveralls/github/spautz/react-router-hibernate/master.svg)](https://coveralls.io/github/spautz/react-router-hibernate?branch=master)
+[![build status](https://img.shields.io/travis/com/spautz/react-hibernate/master.svg)](https://travis-ci.com/spautz/react-hibernate/branches)
+[![test coverage](https://img.shields.io/coveralls/github/spautz/react-hibernate/master.svg)](https://coveralls.io/github/spautz/react-hibernate?branch=master)
 [![gzip size](https://img.shields.io/bundlephobia/minzip/react-router-hibernate)](https://bundlephobia.com/result?p=react-router-hibernate@latest)
 
 ## Overview

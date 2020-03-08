@@ -4,13 +4,13 @@
   "description": "A react-router Switch which can leave inactive routes mounted-but-inactive until you navigate back",
   "keywords": [],
   "license": "MIT",
-  "homepage": "https://github.com/spautz/react-router-hibernate/packages/react-router-hibernate#readme",
+  "homepage": "https://github.com/spautz/react-hibernate/packages/react-router-hibernate#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/spautz/react-router-hibernate.git"
+    "url": "git+https://github.com/spautz/react-hibernate.git"
   },
   "bugs": {
-    "url": "https://github.com/spautz/react-router-hibernate/issues"
+    "url": "https://github.com/spautz/react-hibernate/issues"
   },
   "author": "Steven Pautz <spautz@gmail.com>",
   "files": [
