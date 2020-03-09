@@ -15,7 +15,7 @@
   "scripts": {
     "____ BASE COMMANDS _________________________________________________": "",
     "build:all": "lerna exec yon build",
-    "clean:all": "rimraf storybook-static/ && lerna exec yon clean && lerna exec yon test:clean",
+    "clean:all": "rimraf storybook-static/ && rimraf node_modules/.cache/ && lerna exec yon clean && lerna exec yon test:clean",
     "prepare:all": "lerna exec yon prepare",
     "test": "jest",
     "test:clean": "rimraf coverage/",
