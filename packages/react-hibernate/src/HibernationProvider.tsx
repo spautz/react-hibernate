@@ -79,7 +79,7 @@ const HibernationProvider: React.FC<HibernationProviderProps> = ({
 
   const [, setState] = React.useState(0);
   const rerenderScheduledRef = useRef(false);
-  const rerender = () => {
+  const rerender = (): void => {
     if (!rerenderScheduledRef.current) {
       rerenderScheduledRef.current = true;
       setTimeout(() => {

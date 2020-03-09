@@ -41,7 +41,7 @@ const HibernatingSubtree: React.FC<HibernatingSubtreeProps> = ({
 
   console.log('<HibernatingSubtree>', subtreeId, myEntry, isActive);
 
-  React.useLayoutEffect(() => {
+  React.useEffect(() => {
     return (): void => markInactive(subtreeId);
   }, [markInactive, subtreeId]);
 

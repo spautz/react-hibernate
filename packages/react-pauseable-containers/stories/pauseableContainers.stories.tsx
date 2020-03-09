@@ -3,6 +3,8 @@ import { MemoryRouter, Redirect, Route, RouteProps } from 'react-router';
 import { NavLink } from 'react-router-dom';
 import Typography from '@material-ui/core/Typography';
 
+import 'typeface-roboto';
+
 import { DemoContainer, reduxDecorator } from 'react-hibernate-dev-helpers';
 import { HibernatingRoute, HibernatingSwitch } from 'react-router-hibernate';
 
