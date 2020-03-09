@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react';
+import React, { useRef, ReactNode } from 'react';
 import { ReactComponentLike } from 'prop-types';
 import { useLimitedCache } from 'limited-cache/hooks';
 import { createPortalNode, InPortal, PortalNode } from 'react-reverse-portal';
@@ -22,24 +22,27 @@ export interface HibernationProviderProps {
 const renderInPortalsForSubtreeEntries = (
   entryCache: Record<HibernatingSubtreeId, SubtreeEntry | null>,
   isActive: boolean,
-): ReactNode => (
-  <React.Fragment>
-    {Object.keys(entryCache).map((subtreeId) => {
-      const subtreeEntry = entryCache[subtreeId] as SubtreeEntry;
-      if (subtreeEntry) {
-        const [portalNode, subtreeChildren] = subtreeEntry;
-        return (
-          <InPortal key={subtreeId} node={portalNode}>
-            <SubtreeIsActiveContext.Provider value={isActive}>
-              {subtreeChildren}
-            </SubtreeIsActiveContext.Provider>
-          </InPortal>
-        );
-      }
-      return null;
-    })}
-  </React.Fragment>
-);
+): ReactNode => {
+  console.log('renderInPortalsForSubtreeEntries()', entryCache, isActive);
+  return (
+    <React.Fragment>
+      {Object.keys(entryCache).map((subtreeId) => {
+        const subtreeEntry = entryCache[subtreeId] as SubtreeEntry;
+        if (subtreeEntry) {
+          const [portalNode, subtreeChildren] = subtreeEntry;
+          return (
+            <InPortal key={subtreeId + '-' + isActive} node={portalNode}>
+              <SubtreeIsActiveContext.Provider value={isActive}>
+                {subtreeChildren}
+              </SubtreeIsActiveContext.Provider>
+            </InPortal>
+          );
+        }
+        return null;
+      })}
+    </React.Fragment>
+  );
+};
 
 const HibernationProvider: React.FC<HibernationProviderProps> = ({
   children,
@@ -57,7 +60,7 @@ const HibernationProvider: React.FC<HibernationProviderProps> = ({
       );
     }
 
-    const InitialWrapperComponentRef = React.useRef(WrapperComponent);
+    const InitialWrapperComponentRef = useRef(WrapperComponent);
     if (WrapperComponent !== InitialWrapperComponentRef.current) {
       console.warn(
         'The WrapperComponent component given to HibernationProvider changed between renders: this will cause a remount.',
@@ -66,11 +69,25 @@ const HibernationProvider: React.FC<HibernationProviderProps> = ({
     }
   }
 
-  const activeSubtreeCache: Record<HibernatingSubtreeId, SubtreeEntry | null> = Object.create(null);
+  const activeSubtreeCache: Record<HibernatingSubtreeId, SubtreeEntry | null> = useRef(
+    Object.create(null),
+  ).current;
   const hibernatedSubtreeCache = useLimitedCache({
     maxCacheSize,
     maxCacheTime,
   });
+
+  const [, setState] = React.useState(0);
+  const rerenderScheduledRef = useRef(false);
+  const rerender = () => {
+    if (!rerenderScheduledRef.current) {
+      rerenderScheduledRef.current = true;
+      setTimeout(() => {
+        console.log('rerender()');
+        setState((a) => a + 1);
+      });
+    }
+  };
 
   // Functions for HibernationAccessorContext:
 
@@ -96,6 +113,8 @@ const HibernationProvider: React.FC<HibernationProviderProps> = ({
       console.log('...markActive: new ', newEntry);
       activeSubtreeCache[subtreeId] = newEntry;
       hibernatedSubtreeCache.remove(subtreeId);
+
+      rerender();
     }
 
     console.log('activeSubtreeCache = ', activeSubtreeCache);
@@ -112,20 +131,24 @@ const HibernationProvider: React.FC<HibernationProviderProps> = ({
     activeSubtreeCache[subtreeId] = null;
     hibernatedSubtreeCache.set(subtreeId, existingEntry);
 
+    rerender();
+
     console.log('activeSubtreeCache = ', activeSubtreeCache);
     console.log('hibernatedSubtreeCache = ', hibernatedSubtreeCache.get());
   };
 
-  const subtreeAccessorFns = React.useRef([
+  const subtreeAccessorFns = useRef([
     getSubtreeEntry,
     isSubtreeActive,
     markSubtreeActive,
     markSubtreeInactive,
   ] as HibernationAccessorFns).current;
 
+  console.log('=== rendering ===', activeSubtreeCache, hibernatedSubtreeCache.get());
+
   return (
     <HibernationAccessorContext.Provider value={subtreeAccessorFns}>
-      {children}
+      <React.Fragment>{children}</React.Fragment>
       {renderInPortalsForSubtreeEntries(hibernatedSubtreeCache.get(), false)}
       {renderInPortalsForSubtreeEntries(activeSubtreeCache, true)}
     </HibernationAccessorContext.Provider>
