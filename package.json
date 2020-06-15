@@ -37,7 +37,7 @@
     "____ INTEGRATION ___________________________________________________": "",
     "dev": "yon run format && yon run types && yon run lint",
     "checkup": "yon format:checkup && yon run types && yon run lint",
-    "all": "yon run dev && yon run test:coverage",
+    "all": "yon run dev && yon run test:coverage && yon run build-storybook",
     "dev:all": "yon dev && lerna exec yon dev",
     "checkup:all": "yon checkup && lerna exec yon checkup",
     "all:all": "yon all && lerna exec yon all",

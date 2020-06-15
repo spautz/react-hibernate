@@ -53,17 +53,17 @@ export const Default = (): ReactNode => {
       </label>
 
       {component1Visible && (
-        <HibernatingSubtree subtreeId="1">
+        <HibernatingSubtree subtreeId="st1">
           <DemoContainer title="DemoComponent 1" />
         </HibernatingSubtree>
       )}
       {component2Visible && (
-        <HibernatingSubtree subtreeId="2">
+        <HibernatingSubtree subtreeId="st2">
           <DemoContainer title="DemoComponent 2" />
         </HibernatingSubtree>
       )}
       {component3Visible && (
-        <HibernatingSubtree subtreeId="3">
+        <HibernatingSubtree subtreeId="st3">
           <DemoContainer title="DemoComponent 3" />
         </HibernatingSubtree>
       )}

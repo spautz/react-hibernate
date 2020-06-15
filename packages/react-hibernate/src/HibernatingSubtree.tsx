@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react';
-import { OutPortal } from 'react-reverse-portal';
+import { InPortal, OutPortal } from 'react-reverse-portal';
 
-import { useHibernationAccessorContext } from './contexts';
+import { SubtreeIsActiveContext, useHibernationAccessorContext } from './contexts';
 import { SubtreeEntry } from './HibernationProvider';
 import { HibernatingSubtreeId } from './types';
 
@@ -37,6 +37,7 @@ const HibernatingSubtree: React.FC<HibernatingSubtreeProps> = ({
 
   markActive(subtreeId, children);
   const myEntry: SubtreeEntry = getEntry(subtreeId);
+  const [inputPortalNode, maintainedPortalNode] = myEntry;
   const isActive = getIsActive(subtreeId);
 
   console.log('<HibernatingSubtree>', subtreeId, myEntry, isActive);
@@ -45,7 +46,16 @@ const HibernatingSubtree: React.FC<HibernatingSubtreeProps> = ({
     return (): void => markInactive(subtreeId);
   }, [markInactive, subtreeId]);
 
-  return <OutPortal node={myEntry[0]} />;
+  return (
+    <React.Fragment>
+      <OutPortal node={maintainedPortalNode} />
+      <InPortal key={subtreeId} node={inputPortalNode}>
+        <SubtreeIsActiveContext.Provider value={isActive}>
+          {children}
+        </SubtreeIsActiveContext.Provider>
+      </InPortal>
+    </React.Fragment>
+  );
 };
 HibernatingSubtree.defaultProps = {};
 
