@@ -1,8 +1,7 @@
 import React, { ReactNode } from 'react';
-import { InPortal, OutPortal } from 'react-reverse-portal';
+import { OutPortal } from 'react-reverse-portal';
 
-import { SubtreeIsActiveContext, useHibernationAccessorContext } from './contexts';
-import { SubtreeEntry } from './HibernationProvider';
+import { useHibernationAccessorContext } from './contexts';
 import { HibernatingSubtreeId } from './types';
 
 interface HibernatingSubtreeProps {
@@ -29,33 +28,24 @@ const HibernatingSubtree: React.FC<HibernatingSubtreeProps> = ({
     throw new Error('HibernatingSubtree must be given a subtreeId.');
   }
 
-  const accessors = useHibernationAccessorContext();
-  if (!accessors) {
-    throw new Error('<HibernatingSubtree> must be used within a <HibernationProvider>.');
-  }
-  const [getEntry, getIsActive, markActive, markInactive] = accessors;
+  const [
+    getSubtreeEntry,
+    ,
+    markSubtreeActive,
+    markSubtreeInactive,
+  ] = useHibernationAccessorContext();
 
-  markActive(subtreeId, children);
-  const myEntry: SubtreeEntry = getEntry(subtreeId);
-  const [inputPortalNode, maintainedPortalNode] = myEntry;
-  const isActive = getIsActive(subtreeId);
-
-  console.log('<HibernatingSubtree>', subtreeId, myEntry, isActive);
-
+  // Activation is synchronous (with a scheduled rerender); deactivation is async
+  markSubtreeActive(subtreeId, children);
   React.useEffect(() => {
-    return (): void => markInactive(subtreeId);
-  }, [markInactive, subtreeId]);
+    return (): void => markSubtreeInactive(subtreeId);
+  }, [markSubtreeInactive, subtreeId]);
 
-  return (
-    <React.Fragment>
-      <OutPortal node={maintainedPortalNode} />
-      <InPortal key={subtreeId} node={inputPortalNode}>
-        <SubtreeIsActiveContext.Provider value={isActive}>
-          {children}
-        </SubtreeIsActiveContext.Provider>
-      </InPortal>
-    </React.Fragment>
-  );
+  const myEntry = getSubtreeEntry(subtreeId);
+
+  console.log('=== rendering HibernatingSubtree (maybe) ===', myEntry);
+
+  return <OutPortal node={myEntry[0]} />;
 };
 HibernatingSubtree.defaultProps = {};
 

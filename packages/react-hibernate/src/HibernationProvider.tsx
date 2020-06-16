@@ -1,23 +1,14 @@
 import React, { useRef, ReactNode } from 'react';
-import { ReactComponentLike } from 'prop-types';
 import { useLimitedCache } from 'limited-cache/hooks';
-import { createPortalNode, InPortal, OutPortal, PortalNode } from 'react-reverse-portal';
+import { ReactComponentLike } from 'prop-types';
+import { createPortalNode, InPortal } from 'react-reverse-portal';
 
 import {
   HibernationAccessorContext,
   HibernationAccessorFns,
-  // SubtreeIsActiveContext
+  SubtreeIsActiveContext,
 } from './contexts';
-import { HibernatingSubtreeId } from './types';
-
-export type SubtreeEntry = [
-  // inputPortalNode
-  PortalNode,
-  // maintainedPortalNode
-  PortalNode,
-  // lastChildren
-  // ReactNode
-];
+import { HibernatingSubtreeId, HibernatingSubtreeEntry } from './types';
 
 export interface HibernationProviderProps {
   children: ReactNode;
@@ -27,32 +18,23 @@ export interface HibernationProviderProps {
 }
 
 const renderInPortalsForSubtreeEntries = (
-  entryCache: Record<HibernatingSubtreeId, SubtreeEntry | null>,
+  entryCache: Record<HibernatingSubtreeId, HibernatingSubtreeEntry | null>,
   isActive: boolean,
-): ReactNode => {
-  console.log('renderInPortalsForSubtreeEntries()', entryCache, isActive);
-  return (
-    <React.Fragment>
-      {Object.keys(entryCache).map((subtreeId) => {
-        const subtreeEntry = entryCache[subtreeId] as SubtreeEntry;
-        if (subtreeEntry) {
-          // eslint-disable-next-line @typescript-eslint/no-unused-vars
-          const [inputPortalNode, maintainedPortalNode /* subtreeChildren */] = subtreeEntry;
-          return (
-            <InPortal key={subtreeId} node={maintainedPortalNode}>
-              <React.Fragment>
-                <OutPortal node={inputPortalNode} />
-                {/*<SubtreeIsActiveContext.Provider value={isActive}>*/}
-                {/*  {subtreeChildren}*/}
-                {/*</SubtreeIsActiveContext.Provider>*/}
-              </React.Fragment>
-            </InPortal>
-          );
-        }
-        return null;
-      })}
-    </React.Fragment>
-  );
+): Array<ReactNode> => {
+  return Object.keys(entryCache).map((subtreeId) => {
+    const subtreeEntry = entryCache[subtreeId];
+    if (subtreeEntry) {
+      const [portalNode, subtreeChildren] = subtreeEntry;
+      return (
+        <InPortal key={subtreeId} node={portalNode}>
+          <SubtreeIsActiveContext.Provider value={isActive}>
+            {subtreeChildren}
+          </SubtreeIsActiveContext.Provider>
+        </InPortal>
+      );
+    }
+    return null;
+  });
 };
 
 const HibernationProvider: React.FC<HibernationProviderProps> = ({
@@ -80,7 +62,7 @@ const HibernationProvider: React.FC<HibernationProviderProps> = ({
     }
   }
 
-  const activeSubtreeCache: Record<HibernatingSubtreeId, SubtreeEntry | null> = useRef(
+  const activeSubtreeCache = useRef<Record<HibernatingSubtreeId, HibernatingSubtreeEntry | null>>(
     Object.create(null),
   ).current;
   const hibernatedSubtreeCache = useLimitedCache({
@@ -88,21 +70,21 @@ const HibernationProvider: React.FC<HibernationProviderProps> = ({
     maxCacheTime,
   });
 
-  // const [, setState] = React.useState(0);
+  const [, setState] = React.useState(0);
   // const rerenderScheduledRef = useRef(false);
   const rerender = (): void => {
     // if (!rerenderScheduledRef.current) {
-    //   rerenderScheduledRef.current = true;
-    //   setTimeout(() => {
-    //     console.log('rerender()');
-    //     setState((a) => a + 1);
-    //   });
+    // rerenderScheduledRef.current = true;
+    // setTimeout(() => {
+    console.log('rerender()');
+    setState((a) => a + 1);
+    // });
     // }
   };
 
   // Functions for HibernationAccessorContext:
 
-  const getSubtreeEntry = (subtreeId: HibernatingSubtreeId): SubtreeEntry =>
+  const getSubtreeEntry = (subtreeId: HibernatingSubtreeId): HibernatingSubtreeEntry =>
     activeSubtreeCache[subtreeId] || hibernatedSubtreeCache.get(subtreeId);
 
   const isSubtreeActive = (subtreeId: HibernatingSubtreeId): boolean =>
@@ -117,30 +99,30 @@ const HibernationProvider: React.FC<HibernationProviderProps> = ({
     if (isSubtreeActive(subtreeId)) {
       console.log('...markActive: already active ', subtreeId, ...existingEntry);
       // It's already active: just update children
-      // existingEntry[1] = children;
+      existingEntry[1] = children;
+      activeSubtreeCache[subtreeId] = existingEntry;
     } else if (existingEntry) {
       console.log('...markActive: restored ', subtreeId, ...existingEntry);
       // Bring it back from hibernation
-      // existingEntry[1] = children;
+      existingEntry[1] = children;
       activeSubtreeCache[subtreeId] = existingEntry;
       hibernatedSubtreeCache.remove(subtreeId);
     } else {
       // It's new!
-      // const newEntry: SubtreeEntry = [createPortalNode(), children];
-      const newEntry: SubtreeEntry = [createPortalNode(), createPortalNode()];
+      const newEntry: HibernatingSubtreeEntry = [createPortalNode(), children];
       console.log('...markActive: new ', subtreeId, ...newEntry);
       activeSubtreeCache[subtreeId] = newEntry;
       hibernatedSubtreeCache.remove(subtreeId);
     }
 
-    rerender();
+    setTimeout(rerender);
 
-    console.log('activeSubtreeCache = ', activeSubtreeCache);
-    console.log('hibernatedSubtreeCache = ', hibernatedSubtreeCache.get());
+    // console.log('activeSubtreeCache = ', activeSubtreeCache);
+    // console.log('hibernatedSubtreeCache = ', hibernatedSubtreeCache.get());
   };
 
   const markSubtreeInactive = (subtreeId: HibernatingSubtreeId): void => {
-    console.log('markInactive! ', subtreeId);
+    console.log('markSubtreeInactive! ', subtreeId);
 
     const existingEntry = activeSubtreeCache[subtreeId];
 
@@ -155,12 +137,12 @@ const HibernationProvider: React.FC<HibernationProviderProps> = ({
     console.log('hibernatedSubtreeCache = ', hibernatedSubtreeCache.get());
   };
 
-  const subtreeAccessorFns = useRef([
+  const subtreeAccessorFns = useRef<HibernationAccessorFns>([
     getSubtreeEntry,
     isSubtreeActive,
     markSubtreeActive,
     markSubtreeInactive,
-  ] as HibernationAccessorFns).current;
+  ]).current;
 
   console.log(
     '=== rendering HibernationAccessorContext.Provider ===',
@@ -171,10 +153,16 @@ const HibernationProvider: React.FC<HibernationProviderProps> = ({
   return (
     <HibernationAccessorContext.Provider value={subtreeAccessorFns}>
       <React.Fragment>{children}</React.Fragment>
-      <div style={{ display: 'none' }}>
+      {/*<React.Fragment>*/}
+      {/*  {[*/}
+      {/*    ...renderInPortalsForSubtreeEntries(hibernatedSubtreeCache.get(), false),*/}
+      {/*    ...renderInPortalsForSubtreeEntries(activeSubtreeCache, true),*/}
+      {/*  ]}*/}
+      {/*</React.Fragment>*/}
+      <React.Fragment>
         {renderInPortalsForSubtreeEntries(hibernatedSubtreeCache.get(), false)}
-        {renderInPortalsForSubtreeEntries(activeSubtreeCache, true)}
-      </div>
+      </React.Fragment>
+      <React.Fragment>{renderInPortalsForSubtreeEntries(activeSubtreeCache, true)}</React.Fragment>
     </HibernationAccessorContext.Provider>
   );
 };

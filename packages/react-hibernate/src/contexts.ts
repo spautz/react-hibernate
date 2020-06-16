@@ -1,19 +1,29 @@
 import { createContext, ReactNode, useContext } from 'react';
-import { HibernatingSubtreeId } from './types';
-import { SubtreeEntry } from './HibernationProvider';
+import { HibernatingSubtreeId, HibernatingSubtreeEntry } from './types';
+
+type getHibernatingSubtreeEntry = (subtreeId: HibernatingSubtreeId) => HibernatingSubtreeEntry;
+type getHibernatingSubtreeIsActive = (subtreeId: HibernatingSubtreeId) => boolean;
+type markHibernatingSubtreeActive = (subtreeId: HibernatingSubtreeId, children: ReactNode) => void;
+type markHibernatingSubtreeInactive = (subtreeId: HibernatingSubtreeId) => void;
 
 export type HibernationAccessorFns = [
-  (subtreeId: HibernatingSubtreeId) => SubtreeEntry,
-  (subtreeId: HibernatingSubtreeId) => boolean,
-  (subtreeId: HibernatingSubtreeId, children: ReactNode) => void,
-  (subtreeId: HibernatingSubtreeId) => void,
+  getHibernatingSubtreeEntry,
+  getHibernatingSubtreeIsActive,
+  markHibernatingSubtreeActive,
+  markHibernatingSubtreeInactive,
 ];
 
 const HibernationAccessorContext = createContext<HibernationAccessorFns | null>(null);
 const SubtreeIsActiveContext = createContext<boolean>(true);
 
-const useHibernationAccessorContext = (): HibernationAccessorFns | null =>
-  useContext(HibernationAccessorContext);
+const useHibernationAccessorContext = (): HibernationAccessorFns => {
+  const accessors = useContext(HibernationAccessorContext);
+  if (!accessors) {
+    throw new Error('<HibernatingSubtree> must be used within a <HibernationProvider>.');
+  }
+  return accessors;
+};
+
 const useIsActiveContext = (): boolean => useContext(SubtreeIsActiveContext);
 
 export {
