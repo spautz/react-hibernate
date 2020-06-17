@@ -19,19 +19,19 @@ local state and all.
 
 ## Packages
 
-#### [react-hibernate](./packages/react-hibernate-core/) [![npm version](https://img.shields.io/npm/v/react-hibernate.svg)](https://www.npmjs.com/package/react-hibernate)
+**[react-hibernate](./packages/react-hibernate-core/)** [![npm version](https://img.shields.io/npm/v/react-hibernate.svg)](https://www.npmjs.com/package/react-hibernate)
 
 Restore previously-unmounted subtrees -- state and all -- on remount.
 
-#### [react-router-hibernate](./packages/react-router-hibernate/) [![npm version](https://img.shields.io/npm/v/react-router-hibernate.svg)](https://www.npmjs.com/package/react-router-hibernate)
+**[react-router-hibernate](./packages/react-router-hibernate/)** [![npm version](https://img.shields.io/npm/v/react-router-hibernate.svg)](https://www.npmjs.com/package/react-router-hibernate)
 
 A react-router Switch which can leave inactive routes mounted-but-inactive until you navigate back.
 
-#### [react-pauseable-containers](./packages/react-pauseable-containers/) [![npm version](https://img.shields.io/npm/v/react-pauseable-containers.svg)](https://www.npmjs.com/package/react-pauseable-containers)
+**[react-pauseable-containers](./packages/react-pauseable-containers/)** [![npm version](https://img.shields.io/npm/v/react-pauseable-containers.svg)](https://www.npmjs.com/package/react-pauseable-containers)
 
 Prevent subtrees from rerendering when their parent changes, or when certain context values change.
 
-#### [redux-pauseable-store](./packages/redux-pauseable-store/) [![npm version](https://img.shields.io/npm/v/redux-pauseable-store.svg)](https://www.npmjs.com/package/redux-pauseable-store)
+**[redux-pauseable-store](./packages/redux-pauseable-store/)** [![npm version](https://img.shields.io/npm/v/redux-pauseable-store.svg)](https://www.npmjs.com/package/redux-pauseable-store)
 
 Derive one redux store from another, then pause it.
 

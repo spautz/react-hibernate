@@ -1,7 +1,7 @@
 import React, { useRef, ReactNode } from 'react';
 import { useLimitedCache } from 'limited-cache/hooks';
 import { ReactComponentLike } from 'prop-types';
-import { createPortalNode, InPortal } from 'react-reverse-portal';
+import { createHtmlPortalNode, InPortal } from 'react-reverse-portal';
 
 import {
   HibernationAccessorContext,
@@ -109,7 +109,7 @@ const HibernationProvider: React.FC<HibernationProviderProps> = ({
       hibernatedSubtreeCache.remove(subtreeId);
     } else {
       // It's new!
-      const newEntry: HibernatingSubtreeEntry = [createPortalNode(), children];
+      const newEntry: HibernatingSubtreeEntry = [createHtmlPortalNode(), children];
       console.log('...markActive: new ', subtreeId, ...newEntry);
       activeSubtreeCache[subtreeId] = newEntry;
       hibernatedSubtreeCache.remove(subtreeId);
@@ -118,7 +118,7 @@ const HibernationProvider: React.FC<HibernationProviderProps> = ({
     setTimeout(rerender);
 
     // console.log('activeSubtreeCache = ', activeSubtreeCache);
-    // console.log('hibernatedSubtreeCache = ', hibernatedSubtreeCache.get());
+    // console.log('hibernatedSubtreeCache = ', hibernatedSubtreeCache.getAll());
   };
 
   const markSubtreeInactive = (subtreeId: HibernatingSubtreeId): void => {
@@ -134,7 +134,7 @@ const HibernationProvider: React.FC<HibernationProviderProps> = ({
     rerender();
 
     console.log('activeSubtreeCache = ', activeSubtreeCache);
-    console.log('hibernatedSubtreeCache = ', hibernatedSubtreeCache.get());
+    console.log('hibernatedSubtreeCache = ', hibernatedSubtreeCache.getAll());
   };
 
   const subtreeAccessorFns = useRef<HibernationAccessorFns>([
@@ -147,22 +147,18 @@ const HibernationProvider: React.FC<HibernationProviderProps> = ({
   console.log(
     '=== rendering HibernationAccessorContext.Provider ===',
     activeSubtreeCache,
-    hibernatedSubtreeCache.get(),
+    hibernatedSubtreeCache.getAll(),
   );
 
   return (
     <HibernationAccessorContext.Provider value={subtreeAccessorFns}>
       <React.Fragment>{children}</React.Fragment>
-      {/*<React.Fragment>*/}
-      {/*  {[*/}
-      {/*    ...renderInPortalsForSubtreeEntries(hibernatedSubtreeCache.get(), false),*/}
-      {/*    ...renderInPortalsForSubtreeEntries(activeSubtreeCache, true),*/}
-      {/*  ]}*/}
-      {/*</React.Fragment>*/}
       <React.Fragment>
-        {renderInPortalsForSubtreeEntries(hibernatedSubtreeCache.get(), false)}
+        {[
+          ...renderInPortalsForSubtreeEntries(hibernatedSubtreeCache.getAll(), false),
+          ...renderInPortalsForSubtreeEntries(activeSubtreeCache, true),
+        ]}
       </React.Fragment>
-      <React.Fragment>{renderInPortalsForSubtreeEntries(activeSubtreeCache, true)}</React.Fragment>
     </HibernationAccessorContext.Provider>
   );
 };
