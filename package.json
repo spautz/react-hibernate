@@ -30,7 +30,7 @@
     "build-storybook": "build-storybook",
     "types": "tsc --noEmit --p tsconfig.json --jsx react",
     "____ HOOKS _________________________________________________________": "",
-    "prepare": "lerna bootstrap --ignore-scripts && yon prepare:all",
+    "prepare": "lerna bootstrap && yon prepare:all",
     "prepublishOnly": "yon checkup:all && yon build:all",
     "prerelease": "yon clean:all",
     "pretest": "yon test:clean",
