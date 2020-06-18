@@ -4,13 +4,13 @@
   "description": "A react-router Switch which can leave inactive routes mounted-but-inactive until you navigate back",
   "keywords": [],
   "license": "MIT",
-  "homepage": "https://github.com/spautz/react-router-hibernate/packages/dev-helpers#readme",
+  "homepage": "https://github.com/spautz/react-hibernate/packages/dev-helpers#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/spautz/react-router-hibernate.git"
+    "url": "git+https://github.com/spautz/react-hibernate.git"
   },
   "bugs": {
-    "url": "https://github.com/spautz/react-router-hibernate/issues"
+    "url": "https://github.com/spautz/react-hibernate/issues"
   },
   "author": "Steven Pautz <spautz@gmail.com>",
   "files": [
@@ -23,13 +23,13 @@
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
   "jsnext:main": "dist/index.esm.js",
-  "types": "dist/react-hibernate-dev-helpers/src/index.d.ts",
+  "types": "dist/index.d.ts",
   "sideEffects": false,
   "scripts": {
     "____ BASE COMMANDS _________________________________________________": "",
     "build": "microbundle build --jsx React.createElement",
     "build:watch": "microbundle watch --jsx React.createElement",
-    "clean": "rimraf dist/",
+    "clean": "rimraf dist/ node_modules/.cache/",
     "format": "prettier --write \"**/*.*\"",
     "format:checkup": "prettier --list-different \"**/*.*\"",
     "lint": "eslint \"**/*.{js,jsx,json,ts,tsx}\"",
@@ -51,7 +51,7 @@
   },
   "dependencies": {
     "@material-ui/core": "^4.9.4",
-    "@testing-library/react": "^9.5.0",
+    "@testing-library/react": "^10.2.1",
     "history": "^4.10.1",
     "react-is": "^16.13.0",
     "react-redux": "^7.2.0",

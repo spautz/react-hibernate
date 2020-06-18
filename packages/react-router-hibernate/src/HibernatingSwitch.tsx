@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react';
 import { useLimitedCache } from 'limited-cache/hooks';
 import { isElement } from 'react-is';
-import { createPortalNode, InPortal, OutPortal, PortalNode } from 'react-reverse-portal';
+import { createHtmlPortalNode, InPortal, OutPortal, HtmlPortalNode } from 'react-reverse-portal';
 import {
   Redirect,
   Route,
@@ -23,7 +23,7 @@ interface HibernatingSwitchProps extends SwitchProps {
 }
 
 type PortalRecord = {
-  portalNode: PortalNode;
+  portalNode: HtmlPortalNode;
   routerProps: RouteComponentProps;
   routeProps: RouteProps;
 };
@@ -84,7 +84,7 @@ const HibernatingSwitch: React.FC<HibernatingSwitchProps> = ({
       } else {
         // Make a new portal for the new subtree
         newPortalRecord = {
-          portalNode: createPortalNode(),
+          portalNode: createHtmlPortalNode(),
           routerProps,
           routeProps,
         };
@@ -149,7 +149,7 @@ const HibernatingSwitch: React.FC<HibernatingSwitchProps> = ({
     return child;
   });
 
-  const portalRecordCacheFull = portalRecordCache.get();
+  const portalRecordCacheFull = portalRecordCache.getAll();
 
   const allPortalKeys: Array<string> = Object.keys(portalRecordCacheFull);
   if (currentPathKey && !allPortalKeys.includes(currentPathKey)) {
