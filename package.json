@@ -15,13 +15,13 @@
   "scripts": {
     "____ BASE COMMANDS _________________________________________________": "",
     "build:all": "lerna exec yon build",
-    "clean:all": "rimraf storybook-static/ && rimraf node_modules/.cache/ && lerna exec yon clean && lerna exec yon test:clean",
+    "clean": "rimraf storybook-static/ && rimraf node_modules/.cache/ && yon test:clean",
+    "clean:all": "yon clean && lerna exec yon clean",
     "prepare:all": "lerna exec yon prepare",
-    "test": "jest",
-    "test:clean": "rimraf coverage/",
-    "test:coverage": "jest --coverage",
+    "test": "jest --coverage",
+    "test:clean": "rimraf coverage/ && lerna exec yon test:clean",
+    "test:watch": "jest --coverage --watch",
     "test:report": "jest --coverage --coverageReporters=text-lcov | coveralls",
-    "test:watch": "jest --watch",
     "format": "prettier --write \"**/*.*\"",
     "format:checkup": "prettier --list-different \"**/*.*\"",
     "lint": "eslint \"**/*.{js,jsx,json,ts,tsx}\"",
@@ -37,12 +37,11 @@
     "____ INTEGRATION ___________________________________________________": "",
     "dev": "yon run format && yon run types && yon run lint",
     "checkup": "yon format:checkup && yon run types && yon run lint",
-    "all": "yon run dev && yon run test:coverage && yon run build-storybook",
+    "all": "yon clean:all && yon run dev && yon run test:coverage && yon run build-storybook",
     "dev:all": "yon dev && lerna exec yon dev",
     "checkup:all": "yon checkup && lerna exec yon checkup",
     "all:all": "yon all && lerna exec yon all",
-    "ci": "yon run checkup:all && yon run test:report:all && yon run build:all && yon run build-storybook",
-    "test:report:all": "yon run test:report && lerna exec yon test:report"
+    "ci": "yon run checkup:all && yon run test:report && yon run build:all && yon run build-storybook"
   },
   "dependencies": {},
   "devDependencies": {

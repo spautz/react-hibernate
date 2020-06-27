@@ -13,7 +13,11 @@ const createPauseableStore = (
   let stateAtPause = isInitiallyPaused ? parentStore.getState() : null;
 
   const dispatch = (action: Action) => {
-    if (pauseableStore.isPaused && pauseableStore.canDispatch === 'warn') {
+    if (
+      pauseableStore.isPaused &&
+      pauseableStore.canDispatch !== true &&
+      pauseableStore.canDispatch !== false
+    ) {
       console.warn(
         'Something is trying to dispatch an action to a paused PauseableStore. Set `canDispatch` to true or false to disable this warning.',
         { action, pauseableStore },
