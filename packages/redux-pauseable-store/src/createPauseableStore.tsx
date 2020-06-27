@@ -1,23 +1,25 @@
 import { Action, Store } from 'redux';
 
-import { PauseableStore, PauseableStoreOptions } from './types';
+import { PauseableStoreInstance, PauseableStoreOptions } from './types';
 
 const createPauseableStore = (
   parentStore: Store,
-  options: PauseableStoreOptions,
-): PauseableStore => {
-  let { isPaused = false, canDispatch = 'warn' } = options || {};
-  const pauseableStore = {} as PauseableStore;
-  let stateWhenPaused = isPaused ? parentStore.getState() : null;
+  options?: PauseableStoreOptions,
+): PauseableStoreInstance => {
+  const { isPaused: isInitiallyPaused = false, canDispatch: canInitiallyDispatch = 'warn' } =
+    options || {};
+
+  const pauseableStore = {} as PauseableStoreInstance;
+  let stateAtPause = isInitiallyPaused ? parentStore.getState() : null;
 
   const dispatch = (action: Action) => {
-    if (canDispatch === 'warn') {
+    if (pauseableStore.canDispatch === 'warn') {
       console.warn(
         'Something is trying to dispatch an action to a PauseableStore. Set `canDispatch` to true or false to disable this warning.',
         { action, pauseableStore },
       );
     }
-    if (canDispatch) {
+    if (pauseableStore.canDispatch) {
       return parentStore.dispatch(action);
     }
     return null;
@@ -26,27 +28,27 @@ const createPauseableStore = (
   const subscribe = (listener: () => void) => {
     return parentStore.subscribe(() => {
       // Ignore when paused
-      if (!isPaused) {
+      if (!pauseableStore.isPaused) {
         listener();
       }
     });
   };
 
   const getState = () => {
-    if (isPaused) {
-      return stateWhenPaused;
+    if (pauseableStore.isPaused) {
+      return stateAtPause;
     }
     return parentStore.getState();
   };
 
   const setPaused = (newIsPaused: boolean) => {
-    pauseableStore.isPaused = isPaused = newIsPaused;
+    pauseableStore.isPaused = newIsPaused;
 
-    stateWhenPaused = isPaused ? parentStore.getState() : null;
+    stateAtPause = newIsPaused ? parentStore.getState() : null;
   };
 
   const setDispatch = (newCanDispatch: boolean | 'warn') => {
-    pauseableStore.canDispatch = canDispatch = newCanDispatch;
+    pauseableStore.canDispatch = newCanDispatch;
   };
 
   const replaceReducer = () => {
@@ -65,9 +67,9 @@ const createPauseableStore = (
     // @TODO: Do we also need to handle [$$observable]: observable, ?
 
     // PauseableStore additions
-    isPaused,
+    isPaused: isInitiallyPaused,
     setPaused,
-    canDispatch,
+    canDispatch: canInitiallyDispatch,
     setDispatch,
 
     _parentStore: parentStore,

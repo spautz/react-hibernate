@@ -1,5 +1,6 @@
 {
   "name": "react-hibernate-dev-helpers",
+  "private": true,
   "version": "0.0.2",
   "description": "A react-router Switch which can leave inactive routes mounted-but-inactive until you navigate back",
   "keywords": [],
