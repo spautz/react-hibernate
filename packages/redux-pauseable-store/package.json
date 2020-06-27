@@ -1,6 +1,6 @@
 {
   "name": "redux-pauseable-store",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Derive one redux store from another, then pause it",
   "keywords": [],
   "license": "MIT",
