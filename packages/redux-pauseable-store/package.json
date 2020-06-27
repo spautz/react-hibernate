@@ -37,6 +37,7 @@
     "test": "jest",
     "test:clean": "rimraf coverage-local/",
     "test:coverage": "jest --coverage",
+    "test:report": "COVERALLS_FLAG_NAME=redux-pauseable-store jest --coverage --coverageReporters=text-lcov | coveralls",
     "test:watch": "jest --watch",
     "types": "tsc --noEmit --p tsconfig.json --jsx react",
     "____ HOOKS _________________________________________________________": "",

@@ -37,6 +37,7 @@
     "test": "echo \"@TODO: tests for dev-helpers\"",
     "test:clean": "rimraf coverage/",
     "test:coverage": "echo \"@TODO: tests for dev-helpers\"",
+    "test:report": "echo \"@TODO: tests for dev-helpers\"",
     "test:watch": "echo \"@TODO: tests for dev-helpers\"",
     "types": "tsc --noEmit --p tsconfig.json --jsx react",
     "____ HOOKS _________________________________________________________": "",

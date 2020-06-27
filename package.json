@@ -41,7 +41,8 @@
     "dev:all": "yon dev && lerna exec yon dev",
     "checkup:all": "yon checkup && lerna exec yon checkup",
     "all:all": "yon all && lerna exec yon all",
-    "ci": "yon run checkup:all && yon run test:report && yon run build:all && yon run build-storybook"
+    "ci": "yon run checkup:all && yon run test:report:all && yon run build:all && yon run build-storybook",
+    "test:report:all": "yon run test:report && lerna exec yon test:report"
   },
   "dependencies": {},
   "devDependencies": {

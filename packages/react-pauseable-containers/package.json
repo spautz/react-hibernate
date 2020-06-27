@@ -37,6 +37,7 @@
     "test": "echo \"@TODO: tests for pauseable-containers\"",
     "test:clean": "rimraf coverage-local/",
     "test:coverage": "echo \"@TODO: tests for pauseable-containers\"",
+    "test:report": "echo \"@TODO: tests for pauseable-containers\"",
     "test:watch": "echo \"@TODO: tests for pauseable-containers\"",
     "types": "tsc --noEmit --p tsconfig.json --jsx react",
     "____ HOOKS _________________________________________________________": "",
