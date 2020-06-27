@@ -1,10 +1,12 @@
-import React, { ReactNode } from 'react';
+import React, { ReactNode, useMemo } from 'react';
 import { Provider } from 'react-redux';
 
-import store from './store';
+import { createDevHelperStore } from './store';
 
 const reduxDecorator = (storyFn: () => ReactNode): ReactNode => {
-  return <Provider store={store}>{storyFn()}</Provider>;
+  const devHelperStore = useMemo(createDevHelperStore, []);
+
+  return <Provider store={devHelperStore}>{storyFn()}</Provider>;
 };
 
 export default reduxDecorator;

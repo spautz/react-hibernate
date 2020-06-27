@@ -1,11 +1,10 @@
 {
-  "name": "react-hibernate-dev-helpers",
-  "private": true,
+  "name": "redux-pauseable-store",
   "version": "0.0.2",
-  "description": "A react-router Switch which can leave inactive routes mounted-but-inactive until you navigate back",
+  "description": "Derive one redux store from another, then pause it",
   "keywords": [],
   "license": "MIT",
-  "homepage": "https://github.com/spautz/react-hibernate/packages/dev-helpers#readme",
+  "homepage": "https://github.com/spautz/react-hibernate/packages/redux-pauseable-store#readme",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/spautz/react-hibernate.git"
@@ -34,10 +33,11 @@
     "format": "prettier --write \"**/*.*\"",
     "format:checkup": "prettier --list-different \"**/*.*\"",
     "lint": "eslint \"**/*.{js,jsx,json,ts,tsx}\"",
-    "test": "echo \"@TODO: tests for dev-helpers\"",
-    "test:clean": "rimraf coverage/",
-    "test:coverage": "echo \"@TODO: tests for dev-helpers\"",
-    "test:watch": "echo \"@TODO: tests for dev-helpers\"",
+    "release": "standard-version --sign --release-as ",
+    "test": "jest",
+    "test:clean": "rimraf coverage-local/",
+    "test:coverage": "jest --coverage",
+    "test:watch": "jest --watch",
     "types": "tsc --noEmit --p tsconfig.json --jsx react",
     "____ HOOKS _________________________________________________________": "",
     "prepare": "yon build",
@@ -50,20 +50,9 @@
     "checkup": "yon format:checkup && yon run types && yon run lint",
     "all": "yon run dev && yon run test:coverage && yon run build"
   },
-  "dependencies": {
-    "@material-ui/core": "^4.9.4",
-    "@testing-library/react": "^10.2.1",
-    "history": "^4.10.1",
-    "react-is": "^16.13.0",
-    "react-redux": "^7.2.0",
-    "react-router": "^5.1.2",
-    "redux": "^4.0.5",
-    "redux-devtools-extension": "^2.13.8",
-    "typeface-roboto": "^0.0.75"
-  },
+  "dependencies": {},
   "devDependencies": {},
   "peerDependencies": {
-    "react": ">=16.8.0",
-    "react-dom": ">=16.8.0"
+    "redux": "^4.0.0"
   }
 }

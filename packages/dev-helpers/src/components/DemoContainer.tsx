@@ -6,14 +6,14 @@ import TextField from '@material-ui/core/TextField';
 
 import NestedState from './NestedState';
 
-import { countAction, HelperState } from '../redux';
+import { incrementAction, DevHelperState } from '../redux';
 
 export interface DemoContainerProps {
   title: string;
   withRedux?: boolean;
 }
 
-const selectEntireState = (state: HelperState): HelperState => state;
+const selectEntireState = (state: DevHelperState): DevHelperState => state;
 
 let totalInstanceCount = 0;
 
@@ -56,7 +56,7 @@ const DemoContainer: React.FC<DemoContainerProps> = (props: DemoContainerProps):
         <Button
           variant="contained"
           onClick={(): void => {
-            dispatch(countAction());
+            dispatch(incrementAction());
           }}
         >
           Dispatch a counter update

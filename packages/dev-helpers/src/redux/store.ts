@@ -1,37 +1,77 @@
-import { createStore } from 'redux';
+import { createStore, Store } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
-// We only need one action: this is only to demonstrate that updates can be frozen
-const COUNT_ACTION = 'COUNT_ACTION';
+const INCREMENT_ACTION = 'INCREMENT_!' as const;
+const DECREMENT_ACTION = 'DECREMENT_!' as const;
+const SET_ACTION = 'SET_!' as const;
 
-export type HelperState = {
+export type DevHelperState = {
   count: number;
-  lastTimestamp: number;
-};
-export type HelperAction = {
-  type: typeof COUNT_ACTION;
 };
 
-const initialState: HelperState = {
+type DevHelperAction_Increment = {
+  type: typeof INCREMENT_ACTION;
+};
+type DevHelperAction_Decrement = {
+  type: typeof DECREMENT_ACTION;
+};
+type DevHelperAction_Set = {
+  type: typeof SET_ACTION;
+  payload: {
+    newValue: number;
+  };
+};
+
+export type DevHelperAction =
+  | DevHelperAction_Increment
+  | DevHelperAction_Decrement
+  | DevHelperAction_Set;
+
+const initialState: DevHelperState = {
   count: 0,
-  lastTimestamp: 0,
 };
 
-const countAction = (): HelperAction => ({ type: COUNT_ACTION });
+const incrementAction = (): DevHelperAction_Increment => ({ type: INCREMENT_ACTION });
+const decrementAction = (): DevHelperAction_Decrement => ({ type: DECREMENT_ACTION });
+const setAction = (newValue: number): DevHelperAction_Set => ({
+  type: SET_ACTION,
+  payload: { newValue },
+});
 
-const reducer = (state: HelperState = initialState, action: HelperAction): HelperState => {
+const reducer = (state: DevHelperState = initialState, action: DevHelperAction): DevHelperState => {
   const { type } = action;
-  if (type === COUNT_ACTION) {
-    return {
-      ...state,
-      count: state.count + 1,
-      lastTimestamp: Date.now(),
-    };
+  switch (type) {
+    case INCREMENT_ACTION: {
+      return {
+        ...state,
+        count: state.count + 1,
+      };
+    }
+
+    case DECREMENT_ACTION: {
+      return {
+        ...state,
+        count: state.count - 1,
+      };
+    }
+
+    case SET_ACTION: {
+      const {
+        payload: { newValue },
+      } = action as DevHelperAction_Set;
+      return {
+        ...state,
+        count: newValue,
+      };
+    }
+
+    default:
+      break;
   }
+
   return state;
 };
 
-const store = createStore(reducer, initialState, composeWithDevTools());
+const createDevHelperStore = (): Store => createStore(reducer, initialState, composeWithDevTools());
 
-export default store;
-export { countAction };
+export { createDevHelperStore, incrementAction, decrementAction, setAction };
