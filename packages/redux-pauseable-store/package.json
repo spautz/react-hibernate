@@ -33,6 +33,8 @@
     "format": "prettier --write \"**/*.*\"",
     "format:checkup": "prettier --list-different \"**/*.*\"",
     "lint": "eslint \"**/*.{js,jsx,json,ts,tsx}\"",
+    "release:changelog": "standard-version --skip.commit --skip.tag --release-as ",
+    "release:tag": "standard-version --sign --skip.changelog --release-as ",
     "test": "jest --coverage",
     "test:clean": "rimraf coverage-local/",
     "test:watch": "jest --coverage --watch",
@@ -46,7 +48,7 @@
     "____ INTEGRATION ___________________________________________________": "",
     "dev": "yon run format && yon run types && yon run lint",
     "checkup": "yon format:checkup && yon run types && yon run lint",
-    "all": "yon run dev && yon run test:coverage && yon run build"
+    "all": "yon run dev && yon run test && yon run build"
   },
   "dependencies": {},
   "devDependencies": {},
