@@ -1,27 +1,49 @@
 import PropTypes from 'prop-types';
-import React, { useRef } from 'react';
+import React, { useState } from 'react';
 
+import Checkbox from '@material-ui/core/Checkbox';
 import Chip from '@material-ui/core/Chip';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
 
-export interface SimpleChildProps {
+import { RenderCount } from 'react-hibernate-dev-helpers';
+
+import { PauseableComponentContainer } from '../src';
+import Typography from '@material-ui/core/Typography';
+import Paper from '@material-ui/core/Paper';
+
+export interface PauseableContainerItemProps {
   count: number;
 }
-const SimpleCountChild: React.FC<SimpleChildProps> = (props) => {
+const PauseableContainerItem: React.FC<PauseableContainerItemProps> = (props) => {
   const { count } = props;
 
-  const renderCountRef = useRef(0);
-  renderCountRef.current++;
+  const [shouldUpdate, setShouldUpdate] = useState(true);
 
   return (
-    <>
-      <Chip label={count} />
-      Rendered {renderCountRef.current} times
-    </>
+    <Paper style={{ marginTop: 10, padding: 5 }}>
+      <FormControlLabel
+        control={
+          <Checkbox
+            checked={shouldUpdate}
+            onChange={(event) => setShouldUpdate(event.target.checked)}
+          />
+        }
+        label="shouldUpdate"
+      />
+      <div>
+        <PauseableComponentContainer shouldUpdate={shouldUpdate}>
+          <Typography variant="body1">
+            count: <Chip label={count} />
+          </Typography>
+          <RenderCount />
+        </PauseableComponentContainer>
+      </div>
+    </Paper>
   );
 };
 
-SimpleCountChild.propTypes = {
+PauseableContainerItem.propTypes = {
   count: PropTypes.number.isRequired,
 };
 
-export default SimpleCountChild;
+export default PauseableContainerItem;
