@@ -4,7 +4,7 @@
 
 Derive one redux store from another, then pause it.
 
-Part of [React Hibernate](../../)
+Part of [React Hibernate](https://github.com/spautz/react-hibernate)
 
 [![npm version](https://img.shields.io/npm/v/redux-pauseable-store.svg)](https://www.npmjs.com/package/redux-pauseable-store)
 [![gzip size](https://img.shields.io/bundlephobia/minzip/redux-pauseable-store)](https://bundlephobia.com/result?p=redux-pauseable-store@latest)

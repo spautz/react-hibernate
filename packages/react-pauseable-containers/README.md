@@ -4,7 +4,7 @@
 
 Prevent subtrees from rerendering when their parent changes, or when certain context values change.
 
-Part of [React-Hibernate](../../)
+Part of [React Hibernate](https://github.com/spautz/react-hibernate)
 
 [![npm version](https://img.shields.io/npm/v/react-pauseable-containers.svg)](https://www.npmjs.com/package/react-pauseable-containers)
 [![gzip size](https://img.shields.io/bundlephobia/minzip/react-pauseable-containers)](https://bundlephobia.com/result?p=react-pauseable-containers@latest)
@@ -29,10 +29,11 @@ This is essentially just a typescript-friendly version of [react-static-containe
 
 Prevents subscribed components from rerendering when the redux state changes, or the return value from `useSelector`.
 
-This currently causes an extra rerender when the `shouldUpdate` prop changes.
-
 ## How to use this
 
-With [React-Hibernate](../../) or [React-Router-Hibernate](../react-router-hibernate/), passing one of these
-components -- or a new component composed from several of them together -- can prevent hibernating subtrees from
-updating.
+With [React-Hibernate](../react-hibernate) or [React-Router-Hibernate](../react-router-hibernate/), using one of these
+components -- or a new component composed from several of them together -- can prevent subtrees from updating while
+they're hibernating, to avoid needless work.
+
+These can also be used on their own to prevent updates in components that are still mounted, such as the background
+screen behind a modal or dialog, or inactive tabs or panes when using a wizard, accordion, or tabs widget.

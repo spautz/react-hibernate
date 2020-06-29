@@ -4,12 +4,14 @@
 
 Restore previously-unmounted subtrees -- state and all -- on remount.
 
+Part of [React Hibernate](https://github.com/spautz/react-hibernate)
+
 [![npm version](https://img.shields.io/npm/v/react-hibernate.svg)](https://www.npmjs.com/package/react-hibernate)
 [![gzip size](https://img.shields.io/bundlephobia/minzip/react-hibernate)](https://bundlephobia.com/result?p=react-hibernate@latest)
 
 ## Core Package
 
-This package provides the main functionality for [React-Hibernate](../../).
+This package provides the main functionality for [React Hibernate](https://github.com/spautz/react-hibernate).
 
 ## Roadmap
 

@@ -1,3 +1,5 @@
 # React-Hibernate-Dev-Helpers
 
-A set of helpers used to [React-Hibernate](../../)'s demos and tests. This is an internal package.
+A set of helpers used to demonstrate [React Hibernate](https://github.com/spautz/react-hibernate).
+
+![private](https://img.shields.io/badge/npm-private-red.svg)
