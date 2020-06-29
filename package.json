@@ -23,7 +23,7 @@
     "clean": "rimraf storybook-static/ && rimraf node_modules/.cache/ && yon test:clean && yon packages:clean",
     "checkup": "yon format:checkup && yon run types && yon run lint",
     "dev": "yon run format && yon run types && yon run lint",
-    "ci": "yon run checkup:all && yon run test:report && yon run build:all && yon run build-storybook",
+    "ci": "yon run checkup && yon run packages:checkup && yon run test:report && yon run build:all && yon run build-storybook",
     "all": "yon clean && yon run packages:build && yon run dev && yon run test && yon run build-storybook",
     "____ BATCH COMMANDS FOR PACKAGES ___________________________________": "",
     "packages:prepare": "lerna exec yon prepare",
