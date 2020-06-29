@@ -6,11 +6,15 @@ const createPauseableStore = (
   parentStore: Store,
   options?: PauseableStoreOptions,
 ): PauseableStoreInstance => {
-  const { isPaused: isInitiallyPaused = false, canDispatch: canInitiallyDispatch = 'warn' } =
-    options || {};
+  const {
+    isPaused: isInitiallyPaused = false,
+    canDispatch: canInitiallyDispatch = 'warn',
+    notifyListersOnUnpause: notifyListenersInitially = true,
+  } = options || {};
 
   const pauseableStore = {} as PauseableStoreInstance;
   let stateAtPause = isInitiallyPaused ? parentStore.getState() : null;
+  const listeners: Array<() => void> = [];
 
   const dispatch = (action: Action) => {
     if (
@@ -30,12 +34,23 @@ const createPauseableStore = (
   };
 
   const subscribe = (listener: () => void) => {
-    return parentStore.subscribe(() => {
+    listeners.push(listener);
+
+    const wrappedListener = () => {
       // Ignore when paused
       if (!pauseableStore.isPaused) {
         listener();
       }
-    });
+    };
+
+    const unsubscribe = parentStore.subscribe(wrappedListener);
+    const wrappedUnsubscribe = () => {
+      const indexOfListener = listeners.findIndex(listener);
+      listeners.splice(indexOfListener, 1);
+      unsubscribe();
+    };
+
+    return wrappedUnsubscribe;
   };
 
   const getState = () => {
@@ -47,8 +62,17 @@ const createPauseableStore = (
 
   const setPaused = (newIsPaused: boolean) => {
     pauseableStore.isPaused = newIsPaused;
+    const currentState = parentStore.getState();
 
-    stateAtPause = newIsPaused ? parentStore.getState() : null;
+    if (newIsPaused) {
+      stateAtPause = currentState;
+    } else {
+      if (pauseableStore.notifyListersOnUnpause && currentState !== stateAtPause) {
+        // Let subscribers know that something has changed
+        listeners.forEach((listener) => listener());
+      }
+      stateAtPause = null;
+    }
   };
 
   const setDispatch = (newCanDispatch: boolean | 'warn') => {
@@ -75,6 +99,7 @@ const createPauseableStore = (
     setPaused,
     canDispatch: canInitiallyDispatch,
     setDispatch,
+    notifyListersOnUnpause: notifyListenersInitially,
 
     _parentStore: parentStore,
   });
