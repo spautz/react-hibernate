@@ -19,7 +19,7 @@ state, as if you never left.
 
 - [React Router Hibernate](./packages/react-router-hibernate/) works per-route, if you're using
   [React Router](https://reacttraining.com/react-router/) (v5)
-- [React Hibernate](./packages/react-hibernate-core/) works for any React subtree
+- [React Hibernate](./packages/react-hibernate/) works for any React subtree
 - [React Pauseable Containers](./packages/react-pauseable-containers/) improve performances by freezing all updates
   to hibernated subtrees
 
@@ -39,7 +39,7 @@ just a quick, easy way to get "good enough" coverage for the common cases.
 
 ## Packages
 
-**[react-hibernate](./packages/react-hibernate-core/)**
+**[react-hibernate](./packages/react-hibernate/)**
 
 [![npm version](https://img.shields.io/npm/v/react-hibernate.svg)](https://www.npmjs.com/package/react-hibernate)
 [![gzip size](https://img.shields.io/bundlephobia/minzip/react-hibernate)](https://bundlephobia.com/result?p=react-hibernate@latest)
