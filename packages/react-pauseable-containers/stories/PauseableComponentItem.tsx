@@ -33,7 +33,7 @@ const PauseableComponentItem: React.FC<PauseableComponentItemProps> = (props) =>
       />
       <div>
         <PauseableComponentContainer shouldUpdate={shouldUpdate}>
-          <Typography variant="body1">
+          <Typography variant="body1" component="div">
             count: <Chip label={count} />
           </Typography>
           <RenderCount />

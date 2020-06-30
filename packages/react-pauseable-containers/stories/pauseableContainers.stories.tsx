@@ -1,4 +1,5 @@
 import React, { ReactNode, useCallback, useState } from 'react';
+import { withKnobs } from '@storybook/addon-knobs';
 
 import Button from '@material-ui/core/Button';
 import Chip from '@material-ui/core/Chip';
@@ -8,14 +9,13 @@ import 'typeface-roboto';
 
 import { reduxDecorator } from 'react-hibernate-dev-helpers';
 
-import { PauseableComponentContainer } from '../src';
 import PauseableComponentItem from './PauseableComponentItem';
 import PauseableReduxItem from './PauseableReduxItem';
 import ReduxMonitor from './ReduxMonitor';
 
 export default {
   title: 'React Pauseable Containers',
-  decorators: [reduxDecorator],
+  decorators: [reduxDecorator, withKnobs],
 };
 
 export const PauseableComponentContainerStory = (): ReactNode => {
@@ -66,21 +66,20 @@ const PauseableReduxContainerDemo = () => {
 
       <ReduxMonitor />
 
-      <PauseableComponentContainer shouldUpdate={false}>
-        <PauseableReduxItem />
-        <PauseableReduxItem />
-        <PauseableReduxItem />
-      </PauseableComponentContainer>
+      <PauseableReduxItem />
+      <PauseableReduxItem />
+      <PauseableReduxItem />
     </div>
   );
 };
 
 export const PauseableReduxContainerStory = (): ReactNode => {
-  console.log('PauseableReduxContainerStory()');
-
   return <PauseableReduxContainerDemo />;
 };
 PauseableReduxContainerStory.story = {
   name: 'PauseableReduxContainer',
   decorators: [reduxDecorator],
 };
+
+// @TODO: A story where the PauseableReduxItems can dispatch actions
+// const dispatchWhenPaused = boolean('Allow dispatches from paused children', false);

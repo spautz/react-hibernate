@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 
 import Checkbox from '@material-ui/core/Checkbox';
@@ -8,9 +9,14 @@ import Paper from '@material-ui/core/Paper';
 
 import { RenderCount, useCountSelector } from 'react-hibernate-dev-helpers';
 
-import { PauseableReduxContainer } from '../src';
+import { PauseableComponentContainer, PauseableReduxContainer } from '../src';
 
-const PauseableReduxItem: React.FC = () => {
+interface PauseableReduxItemProps {
+  dispatchWhenPaused?: boolean;
+}
+
+const PauseableReduxItem: React.FC<PauseableReduxItemProps> = (props) => {
+  const { dispatchWhenPaused } = props;
   const count = useCountSelector();
 
   const [shouldUpdate, setShouldUpdate] = useState(true);
@@ -26,16 +32,27 @@ const PauseableReduxItem: React.FC = () => {
         }
         label="shouldUpdate"
       />
-      <div>
-        <PauseableReduxContainer shouldUpdate={shouldUpdate}>
-          <Typography variant="body1">
+      <PauseableComponentContainer shouldUpdate={shouldUpdate}>
+        <PauseableReduxContainer
+          shouldUpdate={shouldUpdate}
+          dispatchWhenPaused={dispatchWhenPaused}
+        >
+          <Typography variant="body1" component="div">
             count: <Chip label={count} />
           </Typography>
           <RenderCount />
         </PauseableReduxContainer>
-      </div>
+      </PauseableComponentContainer>
     </Paper>
   );
+};
+
+PauseableReduxItem.propTypes = {
+  dispatchWhenPaused: PropTypes.bool,
+};
+
+PauseableReduxItem.defaultProps = {
+  dispatchWhenPaused: false,
 };
 
 export default PauseableReduxItem;

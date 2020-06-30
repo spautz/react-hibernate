@@ -16,7 +16,11 @@ const PauseableReduxContainer: React.FC<PauseableReduxContainerProps> = (props) 
 
   const parentStore = useStore();
   const pauseableStore = React.useMemo<PauseableStoreInstance>(
-    () => createPauseableStore(parentStore),
+    () =>
+      createPauseableStore(parentStore, {
+        // A change to the `shouldUpdate` prop will already cause a rerender, so we don't need an extra notification
+        notifyListersOnUnpause: false,
+      }),
     [parentStore],
   );
 
