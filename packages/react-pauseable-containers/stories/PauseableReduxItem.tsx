@@ -1,21 +1,17 @@
-import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 
 import Checkbox from '@material-ui/core/Checkbox';
 import Chip from '@material-ui/core/Chip';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-
-import { RenderCount } from 'react-hibernate-dev-helpers';
-
-import { PauseableComponentContainer } from '../src';
 import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
 
-export interface PauseableContainerItemProps {
-  count: number;
-}
-const PauseableContainerItem: React.FC<PauseableContainerItemProps> = (props) => {
-  const { count } = props;
+import { RenderCount, useCountSelector } from 'react-hibernate-dev-helpers';
+
+import { PauseableReduxContainer } from '../src';
+
+const PauseableReduxItem: React.FC = () => {
+  const count = useCountSelector();
 
   const [shouldUpdate, setShouldUpdate] = useState(true);
 
@@ -31,19 +27,15 @@ const PauseableContainerItem: React.FC<PauseableContainerItemProps> = (props) =>
         label="shouldUpdate"
       />
       <div>
-        <PauseableComponentContainer shouldUpdate={shouldUpdate}>
+        <PauseableReduxContainer shouldUpdate={shouldUpdate}>
           <Typography variant="body1">
             count: <Chip label={count} />
           </Typography>
           <RenderCount />
-        </PauseableComponentContainer>
+        </PauseableReduxContainer>
       </div>
     </Paper>
   );
 };
 
-PauseableContainerItem.propTypes = {
-  count: PropTypes.number.isRequired,
-};
-
-export default PauseableContainerItem;
+export default PauseableReduxItem;

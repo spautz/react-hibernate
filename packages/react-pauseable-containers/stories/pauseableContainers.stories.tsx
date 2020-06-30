@@ -8,7 +8,10 @@ import 'typeface-roboto';
 
 import { reduxDecorator } from 'react-hibernate-dev-helpers';
 
-import PauseableContainerItem from './PauseableContainerItem';
+import { PauseableComponentContainer } from '../src';
+import PauseableComponentItem from './PauseableComponentItem';
+import PauseableReduxItem from './PauseableReduxItem';
+import ReduxMonitor from './ReduxMonitor';
 
 export default {
   title: 'React Pauseable Containers',
@@ -39,10 +42,45 @@ export const PauseableComponentContainerStory = (): ReactNode => {
         Parent count:
         <Chip label={count} />
       </div>
-      <PauseableContainerItem count={count} />
-      <PauseableContainerItem count={count} />
-      <PauseableContainerItem count={count} />
+      <PauseableComponentItem count={count} />
+      <PauseableComponentItem count={count} />
+      <PauseableComponentItem count={count} />
     </div>
   );
 };
 PauseableComponentContainerStory.story = { name: 'PauseableComponentContainer' };
+
+const PauseableReduxContainerDemo = () => {
+  return (
+    <div>
+      <Typography variant="h4">
+        <code>&lt;PauseableReduxContainer&gt;</code>
+      </Typography>
+      <Typography variant="subtitle1">
+        The parent state includes a <code>count</code> variable which is passed to each child.
+      </Typography>
+      <Typography variant="subtitle1">
+        Each child is wrapped in a <code>PauseableReduxContainer</code> whose{' '}
+        <code>shouldUpdate</code> prop is controlled by the checkbox.
+      </Typography>
+
+      <ReduxMonitor />
+
+      <PauseableComponentContainer shouldUpdate={false}>
+        <PauseableReduxItem />
+        <PauseableReduxItem />
+        <PauseableReduxItem />
+      </PauseableComponentContainer>
+    </div>
+  );
+};
+
+export const PauseableReduxContainerStory = (): ReactNode => {
+  console.log('PauseableReduxContainerStory()');
+
+  return <PauseableReduxContainerDemo />;
+};
+PauseableReduxContainerStory.story = {
+  name: 'PauseableReduxContainer',
+  decorators: [reduxDecorator],
+};
