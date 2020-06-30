@@ -1,6 +1,6 @@
 {
   "name": "react-pauseable-containers",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "A react-router Switch which can leave inactive routes mounted-but-inactive until you navigate back",
   "keywords": [],
   "license": "MIT",
@@ -52,7 +52,7 @@
   },
   "dependencies": {
     "prop-types": "^15.7.2",
-    "redux-pauseable-store": "0.0.3"
+    "redux-pauseable-store": "0.0.4"
   },
   "devDependencies": {
     "react-hibernate-dev-helpers": "0.0.2"

@@ -1,7 +1,7 @@
 {
   "name": "react-hibernate-workspace",
   "private": true,
-  "version": "0.0.3",
+  "version": "0.0.4",
   "license": "MIT",
   "homepage": "https://github.com/spautz/react-hibernate#readme",
   "repository": {
@@ -24,7 +24,7 @@
     "checkup": "yon format:checkup && yon run types && yon run lint",
     "dev": "yon run format && yon run types && yon run lint",
     "ci": "yon run checkup && yon run packages:checkup && yon run test:report && yon run build-storybook",
-    "all": "yon clean && yon run packages:build && yon run dev && yon run test && yon run build-storybook",
+    "all": "lerna bootstrap && yon run dev && yon run test && yon run build-storybook",
     "____ BATCH COMMANDS FOR PACKAGES ___________________________________": "",
     "packages:prepare": "lerna exec yon prepare",
     "packages:build": "lerna exec yon build",
