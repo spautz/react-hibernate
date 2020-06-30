@@ -1,44 +1,43 @@
-import React, { PropsWithChildren, ReactElement } from 'react';
-import { Store } from 'redux';
+import PropTypes from 'prop-types';
+import React from 'react';
 import { Provider, useStore } from 'react-redux';
+
+import { createPauseableStore, PauseableStoreInstance } from 'redux-pauseable-store';
 
 import { PauseableContainerProps } from './types';
 
-const PauseableReduxContainer: React.FC<PauseableContainerProps> = ({
-  shouldUpdate,
-  children,
-}: PropsWithChildren<PauseableContainerProps>): ReactElement | null => {
-  const store = useStore();
-  const staticStoreRef = React.useRef<Store>();
-  const wasActiveRef = React.useRef<boolean>();
+export interface PauseableReduxContainerProps extends PauseableContainerProps {
+  children: React.ReactNode;
+  dispatchWhenPaused?: boolean | null;
+}
 
-  const stateWhenLastActive = React.useRef<Store>();
+const PauseableReduxContainer: React.FC<PauseableReduxContainerProps> = (props) => {
+  const { dispatchWhenPaused, shouldUpdate, children } = props;
 
-  if (shouldUpdate) {
-    // Track stuff for when we go inactive
-    stateWhenLastActive.current = store.getState();
-  } else {
-    if (wasActiveRef.current) {
-      // We're going inactive: freeze the store contents to the last-active state
-      staticStoreRef.current = {
-        ...store,
-        getState: (): ReturnType<typeof store.getState> => stateWhenLastActive.current,
-      };
-    } else {
-      // We're somehow being rendered in an initially-inactive state: that can't be right
-      if (process.env.NODE_ENV !== 'production') {
-        console.warn(
-          'PauseableReduxContainer is being mounted with shouldUpdate=false: this is probably a bug',
-        );
-      }
-      return null;
-    }
-  }
-
-  wasActiveRef.current = shouldUpdate;
-  return (
-    <Provider store={shouldUpdate ? store : (staticStoreRef.current as Store)}>{children}</Provider>
+  const parentStore = useStore();
+  const pauseableStore = React.useMemo<PauseableStoreInstance>(
+    () =>
+      createPauseableStore(parentStore, {
+        // A change to the `shouldUpdate` prop will already cause a rerender, so we don't need an extra notification
+        notifyListersOnUnpause: false,
+      }),
+    [parentStore],
   );
+
+  pauseableStore.setPaused(!shouldUpdate);
+  pauseableStore.setDispatch(dispatchWhenPaused);
+
+  return <Provider store={pauseableStore}>{children}</Provider>;
+};
+
+PauseableReduxContainer.defaultProps = {
+  dispatchWhenPaused: null,
+};
+
+PauseableReduxContainer.propTypes = {
+  children: PropTypes.node.isRequired,
+  dispatchWhenPaused: PropTypes.bool,
+  shouldUpdate: PropTypes.bool.isRequired,
 };
 
 export default PauseableReduxContainer;

@@ -1,142 +1,85 @@
-import React, { ReactElement, ReactNode } from 'react';
-import { MemoryRouter, Redirect, Route, RouteProps } from 'react-router';
-import { NavLink } from 'react-router-dom';
+import React, { ReactNode, useCallback, useState } from 'react';
+import { withKnobs } from '@storybook/addon-knobs';
+
+import Button from '@material-ui/core/Button';
+import Chip from '@material-ui/core/Chip';
 import Typography from '@material-ui/core/Typography';
 
 import 'typeface-roboto';
 
-import { DemoContainer, reduxDecorator } from 'react-hibernate-dev-helpers';
-import { HibernatingRoute, HibernatingSwitch } from 'react-router-hibernate';
+import { reduxDecorator } from 'react-hibernate-dev-helpers';
 
-import { PauseableReduxContainer, PauseableComponentContainer } from '../src';
+import PauseableComponentItem from './PauseableComponentItem';
+import PauseableReduxItem from './PauseableReduxItem';
+import ReduxMonitor from './ReduxMonitor';
 
 export default {
-  title: 'Pauseable Containers',
+  title: 'React Pauseable Containers',
+  decorators: [reduxDecorator, withKnobs],
+};
+
+export const PauseableComponentContainerStory = (): ReactNode => {
+  const [count, setCount] = useState(0);
+
+  const increment = useCallback(() => setCount((n) => n + 1), []);
+
+  return (
+    <div>
+      <Typography variant="h4">
+        <code>&lt;PauseableComponentContainer&gt;</code>
+      </Typography>
+      <Typography variant="subtitle1">
+        The parent state includes a <code>count</code> variable which is passed to each child.
+      </Typography>
+      <Typography variant="subtitle1">
+        Each child is wrapped in a <code>PauseableComponentContainer</code> whose{' '}
+        <code>shouldUpdate</code> prop is controlled by the checkbox.
+      </Typography>
+      <Button onClick={increment} variant="contained">
+        Increment
+      </Button>
+      <div>
+        Parent count:
+        <Chip label={count} />
+      </div>
+      <PauseableComponentItem count={count} />
+      <PauseableComponentItem count={count} />
+      <PauseableComponentItem count={count} />
+    </div>
+  );
+};
+PauseableComponentContainerStory.story = { name: 'PauseableComponentContainer' };
+
+const PauseableReduxContainerDemo = () => {
+  return (
+    <div>
+      <Typography variant="h4">
+        <code>&lt;PauseableReduxContainer&gt;</code>
+      </Typography>
+      <Typography variant="subtitle1">
+        The parent state includes a <code>count</code> variable which is passed to each child.
+      </Typography>
+      <Typography variant="subtitle1">
+        Each child is wrapped in a <code>PauseableReduxContainer</code> whose{' '}
+        <code>shouldUpdate</code> prop is controlled by the checkbox.
+      </Typography>
+
+      <ReduxMonitor />
+
+      <PauseableReduxItem />
+      <PauseableReduxItem />
+      <PauseableReduxItem />
+    </div>
+  );
+};
+
+export const PauseableReduxContainerStory = (): ReactNode => {
+  return <PauseableReduxContainerDemo />;
+};
+PauseableReduxContainerStory.story = {
+  name: 'PauseableReduxContainer',
   decorators: [reduxDecorator],
 };
 
-export const WithNoWrapper = (): ReactNode => (
-  <MemoryRouter initialEntries={['/route1']}>
-    <NavLink to="/route1">Route1</NavLink>
-    {' | '}
-    <NavLink to="/route2">Route2</NavLink>
-    {' | '}
-    <NavLink to="/route3/1">Route3 id=1</NavLink>
-    {' | '}
-    <NavLink to="/route3/2">Route3 id=2</NavLink>
-    {' | '}
-    <NavLink to="/route3/3">Route3 id=3</NavLink>
-
-    <Typography variant="subtitle1">
-      With no WrapperComponent set, components will rerender when you return to them
-    </Typography>
-
-    <HibernatingSwitch WrapperComponent={null}>
-      <HibernatingRoute path="/route1">
-        <DemoContainer withRedux title="Route 1" />
-      </HibernatingRoute>
-      <HibernatingRoute path="/route2">
-        <DemoContainer withRedux title="Route 2" />
-      </HibernatingRoute>
-      <HibernatingRoute path="/route3/:id">
-        <DemoContainer withRedux title="Route 3" />
-      </HibernatingRoute>
-    </HibernatingSwitch>
-  </MemoryRouter>
-);
-
-export const WithWrapperComponent = (): ReactNode => (
-  <MemoryRouter initialEntries={['/route1']}>
-    <NavLink to="/route1">Route1</NavLink>
-    {' | '}
-    <NavLink to="/route2">Route2</NavLink>
-    {' | '}
-    <NavLink to="/route3/1">Route3 id=1</NavLink>
-    {' | '}
-    <NavLink to="/route3/2">Route3 id=2</NavLink>
-    {' | '}
-    <NavLink to="/route3/3">Route3 id=3</NavLink>
-
-    <Typography variant="subtitle1">
-      With the PauseableComponentContainer, components do not automatically rerender when you return
-      to them
-    </Typography>
-
-    <HibernatingSwitch WrapperComponent={PauseableComponentContainer}>
-      <HibernatingRoute path="/route1">
-        <DemoContainer withRedux title="Route 1" />
-      </HibernatingRoute>
-      <HibernatingRoute path="/route2">
-        <DemoContainer withRedux title="Route 2" />
-      </HibernatingRoute>
-      <HibernatingRoute path="/route3/:id">
-        <DemoContainer withRedux title="Route 3" />
-      </HibernatingRoute>
-    </HibernatingSwitch>
-  </MemoryRouter>
-);
-
-export const WithReduxWrapper = (): ReactNode => (
-  <MemoryRouter initialEntries={['/route1']}>
-    <NavLink to="/route1">Route1</NavLink>
-    {' | '}
-    <NavLink to="/route2">Route2</NavLink>
-    {' | '}
-    <NavLink to="/route3/1">Route3 id=1</NavLink>
-    {' | '}
-    <NavLink to="/route3/2">Route3 id=2</NavLink>
-    {' | '}
-    <NavLink to="/route3/3">Route3 id=3</NavLink>
-
-    <Typography variant="subtitle1">
-      With the PauseableReduxContainer, redux updates do not cause a rerender in hibernating routes.
-      Due to the freezing/unfreezing of redux, however, the render count goes up by two when
-      switching (once when entering hibernation, once when leaving it)
-    </Typography>
-
-    <HibernatingSwitch WrapperComponent={PauseableReduxContainer}>
-      <HibernatingRoute path="/route1">
-        <DemoContainer withRedux title="Route 1" />
-      </HibernatingRoute>
-      <HibernatingRoute path="/route2">
-        <DemoContainer withRedux title="Route 2" />
-      </HibernatingRoute>
-      <HibernatingRoute path="/route3/:id">
-        <DemoContainer withRedux title="Route 3" />
-      </HibernatingRoute>
-    </HibernatingSwitch>
-  </MemoryRouter>
-);
-
-const MyCustomRoute = (props: RouteProps): ReactElement => <Route {...props} />;
-
-export const MixRoutesWithWrapperComponent = (): ReactNode => (
-  <MemoryRouter initialEntries={['/not-matched']}>
-    <NavLink to="/route1">Non-hibernating Route 1</NavLink>
-    {' | '}
-    <NavLink to="/route2">Non-hibernating Route 2</NavLink>
-    {' | '}
-    <NavLink to="/route3/1">Hibernating id=1</NavLink>
-    {' | '}
-    <NavLink to="/route3/2">Hibernating id=2</NavLink>
-    {' | '}
-    <NavLink to="/route3/3">Hibernating id=3</NavLink>
-
-    <Typography variant="subtitle1">
-      The first two screens are never retained, the last three are
-    </Typography>
-
-    <HibernatingSwitch WrapperComponent={PauseableReduxContainer}>
-      <Route path="/route1">
-        <DemoContainer withRedux title="Route 1" />
-      </Route>
-      <MyCustomRoute path="/route2">
-        <DemoContainer withRedux title="Route 2" />
-      </MyCustomRoute>
-      <HibernatingRoute path="/route3/:id">
-        <DemoContainer withRedux title="Route 3" />
-      </HibernatingRoute>
-      <Redirect to="/route1" />
-    </HibernatingSwitch>
-  </MemoryRouter>
-);
+// @TODO: A story where the PauseableReduxItems can dispatch actions
+// const dispatchWhenPaused = boolean('Allow dispatches from paused children', false);

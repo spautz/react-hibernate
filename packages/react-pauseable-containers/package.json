@@ -50,10 +50,12 @@
     "test:watch": "echo \"@TODO: tests for pauseable-containers\"",
     "types": "tsc --noEmit --p tsconfig.json --jsx react"
   },
-  "dependencies": {},
+  "dependencies": {
+    "prop-types": "^15.7.2",
+    "redux-pauseable-store": "0.0.3"
+  },
   "devDependencies": {
-    "react-hibernate-dev-helpers": "0.0.2",
-    "react-router-hibernate": "0.0.2"
+    "react-hibernate-dev-helpers": "0.0.2"
   },
   "peerDependencies": {
     "react": ">=16.8.0",
