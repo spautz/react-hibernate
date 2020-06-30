@@ -30,7 +30,7 @@
     "prepare": "yon run build",
     "prebuild": "yon run clean",
     "prerelease": "yon run clean",
-    "prepublishOnly": "yon run checkup && yon run build",
+    "prepublishOnly": "yarn run checkup && yarn run build",
     "pretest": "yon run test:clean",
     "____ INTEGRATION ___________________________________________________": "",
     "dev": "yon run format && yon run types && yon run lint",
@@ -66,5 +66,6 @@
     "react-redux": {
       "optional": true
     }
-  }
+  },
+  "gitHead": "6473775e5e65bee0b3c5a2c2b1b27061bf5d4579"
 }

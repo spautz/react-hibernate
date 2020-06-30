@@ -16,7 +16,7 @@
   "scripts": {
     "____ LIFECYCLE HOOKS _______________________________________________": "",
     "prepare": "lerna bootstrap --ignore-scripts && yon packages:prepare",
-    "prepublishOnly": "yon checkup && yon packages:build",
+    "prepublishOnly": "lerna bootstrap && yarn checkup",
     "prerelease": "yon clean",
     "pretest": "yon test:clean",
     "____ INTEGRATION ___________________________________________________": "",

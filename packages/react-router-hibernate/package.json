@@ -30,7 +30,7 @@
     "prepare": "yon build",
     "prebuild": "yon clean",
     "prerelease": "yon clean",
-    "prepublishOnly": "yon checkup && yon build",
+    "prepublishOnly": "yarn run checkup && yarn run build",
     "pretest": "yon test:clean",
     "____ INTEGRATION ___________________________________________________": "",
     "dev": "yon run format && yon run types && yon run lint",
@@ -63,5 +63,6 @@
     "react": ">=16.8.0",
     "react-dom": ">=16.8.0",
     "react-router": ">=5.0.0"
-  }
+  },
+  "gitHead": "6473775e5e65bee0b3c5a2c2b1b27061bf5d4579"
 }

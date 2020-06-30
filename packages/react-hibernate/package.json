@@ -31,7 +31,7 @@
     "prepare": "yon build",
     "prebuild": "yon clean",
     "prerelease": "yon clean",
-    "prepublishOnly": "yon checkup && yon build",
+    "prepublishOnly": "yarn run checkup && yarn run build",
     "pretest": "yon test:clean",
     "____ INTEGRATION ___________________________________________________": "",
     "dev": "yon run format && yon run types && yon run lint",
