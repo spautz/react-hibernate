@@ -1,6 +1,6 @@
 {
   "name": "react-router-hibernate",
-  "version": "0.0.2",
+  "version": "0.0.4",
   "description": "A react-router Switch which can leave inactive routes mounted-but-inactive until you navigate back",
   "keywords": [],
   "license": "MIT",
@@ -57,7 +57,7 @@
     "react-reverse-portal": "^2.0.0"
   },
   "devDependencies": {
-    "react-hibernate-dev-helpers": "0.0.2"
+    "react-hibernate-dev-helpers": "^0.0.4"
   },
   "peerDependencies": {
     "react": ">=16.8.0",

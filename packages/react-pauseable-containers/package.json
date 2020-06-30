@@ -52,10 +52,10 @@
   },
   "dependencies": {
     "prop-types": "^15.7.2",
-    "redux-pauseable-store": "0.0.4"
+    "redux-pauseable-store": "^0.0.4"
   },
   "devDependencies": {
-    "react-hibernate-dev-helpers": "0.0.2"
+    "react-hibernate-dev-helpers": "^0.0.4"
   },
   "peerDependencies": {
     "react": ">=16.8.0",

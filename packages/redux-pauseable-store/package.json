@@ -50,8 +50,6 @@
     "test:watch": "jest --coverage --watch",
     "types": "tsc --noEmit --p tsconfig.json --jsx react"
   },
-  "dependencies": {},
-  "devDependencies": {},
   "peerDependencies": {
     "redux": "^4.0.0"
   }

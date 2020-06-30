@@ -1,7 +1,7 @@
 {
   "name": "react-hibernate-dev-helpers",
   "private": true,
-  "version": "0.0.2",
+  "version": "0.0.4",
   "description": "A react-router Switch which can leave inactive routes mounted-but-inactive until you navigate back",
   "keywords": [],
   "license": "MIT",
@@ -61,7 +61,6 @@
     "redux-devtools-extension": "^2.13.8",
     "typeface-roboto": "^0.0.75"
   },
-  "devDependencies": {},
   "peerDependencies": {
     "react": ">=16.8.0",
     "react-dom": ">=16.8.0"
