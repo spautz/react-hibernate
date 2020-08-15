@@ -1,21 +1,28 @@
 {
   "name": "react-router-hibernate",
   "version": "0.0.4",
-  "description": "A react-router Switch which can leave inactive routes mounted-but-inactive until you navigate back",
-  "keywords": [],
+  "description": "Restore previously-unmounted routes -- state and all -- when you return",
+  "keywords": [
+    "hibernate",
+    "remount",
+    "react router undo"
+  ],
   "license": "MIT",
   "homepage": "https://github.com/spautz/react-hibernate/packages/react-router-hibernate#readme",
+  "bugs": "https://github.com/spautz/react-hibernate/issues",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/spautz/react-hibernate.git"
+    "url": "https://github.com/spautz/react-hibernate.git",
+    "directory": "packages/react-router-hibernate"
   },
-  "bugs": {
-    "url": "https://github.com/spautz/react-hibernate/issues"
+  "author": {
+    "name": "Steven Pautz",
+    "url": "https://stevenpautz.com/"
   },
-  "author": "Steven Pautz <spautz@gmail.com>",
   "files": [
     "dist/",
     "src/",
+    "CHANGELOG.md",
     "LICENSE",
     "README.md"
   ],
@@ -27,19 +34,20 @@
   "sideEffects": false,
   "scripts": {
     "____ LIFECYCLE HOOKS _______________________________________________": "",
-    "prepare": "yon build",
-    "prebuild": "yon clean",
-    "prerelease": "yon clean",
+    "prepare": "yon run build",
+    "prebuild": "yon run build:clean",
+    "prerelease": "yon run clean",
     "prepublishOnly": "yarn run checkup && yarn run build",
-    "pretest": "yon test:clean",
+    "pretest": "yon run test:clean",
     "____ INTEGRATION ___________________________________________________": "",
+    "clean": "yon run build:clean && yon run test:clean",
     "dev": "yon run format && yon run types && yon run lint",
     "checkup": "yon format:checkup && yon run types && yon run lint",
     "all": "yon run dev && yon run test && yon run build",
     "____ INDIVIDUAL COMMANDS ___________________________________________": "",
     "build": "microbundle build --jsx React.createElement",
+    "build:clean": "rimraf dist/",
     "build:watch": "microbundle watch --jsx React.createElement",
-    "clean": "rimraf dist/ node_modules/.cache/ && yon test:clean",
     "format": "prettier --write \"**/*.*\"",
     "format:checkup": "prettier --list-different \"**/*.*\"",
     "lint": "eslint \"**/*.{js,jsx,json,ts,tsx}\"",
@@ -51,18 +59,21 @@
     "types": "tsc --noEmit --p tsconfig.json --jsx react"
   },
   "dependencies": {
-    "limited-cache": "^0.5.0",
+    "limited-cache": "^1.0.0",
     "prop-types": "^15.7.2",
     "react-is": "^16.12.0",
     "react-reverse-portal": "^2.0.0"
   },
   "devDependencies": {
-    "react-hibernate-dev-helpers": "^0.0.4"
+    "@types/react-router-dom": "^5.1.5",
+    "react-hibernate-dev-helpers": "^0.0.4",
+    "react-router-dom": "^5.2.0"
   },
   "peerDependencies": {
     "react": ">=16.8.0",
     "react-dom": ">=16.8.0",
-    "react-router": ">=5.0.0"
+    "react-router": ">=5.0.0",
+    "react-router-dom": ">=5.0.0"
   },
   "gitHead": "6473775e5e65bee0b3c5a2c2b1b27061bf5d4579"
 }

@@ -1,6 +1,7 @@
 /* eslint-env node */
 
 module.exports = {
+  root: true,
   extends: [
     'eslint:recommended',
     'plugin:react/recommended',
@@ -14,6 +15,9 @@ module.exports = {
   parserOptions: {
     ecmaVersion: 2018,
     sourceType: 'module',
+    ecmaFeatures: {
+      jsx: true,
+    },
   },
 
   rules: {},

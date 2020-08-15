@@ -1,5 +1,5 @@
-import React, { ReactNode } from 'react';
-import { useLimitedCache } from 'limited-cache/hooks';
+import React, { ReactNode, useMemo } from 'react';
+import { LimitedCache } from 'limited-cache';
 import { isElement } from 'react-is';
 import { createHtmlPortalNode, InPortal, OutPortal, HtmlPortalNode } from 'react-reverse-portal';
 import {
@@ -35,10 +35,14 @@ const HibernatingSwitch: React.FC<HibernatingSwitchProps> = ({
   WrapperComponent,
   ...allOtherProps
 }: HibernatingSwitchProps) => {
-  const portalRecordCache = useLimitedCache({
-    maxCacheSize,
-    maxCacheTime,
-  });
+  const portalRecordCache = useMemo(
+    () =>
+      LimitedCache({
+        maxCacheSize,
+        maxCacheTime,
+      }),
+    [],
+  );
 
   const currentPathKeyRef = React.useRef<string>();
   const currentPathKey = currentPathKeyRef.current;

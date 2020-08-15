@@ -1,7 +1,7 @@
-import React, { useRef, ReactNode } from 'react';
-import { useLimitedCache } from 'limited-cache/hooks';
+import React, { ReactNode, useMemo, useRef } from 'react';
+import { LimitedCache } from 'limited-cache';
 import { ReactComponentLike } from 'prop-types';
-import { createHtmlPortalNode, InPortal } from 'react-reverse-portal';
+import { InPortal, createHtmlPortalNode } from 'react-reverse-portal';
 
 import {
   HibernationAccessorContext,
@@ -65,10 +65,14 @@ const HibernationProvider: React.FC<HibernationProviderProps> = ({
   const activeSubtreeCache = useRef<Record<HibernatingSubtreeId, HibernatingSubtreeEntry | null>>(
     Object.create(null),
   ).current;
-  const hibernatedSubtreeCache = useLimitedCache({
-    maxCacheSize,
-    maxCacheTime,
-  });
+  const hibernatedSubtreeCache = useMemo(
+    () =>
+      LimitedCache({
+        maxCacheSize,
+        maxCacheTime,
+      }),
+    [],
+  );
 
   const [, setState] = React.useState(0);
   // const rerenderScheduledRef = useRef(false);
