@@ -15,6 +15,11 @@ import ReduxMonitor from './ReduxMonitor';
 export default {
   title: 'React Pauseable Containers',
   decorators: [reduxDecorator],
+  parameters: {
+    options: {
+      showPanel: false,
+    },
+  },
 };
 
 export const PauseableComponentContainerStory = (): ReactNode => {

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ReactElement, ReactNode, useEffect } from 'react';
+import { ReactElement, ReactNode } from 'react';
 import { MemoryRouter, Redirect, Route, RouteProps } from 'react-router';
 import { NavLink } from 'react-router-dom';
 import Typography from '@material-ui/core/Typography';
@@ -15,13 +15,21 @@ export default {
   title: 'React Router Hibernate',
   component: HibernatingSwitch,
   decorators: [],
+  parameters: {
+    options: {
+      showPanel: true,
+    },
+  },
 };
 
-const cacheOptionArgTypes = {
+const storyArgTypes = {
   maxCacheSize: { control: { type: 'range', min: 0, max: 10, step: 1 } },
   maxCacheTime: { control: { type: 'range', min: 0, max: 600 * 1000, step: 1000 } },
   WrapperComponent: { control: { disable: true } },
 };
+
+const logMountAction = action('mount');
+const logUnmountAction = action('unmount');
 
 // maxCacheTime: starts with an infinite cache size and a short cache time
 
@@ -47,17 +55,13 @@ export const MaxCacheTimeStory = (args: HibernatingSwitchProps): ReactNode => {
 
       <HibernatingSwitch maxCacheSize={maxCacheSize} maxCacheTime={maxCacheTime}>
         <HibernatingRoute path="/route1">
-          <DemoContainer
-            title="Route 1"
-            onMount={action('/route1 mounted')}
-            onUnmount={action('/route1 unmounted')}
-          />
+          <DemoContainer title="Route 1" onMount={logMountAction} onUnmount={logUnmountAction} />
         </HibernatingRoute>
         <HibernatingRoute path="/route2">
-          <DemoContainer title="Route 2" />
+          <DemoContainer title="Route 2" onMount={logMountAction} onUnmount={logUnmountAction} />
         </HibernatingRoute>
         <HibernatingRoute path="/route3/:id">
-          <DemoContainer title="Route 3" />
+          <DemoContainer title="Route 3" onMount={logMountAction} onUnmount={logUnmountAction} />
         </HibernatingRoute>
       </HibernatingSwitch>
     </MemoryRouter>
@@ -68,7 +72,7 @@ MaxCacheTimeStory.args = {
   maxCacheSize: 0,
   maxCacheTime: 10 * 1000,
 };
-MaxCacheTimeStory.argTypes = cacheOptionArgTypes;
+MaxCacheTimeStory.argTypes = storyArgTypes;
 
 // maxCacheTime: starts with a cache size of 1 and an infinite cache time
 
@@ -94,13 +98,13 @@ export const MaxCacheSizeStory = (args: HibernatingSwitchProps): ReactNode => {
 
       <HibernatingSwitch maxCacheSize={maxCacheSize} maxCacheTime={maxCacheTime}>
         <HibernatingRoute path="/route1">
-          <DemoContainer title="Route 1" />
+          <DemoContainer title="Route 1" onMount={logMountAction} onUnmount={logUnmountAction} />
         </HibernatingRoute>
         <HibernatingRoute path="/route2">
-          <DemoContainer title="Route 2" />
+          <DemoContainer title="Route 2" onMount={logMountAction} onUnmount={logUnmountAction} />
         </HibernatingRoute>
         <HibernatingRoute path="/route3/:id">
-          <DemoContainer title="Route 3" />
+          <DemoContainer title="Route 3" onMount={logMountAction} onUnmount={logUnmountAction} />
         </HibernatingRoute>
       </HibernatingSwitch>
     </MemoryRouter>
@@ -111,7 +115,7 @@ MaxCacheSizeStory.args = {
   maxCacheSize: 1,
   maxCacheTime: 0,
 };
-MaxCacheSizeStory.argTypes = cacheOptionArgTypes;
+MaxCacheSizeStory.argTypes = storyArgTypes;
 
 // Mix and match
 
@@ -139,13 +143,13 @@ export const MixedRouteTypesStory = (args: HibernatingSwitchProps): ReactNode =>
 
       <HibernatingSwitch maxCacheSize={maxCacheSize} maxCacheTime={maxCacheTime}>
         <Route path="/route1">
-          <DemoContainer title="Route 1" />
+          <DemoContainer title="Route 1" onMount={logMountAction} onUnmount={logUnmountAction} />
         </Route>
         <MyCustomRoute path="/route2">
-          <DemoContainer title="Route 2" />
+          <DemoContainer title="Route 2" onMount={logMountAction} onUnmount={logUnmountAction} />
         </MyCustomRoute>
         <HibernatingRoute path="/route3/:id">
-          <DemoContainer title="Route 3" />
+          <DemoContainer title="Route 3" onMount={logMountAction} onUnmount={logUnmountAction} />
         </HibernatingRoute>
         <Redirect to="/route1" />
       </HibernatingSwitch>
@@ -157,4 +161,4 @@ MixedRouteTypesStory.args = {
   maxCacheSize: 5,
   maxCacheTime: 60 * 1000,
 };
-MixedRouteTypesStory.argTypes = cacheOptionArgTypes;
+MixedRouteTypesStory.argTypes = storyArgTypes;

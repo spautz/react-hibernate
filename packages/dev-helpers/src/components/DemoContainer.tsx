@@ -11,9 +11,9 @@ import { incrementAction, DevHelperState } from '../redux';
 export interface DemoContainerProps {
   title: string;
   withRedux?: boolean;
-  onMount?: () => void;
-  onRender?: () => void;
-  onUnmount?: () => void;
+  onMount?: (instanceTitle: string) => void;
+  onRender?: (instanceTitle: string) => void;
+  onUnmount?: (instanceTitle: string) => void;
 }
 
 const selectEntireState = (state: DevHelperState): DevHelperState => state;
@@ -39,12 +39,13 @@ const DemoContainer: React.FC<DemoContainerProps> = (props: DemoContainerProps):
   React.useEffect((): (() => void) => {
     console.log(`DemoContainer ${titleWithMyInstanceNum} mounted`);
     if (onMount) {
-      onMount();
+      // Wait an extra tick for Storybook to catch up, or else actions won't be logged
+      setTimeout(() => onMount(titleWithMyInstanceNum));
     }
     return (): void => {
       console.log(`DemoContainer ${titleWithMyInstanceNum} unmounted`);
       if (onUnmount) {
-        onUnmount();
+        setTimeout(() => onUnmount(titleWithMyInstanceNum));
       }
     };
   }, []);
@@ -52,7 +53,7 @@ const DemoContainer: React.FC<DemoContainerProps> = (props: DemoContainerProps):
   React.useEffect(() => {
     console.log(`DemoContainer ${titleWithMyInstanceNum} rendered`);
     if (onRender) {
-      onRender();
+      onRender(titleWithMyInstanceNum);
     }
   });
 
