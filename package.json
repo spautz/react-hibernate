@@ -2,15 +2,11 @@
   "name": "react-hibernate-workspace",
   "private": true,
   "version": "0.0.4",
+  "description": "Root workspace for React Hibernate",
   "license": "MIT",
   "homepage": "https://github.com/spautz/react-hibernate#readme",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/spautz/react-hibernate.git"
-  },
-  "bugs": {
-    "url": "https://github.com/spautz/react-hibernate/issues"
-  },
+  "repository": "https://github.com/spautz/react-hibernate",
+  "bugs": "https://github.com/spautz/react-hibernate/issues",
   "author": "Steven Pautz <spautz@gmail.com>",
   "sideEffects": false,
   "scripts": {
@@ -21,7 +17,7 @@
     "pretest": "yon test:clean",
     "____ INTEGRATION ___________________________________________________": "",
     "clean": "rimraf storybook-static/ && rimraf node_modules/.cache/ && yon test:clean && yon packages:clean",
-    "checkup": "yon format:checkup && yon run types && yon run lint",
+    "checkup": "yon run format:checkup && yon run types && yon run lint",
     "dev": "yon run format && yon run types && yon run lint",
     "ci": "yon run checkup && yon run packages:checkup && yon run test:report && yon run build-storybook",
     "all": "lerna bootstrap && yon run dev && yon run test && yon run build-storybook",
@@ -39,7 +35,7 @@
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "release:changelog": "standard-version --skip.commit --skip.tag --release-as ",
-    "release:tag": "standard-version --sign --skip.changelog --release-as ",
+    "release:tag": "standard-version --commit-all --sign --skip.changelog --release-as ",
     "test": "jest --coverage",
     "test:clean": "rimraf coverage/",
     "test:report": "jest --coverage --coverageReporters=text-lcov | coveralls",

@@ -1,21 +1,29 @@
 {
   "name": "react-pauseable-containers",
   "version": "0.0.4",
-  "description": "A react-router Switch which can leave inactive routes mounted-but-inactive until you navigate back",
-  "keywords": [],
+  "description": "Prevent React children from rerendering",
+  "keywords": [
+    "hibernate",
+    "pause react",
+    "freeze react",
+    "react static container"
+  ],
   "license": "MIT",
   "homepage": "https://github.com/spautz/react-hibernate/packages/react-pauseable-containers#readme",
+  "bugs": "https://github.com/spautz/react-hibernate/issues",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/spautz/react-hibernate.git"
+    "url": "https://github.com/spautz/react-hibernate.git",
+    "directory": "packages/react-pauseable-containers"
   },
-  "bugs": {
-    "url": "https://github.com/spautz/react-hibernate/issues"
+  "author": {
+    "name": "Steven Pautz",
+    "url": "https://stevenpautz.com/"
   },
-  "author": "Steven Pautz <spautz@gmail.com>",
   "files": [
     "dist/",
     "src/",
+    "CHANGELOG.md",
     "LICENSE",
     "README.md"
   ],

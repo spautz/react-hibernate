@@ -1,21 +1,28 @@
 {
   "name": "react-router-hibernate",
   "version": "0.0.4",
-  "description": "A react-router Switch which can leave inactive routes mounted-but-inactive until you navigate back",
-  "keywords": [],
+  "description": "Restore previously-unmounted routes -- state and all -- when you return",
+  "keywords": [
+    "hibernate",
+    "remount",
+    "react router undo"
+  ],
   "license": "MIT",
   "homepage": "https://github.com/spautz/react-hibernate/packages/react-router-hibernate#readme",
+  "bugs": "https://github.com/spautz/react-hibernate/issues",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/spautz/react-hibernate.git"
+    "url": "https://github.com/spautz/react-hibernate.git",
+    "directory": "packages/react-router-hibernate"
   },
-  "bugs": {
-    "url": "https://github.com/spautz/react-hibernate/issues"
+  "author": {
+    "name": "Steven Pautz",
+    "url": "https://stevenpautz.com/"
   },
-  "author": "Steven Pautz <spautz@gmail.com>",
   "files": [
     "dist/",
     "src/",
+    "CHANGELOG.md",
     "LICENSE",
     "README.md"
   ],

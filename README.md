@@ -1,6 +1,6 @@
 # Hibernating Components for React & React Router
 
-Bring back previously-unmounted components and subtrees -- state and all -- when they remount.
+Bring back previously-unmounted components and children -- state and all -- when they remount.
 
 **These packages are in active development. Things will change rapidly, and it is not yet production-ready. Feedback is welcome.**
 
@@ -9,13 +9,13 @@ Bring back previously-unmounted components and subtrees -- state and all -- when
 
 ## Overview
 
-When a React component stops being rendered, it's gone: local state, dom state, etc are removed. If you want to keep
-that prior state around you must store it elsewhere.
+When a React component stops being rendered, it's gone: local state, dom state, etc are removed. If you want to retain
+any of that prior state, you must store it elsewhere.
 
-This repo provides libraries which can keep the old subtree around for a while, when desired.
+This repo provides libraries which can keep the old component tree around for a while, when desired.
 
-Instead of unmounting, the subtree goes into "hibernation". It will "wake up" when you return, including all internal
-state, as if you never left.
+Instead of unmounting, the component tree goes into "hibernation". It will "wake up" when you return, including all
+internal state, as if you never left.
 
 - [React Router Hibernate](./packages/react-router-hibernate/) works per-route, if you're using
   [React Router](https://reacttraining.com/react-router/) (v5)

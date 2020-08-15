@@ -2,20 +2,28 @@
   "name": "redux-pauseable-store",
   "version": "0.0.4",
   "description": "Derive one redux store from another, then pause it",
-  "keywords": [],
+  "keywords": [
+    "hibernate",
+    "pause redux",
+    "freeze redux",
+    "copy store"
+  ],
   "license": "MIT",
   "homepage": "https://github.com/spautz/react-hibernate/packages/redux-pauseable-store#readme",
+  "bugs": "https://github.com/spautz/react-hibernate/issues",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/spautz/react-hibernate.git"
+    "url": "https://github.com/spautz/react-hibernate.git",
+    "directory": "packages/redux-pauseable-store"
   },
-  "bugs": {
-    "url": "https://github.com/spautz/react-hibernate/issues"
+  "author": {
+    "name": "Steven Pautz",
+    "url": "https://stevenpautz.com/"
   },
-  "author": "Steven Pautz <spautz@gmail.com>",
   "files": [
     "dist/",
     "src/",
+    "CHANGELOG.md",
     "LICENSE",
     "README.md"
   ],
