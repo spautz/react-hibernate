@@ -29,18 +29,20 @@
   "sideEffects": false,
   "scripts": {
     "____ LIFECYCLE HOOKS _______________________________________________": "",
-    "prepare": "yon build",
-    "prebuild": "yon clean",
-    "prerelease": "yon clean",
-    "pretest": "yon test:clean",
+    "prepare": "yon run build",
+    "prebuild": "yon run build:clean",
+    "prerelease": "yon run clean",
+    "prepublishOnly": "yarn run checkup && yarn run build",
+    "pretest": "yon run test:clean",
     "____ INTEGRATION ___________________________________________________": "",
+    "clean": "yon run build:clean && yon run test:clean",
     "dev": "yon run format && yon run types && yon run lint",
     "checkup": "yon format:checkup && yon run types && yon run lint",
     "all": "yon run dev && yon run test && yon run build",
     "____ INDIVIDUAL COMMANDS ___________________________________________": "",
     "build": "microbundle build --jsx React.createElement",
+    "build:clean": "rimraf dist/",
     "build:watch": "microbundle watch --jsx React.createElement",
-    "clean": "rimraf dist/ node_modules/.cache/ && yon test:clean",
     "format": "prettier --write \"**/*.*\"",
     "format:checkup": "prettier --list-different \"**/*.*\"",
     "lint": "eslint \"**/*.{js,jsx,json,ts,tsx}\"",
@@ -52,7 +54,7 @@
   "dependencies": {
     "@material-ui/core": "^4.11.0",
     "@testing-library/react": "^10.4.8",
-    "history": "^5.0.0",
+    "history": "^4.10.1",
     "prop-types": "^15.7.2",
     "react-is": "^16.13.1",
     "react-redux": "^7.2.1",
@@ -60,6 +62,11 @@
     "redux": "^4.0.5",
     "redux-devtools-extension": "^2.13.8",
     "typeface-roboto": "^0.0.75"
+  },
+  "devDependencies": {
+    "@types/history": "^4.7.7",
+    "@types/react-redux": "^7.1.9",
+    "@types/react-router": "^5.1.8"
   },
   "peerDependencies": {
     "react": ">=16.8.0",
