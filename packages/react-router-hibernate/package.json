@@ -1,6 +1,6 @@
 {
   "name": "react-router-hibernate",
-  "version": "0.0.4",
+  "version": "0.1.0",
   "description": "Restore previously-unmounted routes -- state and all -- when you return",
   "keywords": [
     "hibernate",
@@ -51,8 +51,7 @@
     "format": "prettier --write \"**/*.*\"",
     "format:checkup": "prettier --list-different \"**/*.*\"",
     "lint": "eslint \"**/*.{js,jsx,json,ts,tsx}\"",
-    "release:changelog": "standard-version --skip.commit",
-    "release:tag": "standard-version --sign --skip.changelog --release-as ",
+    "release:changelog": "standard-version --skip.commit --skip.tag --release-as ",
     "test": "jest --coverage",
     "test:clean": "rimraf coverage-local/",
     "test:watch": "jest --coverage --watch",
@@ -66,7 +65,7 @@
   },
   "devDependencies": {
     "@types/react-router-dom": "^5.1.5",
-    "react-hibernate-dev-helpers": "^0.0.4",
+    "react-hibernate-dev-helpers": "^0.1.0",
     "react-router-dom": "^5.2.0"
   },
   "peerDependencies": {
@@ -75,5 +74,5 @@
     "react-router": ">=5.0.0",
     "react-router-dom": ">=5.0.0"
   },
-  "gitHead": "6473775e5e65bee0b3c5a2c2b1b27061bf5d4579"
+  "gitHead": "ea7266569cd13e20be67f2ac7d50758a1151254a"
 }

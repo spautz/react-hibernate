@@ -1,6 +1,6 @@
 {
   "name": "react-pauseable-containers",
-  "version": "0.0.4",
+  "version": "0.1.0",
   "description": "Prevent React children from rerendering",
   "keywords": [
     "hibernate",
@@ -53,7 +53,6 @@
     "format:checkup": "prettier --list-different \"**/*.*\"",
     "lint": "eslint \"**/*.{js,jsx,json,ts,tsx}\"",
     "release:changelog": "standard-version --skip.commit --skip.tag --release-as ",
-    "release:tag": "standard-version --sign --skip.changelog --release-as ",
     "test": "echo \"@TODO: tests for pauseable-containers\"",
     "test:clean": "rimraf coverage-local/",
     "test:watch": "echo \"@TODO: tests for pauseable-containers\"",
@@ -61,10 +60,10 @@
   },
   "dependencies": {
     "prop-types": "^15.7.2",
-    "redux-pauseable-store": "^0.0.4"
+    "redux-pauseable-store": "^0.1.0"
   },
   "devDependencies": {
-    "react-hibernate-dev-helpers": "^0.0.4"
+    "react-hibernate-dev-helpers": "^0.1.0"
   },
   "peerDependencies": {
     "react": ">=16.8.0",
@@ -76,5 +75,5 @@
       "optional": true
     }
   },
-  "gitHead": "6473775e5e65bee0b3c5a2c2b1b27061bf5d4579"
+  "gitHead": "ea7266569cd13e20be67f2ac7d50758a1151254a"
 }

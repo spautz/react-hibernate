@@ -1,6 +1,6 @@
 {
   "name": "redux-pauseable-store",
-  "version": "0.0.4",
+  "version": "0.1.0",
   "description": "Derive one redux store from another, then pause it",
   "keywords": [
     "hibernate",
@@ -53,15 +53,13 @@
     "format:checkup": "prettier --list-different \"**/*.*\"",
     "lint": "eslint \"**/*.{js,jsx,json,ts,tsx}\"",
     "release:changelog": "standard-version --skip.commit --skip.tag --release-as ",
-    "release:tag": "standard-version --sign --skip.changelog --release-as ",
     "test": "jest --coverage",
     "test:clean": "rimraf coverage-local/",
     "test:watch": "jest --coverage --watch",
     "types": "tsc --noEmit --p tsconfig.json --jsx react"
   },
-  "dependencies": {},
   "peerDependencies": {
     "redux": "^4.0.0"
   },
-  "gitHead": "6473775e5e65bee0b3c5a2c2b1b27061bf5d4579"
+  "gitHead": "ea7266569cd13e20be67f2ac7d50758a1151254a"
 }
