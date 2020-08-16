@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { ReactNode } from 'react';
-import { withKnobs } from '@storybook/addon-knobs';
 
 import 'typeface-roboto';
 
@@ -9,9 +8,9 @@ import { DemoContainer } from 'react-hibernate-dev-helpers';
 import { HibernationProvider, HibernatingSubtree } from '../src';
 
 export default {
-  title: 'Basic usage',
+  title: 'React Hibernate (unreleased)',
   component: HibernationProvider,
-  decorators: [withKnobs],
+  decorators: [],
 };
 
 export const Default = (): ReactNode => {

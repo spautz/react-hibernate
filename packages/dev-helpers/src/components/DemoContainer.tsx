@@ -11,6 +11,9 @@ import { incrementAction, DevHelperState } from '../redux';
 export interface DemoContainerProps {
   title: string;
   withRedux?: boolean;
+  onMount?: (instanceTitle: string) => void;
+  onRender?: (instanceTitle: string) => void;
+  onUnmount?: (instanceTitle: string) => void;
 }
 
 const selectEntireState = (state: DevHelperState): DevHelperState => state;
@@ -18,7 +21,7 @@ const selectEntireState = (state: DevHelperState): DevHelperState => state;
 let totalInstanceCount = 0;
 
 const DemoContainer: React.FC<DemoContainerProps> = (props: DemoContainerProps): ReactElement => {
-  const { title, withRedux } = props;
+  const { title, withRedux, onMount, onRender, onUnmount } = props;
 
   // A simple per-Component instance counter
   const myInstanceNumRef = React.useRef(0);
@@ -35,11 +38,23 @@ const DemoContainer: React.FC<DemoContainerProps> = (props: DemoContainerProps):
 
   React.useEffect((): (() => void) => {
     console.log(`DemoContainer ${titleWithMyInstanceNum} mounted`);
-    return (): void => console.log(`DemoContainer ${titleWithMyInstanceNum} unmounted`);
+    if (onMount) {
+      // Wait an extra tick for Storybook to catch up, or else actions won't be logged
+      setTimeout(() => onMount(titleWithMyInstanceNum));
+    }
+    return (): void => {
+      console.log(`DemoContainer ${titleWithMyInstanceNum} unmounted`);
+      if (onUnmount) {
+        setTimeout(() => onUnmount(titleWithMyInstanceNum));
+      }
+    };
   }, []);
 
   React.useEffect(() => {
     console.log(`DemoContainer ${titleWithMyInstanceNum} rendered`);
+    if (onRender) {
+      onRender(titleWithMyInstanceNum);
+    }
   });
 
   // Our own local state

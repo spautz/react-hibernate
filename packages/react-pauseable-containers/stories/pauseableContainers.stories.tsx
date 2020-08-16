@@ -1,5 +1,4 @@
 import React, { ReactNode, useCallback, useState } from 'react';
-import { withKnobs } from '@storybook/addon-knobs';
 
 import Button from '@material-ui/core/Button';
 import Chip from '@material-ui/core/Chip';
@@ -15,7 +14,12 @@ import ReduxMonitor from './ReduxMonitor';
 
 export default {
   title: 'React Pauseable Containers',
-  decorators: [reduxDecorator, withKnobs],
+  decorators: [reduxDecorator],
+  parameters: {
+    options: {
+      showPanel: false,
+    },
+  },
 };
 
 export const PauseableComponentContainerStory = (): ReactNode => {
@@ -29,7 +33,7 @@ export const PauseableComponentContainerStory = (): ReactNode => {
         <code>&lt;PauseableComponentContainer&gt;</code>
       </Typography>
       <Typography variant="subtitle1">
-        The parent state includes a <code>count</code> variable which is passed to each child.
+        The parent state has a <code>count</code>, which gets passed to each child.
       </Typography>
       <Typography variant="subtitle1">
         Each child is wrapped in a <code>PauseableComponentContainer</code> whose{' '}
@@ -48,7 +52,7 @@ export const PauseableComponentContainerStory = (): ReactNode => {
     </div>
   );
 };
-PauseableComponentContainerStory.story = { name: 'PauseableComponentContainer' };
+PauseableComponentContainerStory.storyName = 'PauseableComponentContainer';
 
 const PauseableReduxContainerDemo = () => {
   return (
@@ -57,7 +61,7 @@ const PauseableReduxContainerDemo = () => {
         <code>&lt;PauseableReduxContainer&gt;</code>
       </Typography>
       <Typography variant="subtitle1">
-        The parent state includes a <code>count</code> variable which is passed to each child.
+        Redux state has a <code>count</code>, which each child displays.
       </Typography>
       <Typography variant="subtitle1">
         Each child is wrapped in a <code>PauseableReduxContainer</code> whose{' '}
@@ -76,10 +80,8 @@ const PauseableReduxContainerDemo = () => {
 export const PauseableReduxContainerStory = (): ReactNode => {
   return <PauseableReduxContainerDemo />;
 };
-PauseableReduxContainerStory.story = {
-  name: 'PauseableReduxContainer',
-  decorators: [reduxDecorator],
-};
+PauseableReduxContainerStory.storyName = 'PauseableReduxContainer';
+PauseableReduxContainerStory.decorators = [reduxDecorator];
 
 // @TODO: A story where the PauseableReduxItems can dispatch actions
 // const dispatchWhenPaused = boolean('Allow dispatches from paused children', false);
