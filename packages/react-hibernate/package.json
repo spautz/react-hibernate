@@ -61,7 +61,7 @@
     "react-reverse-portal": "^2.0.0"
   },
   "devDependencies": {
-    "react-hibernate-dev-helpers": "^0.1.0"
+    "react-hibernate-dev-helpers": "0.1.0"
   },
   "peerDependencies": {
     "react": ">=16.8.0",

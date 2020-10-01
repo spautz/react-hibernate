@@ -64,9 +64,9 @@
     "react-reverse-portal": "^2.0.0"
   },
   "devDependencies": {
-    "@types/react-router-dom": "^5.1.5",
-    "react-hibernate-dev-helpers": "^0.1.0",
-    "react-router-dom": "^5.2.0"
+    "@types/react-router-dom": "5.1.5",
+    "react-hibernate-dev-helpers": "0.1.0",
+    "react-router-dom": "5.2.0"
   },
   "peerDependencies": {
     "react": ">=16.8.0",
