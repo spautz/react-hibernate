@@ -58,10 +58,10 @@
     "limited-cache": "^1.0.0",
     "prop-types": "^15.7.2",
     "react-is": "^16.12.0",
-    "react-reverse-portal": "^2.0.0"
+    "react-reverse-portal": "^2.0.1"
   },
   "devDependencies": {
-    "react-hibernate-dev-helpers": "^0.1.0"
+    "react-hibernate-dev-helpers": "0.1.0"
   },
   "peerDependencies": {
     "react": ">=16.8.0",

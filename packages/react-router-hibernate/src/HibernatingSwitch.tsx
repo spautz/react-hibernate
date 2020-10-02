@@ -1,5 +1,6 @@
-import React, { ReactNode, useMemo } from 'react';
 import { LimitedCache } from 'limited-cache';
+import { ReactComponentLike } from 'prop-types';
+import React, { ReactNode, useMemo } from 'react';
 import { isElement } from 'react-is';
 import { createHtmlPortalNode, InPortal, OutPortal, HtmlPortalNode } from 'react-reverse-portal';
 import {
@@ -13,7 +14,6 @@ import {
 
 import HibernatingRoute from './HibernatingRoute';
 import renderRoute from './renderRoute';
-import { ReactComponentLike } from 'prop-types';
 
 interface HibernatingSwitchProps extends SwitchProps {
   children: ReactNode;

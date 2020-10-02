@@ -63,7 +63,7 @@
     "redux-pauseable-store": "^0.1.0"
   },
   "devDependencies": {
-    "react-hibernate-dev-helpers": "^0.1.0"
+    "react-hibernate-dev-helpers": "0.1.0"
   },
   "peerDependencies": {
     "react": ">=16.8.0",
@@ -71,6 +71,9 @@
     "react-redux": ">=7.0.0"
   },
   "peerDependenciesMeta": {
+    "react-dom": {
+      "optional": true
+    },
     "react-redux": {
       "optional": true
     }

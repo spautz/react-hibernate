@@ -1,17 +1,14 @@
 import React, { ReactElement, ComponentType } from 'react';
-import { createMemoryHistory, MemoryHistoryBuildOptions } from 'history';
 import { isElement } from 'react-is';
-import { Router } from 'react-router';
+import { MemoryRouter, MemoryRouterProps } from 'react-router';
 import { render } from '@testing-library/react';
 
 const renderWithRouterContext = (
   AppRoot: ReactElement | ComponentType,
-  historyOptions?: MemoryHistoryBuildOptions,
+  routerProps: MemoryRouterProps = {},
 ): ReturnType<typeof render> => {
-  const history = createMemoryHistory(historyOptions);
-
   const renderResult = render(
-    <Router history={history}>{isElement(AppRoot) ? AppRoot : <AppRoot />}</Router>,
+    <MemoryRouter {...routerProps}>{isElement(AppRoot) ? AppRoot : <AppRoot />}</MemoryRouter>,
   );
   return {
     ...renderResult,
