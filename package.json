@@ -11,7 +11,7 @@
   "sideEffects": false,
   "scripts": {
     "____ LIFECYCLE HOOKS _______________________________________________": "",
-    "prepare": "lerna bootstrap --ignore-scripts && lerna exec yarn prepare",
+    "prepare": "lerna bootstrap",
     "prepublishOnly": "yarn checkup",
     "prerelease": "yon clean",
     "pretest": "yon test:clean",
@@ -43,7 +43,7 @@
     "release:postpublish": "standard-version --commit-all --sign --skip.changelog --release-as ",
     "test": "jest --coverage",
     "test:clean": "rimraf coverage/",
-    "test:report": "jest --coverage --coverageReporters=text-lcov | coveralls",
+    "test:report": "jest --coverage && coveralls < coverage/lcov.info",
     "test:watch": "jest --coverage --watch",
     "types": "tsc --noEmit --p tsconfig.json --jsx react"
   },

@@ -8,5 +8,5 @@ module.exports = {
   moduleFileExtensions: ['js', 'jsx', 'json', 'ts', 'tsx', 'node'],
   modulePathIgnorePatterns: ['dist/'],
   collectCoverage: true,
-  coverageReporters: ['json', 'html'],
+  coverageReporters: ['json', 'html', 'lcov'],
 };
