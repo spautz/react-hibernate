@@ -58,6 +58,9 @@
     "test:watch": "jest --coverage --watch",
     "types": "tsc --noEmit --p tsconfig.json --jsx react"
   },
+  "devDependencies": {
+    "react-hibernate-dev-helpers": "0.1.0"
+  },
   "peerDependencies": {
     "redux": "^4.0.0"
   },

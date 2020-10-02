@@ -22,9 +22,7 @@
     "README.md"
   ],
   "source": "src/index.ts",
-  "main": "dist/index.js",
-  "module": "dist/index.esm.js",
-  "jsnext:main": "dist/index.esm.js",
+  "main": "dist/react-hibernate-dev-helpers.js",
   "types": "dist/index.d.ts",
   "sideEffects": false,
   "scripts": {
@@ -40,7 +38,7 @@
     "checkup": "yon format:checkup && yon run types && yon run lint",
     "all": "yon run dev && yon run test && yon run build",
     "____ INDIVIDUAL COMMANDS ___________________________________________": "",
-    "build": "microbundle build --jsx React.createElement",
+    "build": "microbundle build -f cjs --jsx React.createElement",
     "build:clean": "rimraf dist/",
     "build:watch": "microbundle watch --jsx React.createElement",
     "format": "prettier --write \"**/*.*\"",
