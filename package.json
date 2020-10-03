@@ -36,7 +36,7 @@
     "demo:deploy": "gh-pages -d ./storybook-static",
     "format": "prettier --write .",
     "format:verify": "prettier --list-different .",
-    "lint": "eslint . --max-warnings 0",
+    "lint": "tsdx lint . --max-warnings 0",
     "storybook": "start-storybook -p 6006",
     "storybook:clean": "rimraf ./storybook-static",
     "build-storybook": "build-storybook",
@@ -47,7 +47,7 @@
     "test:nowatch": "tsdx test --coverage",
     "test:report": "tsdx test --coverage && coveralls < ./coverage/lcov.info",
     "test:watch": "tsdx test --coverage --watch",
-    "types": "tsc --noEmit --p tsconfig.json --jsx react"
+    "types": "tsc --p tsconfig.json"
   },
   "dependencies": {},
   "devDependencies": {
@@ -72,7 +72,7 @@
     "lint-staged": "10.4.0",
     "standard-version": "9.0.0",
     "tsdx": "0.14.0",
-    "typescript": "4.0.3",
+    "typescript": "3.9.7",
     "yarn-or-npm": "3.0.1"
   },
   "lint-staged": {

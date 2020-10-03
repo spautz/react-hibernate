@@ -11,7 +11,7 @@ const PauseableReduxItem: React.FC = () => {
   const dispatch = useDispatch();
   const count = useCountSelector();
 
-  const increment = useCallback(() => dispatch(incrementAction()), []);
+  const increment = useCallback(() => dispatch(incrementAction()), [dispatch]);
 
   return (
     <>

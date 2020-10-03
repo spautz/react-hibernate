@@ -48,6 +48,7 @@ const DemoContainer: React.FC<DemoContainerProps> = (props: DemoContainerProps):
         setTimeout(() => onUnmount(titleWithMyInstanceNum));
       }
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   React.useEffect(() => {
@@ -62,7 +63,10 @@ const DemoContainer: React.FC<DemoContainerProps> = (props: DemoContainerProps):
   // Global state, if appropriate
   let reduxContent;
   if (withRedux) {
+    // @TODO: Split this into two components (with/without Redux) so that we don't call things conditionally
+    // eslint-disable-next-line react-hooks/rules-of-hooks
     const state = useSelector(selectEntireState);
+    // eslint-disable-next-line react-hooks/rules-of-hooks
     const dispatch = useDispatch();
 
     reduxContent = (
