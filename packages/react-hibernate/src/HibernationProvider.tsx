@@ -53,6 +53,7 @@ const HibernationProvider: React.FC<HibernationProviderProps> = ({
       );
     }
 
+    // eslint-disable-next-line react-hooks/rules-of-hooks
     const InitialWrapperComponentRef = useRef(WrapperComponent);
     if (WrapperComponent !== InitialWrapperComponentRef.current) {
       console.warn(
@@ -65,13 +66,14 @@ const HibernationProvider: React.FC<HibernationProviderProps> = ({
   const activeSubtreeCache = useRef<Record<HibernatingSubtreeId, HibernatingSubtreeEntry | null>>(
     Object.create(null),
   ).current;
-  const hibernatedSubtreeCache = useMemo(
+  const hibernatedSubtreeCache = useMemo(LimitedCache, []);
+  useMemo(
     () =>
-      LimitedCache({
+      hibernatedSubtreeCache.setOptions({
         maxCacheSize,
         maxCacheTime,
       }),
-    [],
+    [hibernatedSubtreeCache, maxCacheSize, maxCacheTime],
   );
 
   const [, setState] = React.useState(0);

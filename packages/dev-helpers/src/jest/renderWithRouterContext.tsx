@@ -7,13 +7,9 @@ const renderWithRouterContext = (
   AppRoot: ReactElement | ComponentType,
   routerProps: MemoryRouterProps = {},
 ): ReturnType<typeof render> => {
-  const renderResult = render(
+  return render(
     <MemoryRouter {...routerProps}>{isElement(AppRoot) ? AppRoot : <AppRoot />}</MemoryRouter>,
   );
-  return {
-    ...renderResult,
-    history,
-  };
 };
 
 export default renderWithRouterContext;

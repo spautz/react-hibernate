@@ -1,6 +1,6 @@
 import { LimitedCache } from 'limited-cache';
 import { ReactComponentLike } from 'prop-types';
-import React, { ReactNode, useMemo } from 'react';
+import React, { ReactNode, useMemo, useRef, useState } from 'react';
 import { isElement } from 'react-is';
 import { createHtmlPortalNode, InPortal, OutPortal, HtmlPortalNode } from 'react-reverse-portal';
 import {
@@ -41,15 +41,16 @@ const HibernatingSwitch: React.FC<HibernatingSwitchProps> = ({
         maxCacheSize,
         maxCacheTime,
       }),
-    [],
+    [maxCacheSize, maxCacheTime],
   );
 
-  const currentPathKeyRef = React.useRef<string>();
+  const currentPathKeyRef = useRef<string>();
   const currentPathKey = currentPathKeyRef.current;
-  const [currentPortalRecord, setCurrentPortalRecord] = React.useState<PortalRecord | null>(null);
+  const [currentPortalRecord, setCurrentPortalRecord] = useState<PortalRecord | null>(null);
 
   if (process.env.NODE_ENV !== 'production') {
-    const InitialWrapperComponentRef = React.useRef(WrapperComponent);
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    const InitialWrapperComponentRef = useRef(WrapperComponent);
     if (WrapperComponent !== InitialWrapperComponentRef.current) {
       console.warn(
         'The WrapperComponent component changed between renders: this will cause a remount',

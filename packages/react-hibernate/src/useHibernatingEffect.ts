@@ -13,6 +13,7 @@ const useHibernatingEffect = (
       cleanupFnRef.current = callbackFn(isActive);
       return cleanupFnRef.current;
     },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     deps ? [...deps, isActive] : [isActive],
   );
 };

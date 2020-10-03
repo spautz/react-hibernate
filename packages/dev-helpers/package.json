@@ -22,7 +22,9 @@
     "*.md"
   ],
   "source": "src/index.ts",
-  "main": "dist/react-hibernate-dev-helpers.js",
+  "main": "dist/index.js",
+  "module": "dist/index.esm.js",
+  "jsnext:main": "dist/index.esm.js",
   "types": "dist/index.d.ts",
   "sideEffects": false,
   "scripts": {
@@ -40,17 +42,17 @@
     "all": "yarn run clean && yarn run dev && yarn run test:nowatch && yarn run build",
     "all:readonly": "yarn run dev:readonly && yarn run test:nowatch",
     "____ INDIVIDUAL COMMANDS ___________________________________________": "",
-    "build": "microbundle build -f cjs --jsx React.createElement",
+    "build": "tsdx build",
     "build:clean": "rimraf ./dist",
-    "build:watch": "microbundle watch -f cjs --jsx React.createElement",
+    "build:watch": "tsdx watch",
     "format": "prettier --write .",
     "format:verify": "prettier --list-different .",
-    "lint": "eslint . --max-warnings 0",
+    "lint": "tsdx lint . --max-warnings 0",
     "release:changelog": "standard-version --skip.commit --skip.tag --release-as ",
-    "test:clean": "rimraf ./coverage-local",
-    "test:nowatch": "echo \"@TODO: tests for dev-helpers\"",
-    "test:watch": "echo \"@TODO: tests for dev-helpers\"",
-    "types": "tsc --noEmit --p tsconfig.json --jsx react"
+    "test:clean": "rimraf ./coverage",
+    "test:nowatch": "tsdx test --coverage --passWithNoTests",
+    "test:watch": "tsdx test --coverage --watch --passWithNoTests",
+    "types": "tsc --p tsconfig.json"
   },
   "dependencies": {
     "@material-ui/core": "^4.11.0",
@@ -66,5 +68,8 @@
   "peerDependencies": {
     "react": ">=16.8.0",
     "react-dom": ">=16.8.0"
+  },
+  "jest": {
+    "coverageDirectory": "coverage-local"
   }
 }
