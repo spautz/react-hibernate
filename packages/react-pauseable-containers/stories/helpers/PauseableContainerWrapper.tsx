@@ -14,7 +14,7 @@ export interface PauseableContainerWrapperProps {
 const PauseableContainerWrapper: React.FC<PauseableContainerWrapperProps> = (props) => {
   const { PauseableContainer, children, ...allOtherProps } = props;
 
-  const [shouldUpdate, setShouldUpdate] = useState(true);
+  const [shouldUpdate, setShouldUpdate] = useState(false);
 
   return (
     <Paper style={{ marginTop: 10, padding: 5 }}>

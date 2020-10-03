@@ -55,9 +55,9 @@
     "lint": "tsdx lint . --max-warnings 0",
     "release:changelog": "standard-version --skip.commit --skip.tag --release-as ",
     "test:clean": "rimraf ./coverage-local",
-    "test:nowatch": "tsdx test --coverage --passWithNoTests",
-    "test:watch": "tsdx test --watch --passWithNoTests",
-    "test:watchcoverage": "tsdx test --watchAll --coverage --passWithNoTests",
+    "test:nowatch": "tsdx test --coverage",
+    "test:watch": "tsdx test --watch",
+    "test:watchcoverage": "tsdx test --watchAll --coverage",
     "types": "tsc --p tsconfig.json"
   },
   "dependencies": {
