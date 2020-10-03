@@ -8,13 +8,17 @@ import 'typeface-roboto';
 
 import { reduxDecorator } from 'react-hibernate-dev-helpers';
 
-import PauseableComponentItem from './PauseableComponentItem';
-import PauseableReduxItem from './PauseableReduxItem';
-import ReduxMonitor from './ReduxMonitor';
+import {
+  ComponentDemoItem,
+  PauseableContainerWrapper,
+  ReduxDemoItem,
+  ReduxStateDisplay,
+} from './helpers';
+import { PauseableComponentContainer, PauseableReduxContainer } from '../src';
 
 export default {
   title: 'React Pauseable Containers',
-  decorators: [reduxDecorator],
+  decorators: [],
   parameters: {
     options: {
       showPanel: false,
@@ -42,13 +46,21 @@ export const PauseableComponentContainerStory = (): ReactNode => {
       <Button onClick={increment} variant="contained">
         Increment
       </Button>
+
       <div>
         Parent count:
         <Chip label={count} />
       </div>
-      <PauseableComponentItem count={count} />
-      <PauseableComponentItem count={count} />
-      <PauseableComponentItem count={count} />
+
+      <PauseableContainerWrapper PauseableContainer={PauseableComponentContainer}>
+        <ComponentDemoItem count={count} />
+      </PauseableContainerWrapper>
+      <PauseableContainerWrapper PauseableContainer={PauseableComponentContainer}>
+        <ComponentDemoItem count={count} />
+      </PauseableContainerWrapper>
+      <PauseableContainerWrapper PauseableContainer={PauseableComponentContainer}>
+        <ComponentDemoItem count={count} />
+      </PauseableContainerWrapper>
     </div>
   );
 };
@@ -68,11 +80,17 @@ const PauseableReduxContainerDemo = () => {
         <code>shouldUpdate</code> prop is controlled by the checkbox.
       </Typography>
 
-      <ReduxMonitor />
+      <ReduxStateDisplay />
 
-      <PauseableReduxItem />
-      <PauseableReduxItem />
-      <PauseableReduxItem />
+      <PauseableContainerWrapper PauseableContainer={PauseableReduxContainer}>
+        <ReduxDemoItem />
+      </PauseableContainerWrapper>
+      <PauseableContainerWrapper PauseableContainer={PauseableReduxContainer}>
+        <ReduxDemoItem />
+      </PauseableContainerWrapper>
+      <PauseableContainerWrapper PauseableContainer={PauseableReduxContainer}>
+        <ReduxDemoItem />
+      </PauseableContainerWrapper>
     </div>
   );
 };
