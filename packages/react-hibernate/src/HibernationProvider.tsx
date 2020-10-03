@@ -130,15 +130,19 @@ const HibernationProvider: React.FC<HibernationProviderProps> = ({
 
     const existingEntry = activeSubtreeCache[subtreeId];
 
-    console.log('...markInactive: ', subtreeId, ...existingEntry!);
+    if (existingEntry) {
+      console.log('...markInactive: ', subtreeId, ...existingEntry);
 
-    activeSubtreeCache[subtreeId] = null;
-    hibernatedSubtreeCache.set(subtreeId, existingEntry);
+      activeSubtreeCache[subtreeId] = null;
+      hibernatedSubtreeCache.set(subtreeId, existingEntry);
 
-    rerender();
+      rerender();
 
-    console.log('activeSubtreeCache = ', activeSubtreeCache);
-    console.log('hibernatedSubtreeCache = ', hibernatedSubtreeCache.getAll());
+      console.log('activeSubtreeCache = ', activeSubtreeCache);
+      console.log('hibernatedSubtreeCache = ', hibernatedSubtreeCache.getAll());
+    } else {
+      console.warn('Tried to mark a subtree inactive when it was not active!', subtreeId);
+    }
   };
 
   const subtreeAccessorFns = useRef<HibernationAccessorFns>([
