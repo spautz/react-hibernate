@@ -44,54 +44,34 @@
     "release:tag": "yarn lerna version --no-changelog --no-push --sign-git-commit ",
     "release:postpublish": "standard-version --commit-all --sign --skip.changelog --release-as ",
     "test:clean": "rimraf ./coverage",
-    "test:nowatch": "jest --coverage",
-    "test:report": "cross-env CI=true jest --coverage && coveralls < ./coverage/lcov.info",
-    "test:watch": "jest --coverage --watch",
+    "test:nowatch": "tsdx test --coverage",
+    "test:report": "tsdx test --coverage && coveralls < ./coverage/lcov.info",
+    "test:watch": "tsdx test --coverage --watch",
     "types": "tsc --noEmit --p tsconfig.json --jsx react"
   },
   "dependencies": {},
   "devDependencies": {
     "@babel/core": "7.11.6",
-    "@babel/preset-react": "7.10.4",
-    "@babel/preset-typescript": "7.10.4",
     "@storybook/addon-actions": "6.0.22",
     "@storybook/addon-essentials": "6.0.22",
     "@storybook/addon-links": "6.0.22",
     "@storybook/react": "6.0.22",
     "@testing-library/jest-dom": "5.11.4",
     "@testing-library/react": "11.0.4",
+    "@types/react": "16.9.50",
     "@types/react-dom": "16.9.8",
     "@types/react-is": "16.7.1",
     "@types/react-redux": "7.1.9",
     "@types/react-router": "5.1.8",
     "@types/react-router-dom": "5.1.5",
-    "@typescript-eslint/eslint-plugin": "4.3.0",
-    "@typescript-eslint/parser": "4.3.0",
     "babel-loader": "8.1.0",
     "coveralls": "3.1.0",
-    "cross-env": "7.0.2",
-    "eslint": "7.10.0",
-    "eslint-config-prettier": "6.12.0",
-    "eslint-plugin-prettier": "3.1.4",
-    "eslint-plugin-react": "7.21.2",
-    "fork-ts-checker-webpack-plugin": "5.2.0",
     "gh-pages": "3.1.0",
     "husky": "4.3.0",
-    "jest": "26.4.2",
     "lerna": "3.22.1",
     "lint-staged": "10.4.0",
-    "microbundle": "0.12.4",
-    "prettier": "2.1.2",
-    "react": "16.13.1",
-    "react-docgen-typescript-loader": "3.7.2",
-    "react-dom": "16.13.1",
-    "react-is": "16.13.1",
-    "react-test-renderer": "16.13.1",
-    "rimraf": "3.0.2",
     "standard-version": "9.0.0",
-    "ts-jest": "26.4.1",
-    "ts-loader": "8.0.4",
-    "tslib": "2.0.1",
+    "tsdx": "0.14.0",
     "typescript": "4.0.3",
     "yarn-or-npm": "3.0.1"
   },
@@ -102,12 +82,13 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged"
+      "pre-commit": "lint-staged",
+      "pre-push": "yon run dev:readonly"
     }
   },
   "standard-version": {
     "scripts": {
-      "postchangelog": "yon format"
+      "postchangelog": "yon run format"
     }
   },
   "workspaces": [
