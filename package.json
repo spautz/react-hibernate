@@ -91,6 +91,13 @@
       "postchangelog": "yon run format"
     }
   },
+  "jest": {
+    "collectCoverageFrom": [
+      "packages/*/src/**/*.{js,jsx,ts,tsx}",
+      "!packages/*/src/(index|serviceWorker|setupTests).*",
+      "!packages/*/src/**/*.(ignored|stories|test).{js,jsx,ts,tsx}"
+    ]
+  },
   "workspaces": [
     "packages/*"
   ]
