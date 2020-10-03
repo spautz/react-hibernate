@@ -45,8 +45,14 @@ const createPauseableStore = (
 
     const unsubscribe = parentStore.subscribe(wrappedListener);
     const wrappedUnsubscribe = () => {
-      const indexOfListener = listeners.findIndex(listener);
-      listeners.splice(indexOfListener, 1);
+      const indexOfListener = listeners.indexOf(listener);
+      if (indexOfListener !== -1) {
+        listeners.splice(indexOfListener, 1);
+      } else if (process.env.NODE_ENV !== 'production') {
+        console.error(
+          'Internal error: tried to unsubscribe a listener, but the listener was not found',
+        );
+      }
       unsubscribe();
     };
 

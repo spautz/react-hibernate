@@ -24,8 +24,8 @@
   ],
   "source": "src/index.ts",
   "main": "dist/index.js",
-  "module": "dist/index.esm.js",
-  "jsnext:main": "dist/index.esm.js",
+  "module": "dist/react-hibernate.esm.js",
+  "jsnext:main": "dist/react-hibernate.esm.js",
   "types": "dist/index.d.ts",
   "sideEffects": false,
   "scripts": {
@@ -50,9 +50,10 @@
     "format:verify": "prettier --list-different .",
     "lint": "tsdx lint . --max-warnings 0",
     "release:changelog": "standard-version --skip.commit --skip.tag --release-as ",
-    "test:clean": "rimraf ./coverage",
+    "test:clean": "rimraf ./coverage-local",
     "test:nowatch": "tsdx test --coverage --passWithNoTests",
-    "test:watch": "tsdx test --coverage --watch --passWithNoTests",
+    "test:watch": "tsdx test --watch --passWithNoTests",
+    "test:watchcoverage": "tsdx test --watchAll --coverage --passWithNoTests",
     "types": "tsc --p tsconfig.json"
   },
   "dependencies": {
@@ -69,6 +70,12 @@
     "react-dom": ">=16.8.0"
   },
   "jest": {
-    "coverageDirectory": "coverage-local"
+    "coverageDirectory": "coverage-local",
+    "collectCoverageFrom": [
+      "src/**/*.{js,jsx,ts,tsx}"
+    ],
+    "coveragePathIgnorePatterns": [
+      ".*\\.(ignored|stories|test)\\.*"
+    ]
   }
 }
