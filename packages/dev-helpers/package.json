@@ -23,8 +23,8 @@
   ],
   "source": "src/index.ts",
   "main": "dist/index.js",
-  "module": "dist/index.esm.js",
-  "jsnext:main": "dist/index.esm.js",
+  "module": "dist/react-hibernate-dev-helpers.esm.js",
+  "jsnext:main": "dist/react-hibernate-dev-helpers.esm.js",
   "types": "dist/index.d.ts",
   "sideEffects": false,
   "scripts": {
