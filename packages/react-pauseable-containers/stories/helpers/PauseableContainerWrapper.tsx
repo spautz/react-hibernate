@@ -7,6 +7,7 @@ import Paper from '@material-ui/core/Paper';
 export interface PauseableContainerWrapperProps {
   PauseableContainer: ReactComponentLike;
   initialState?: boolean;
+  [unrecognizedProp: string]: any;
 }
 
 /**
