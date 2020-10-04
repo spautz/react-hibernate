@@ -7,7 +7,6 @@ import { createPauseableStore, PauseableStoreInstance } from 'redux-pauseable-st
 import { PauseableContainerProps } from './types';
 
 export interface PauseableReduxContainerProps extends PauseableContainerProps {
-  children: React.ReactNode;
   dispatchWhenPaused?: boolean | null;
 }
 

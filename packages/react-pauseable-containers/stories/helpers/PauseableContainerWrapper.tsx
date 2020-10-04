@@ -6,15 +6,17 @@ import Paper from '@material-ui/core/Paper';
 
 export interface PauseableContainerWrapperProps {
   PauseableContainer: ReactComponentLike;
+  initialState?: boolean;
+  [unrecognizedProp: string]: any;
 }
 
 /**
  * Provides a standard interface for demoing the shouldUpdateprop
  */
 const PauseableContainerWrapper: React.FC<PauseableContainerWrapperProps> = (props) => {
-  const { PauseableContainer, children, ...allOtherProps } = props;
+  const { PauseableContainer, children, initialState = true, ...allOtherProps } = props;
 
-  const [shouldUpdate, setShouldUpdate] = useState(false);
+  const [shouldUpdate, setShouldUpdate] = useState(initialState);
 
   return (
     <Paper style={{ marginTop: 10, padding: 5 }}>

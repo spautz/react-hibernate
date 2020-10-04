@@ -1,4 +1,4 @@
-import React, { ReactNode, useCallback, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 
 import Button from '@material-ui/core/Button';
 import Chip from '@material-ui/core/Chip';
@@ -9,12 +9,18 @@ import 'typeface-roboto';
 import { reduxDecorator } from 'react-hibernate-dev-helpers';
 
 import {
-  ComponentDemoItem,
   PauseableContainerWrapper,
+  ComponentDemoItem,
+  ContextDemoItem,
+  DemoContext,
   ReduxDemoItem,
   ReduxStateDisplay,
 } from './helpers';
-import { PauseableComponentContainer, PauseableReduxContainer } from '../src';
+import {
+  PauseableComponentContainer,
+  PauseableContextContainer,
+  PauseableReduxContainer,
+} from '../src';
 
 export default {
   title: 'React Pauseable Containers',
@@ -26,7 +32,11 @@ export default {
   },
 };
 
-export const PauseableComponentContainerStory = (): ReactNode => {
+/* PauseableComponentContainer
+ * Set/update state in parent and pass it down to children via props
+ */
+
+export const PauseableComponentContainerStory = () => {
   const [count, setCount] = useState(0);
 
   const increment = useCallback(() => setCount((n) => n + 1), []);
@@ -58,7 +68,10 @@ export const PauseableComponentContainerStory = (): ReactNode => {
       <PauseableContainerWrapper PauseableContainer={PauseableComponentContainer}>
         <ComponentDemoItem count={count} />
       </PauseableContainerWrapper>
-      <PauseableContainerWrapper PauseableContainer={PauseableComponentContainer}>
+      <PauseableContainerWrapper
+        PauseableContainer={PauseableComponentContainer}
+        initialState={false}
+      >
         <ComponentDemoItem count={count} />
       </PauseableContainerWrapper>
     </div>
@@ -66,7 +79,67 @@ export const PauseableComponentContainerStory = (): ReactNode => {
 };
 PauseableComponentContainerStory.storyName = 'PauseableComponentContainer';
 
-const PauseableReduxContainerDemo = () => {
+/* PauseableContextContainer
+ * Set/update state in parent and pass it down to children via context
+ */
+
+export const PauseableContextContainerStory = () => {
+  const [count, setCount] = useState(0);
+
+  const increment = useCallback(() => setCount((n) => n + 1), []);
+
+  return (
+    <DemoContext.Provider value={count}>
+      <div>
+        <Typography variant="h4">
+          <code>&lt;PauseableContextContainer&gt;</code>
+        </Typography>
+        <Typography variant="subtitle1">
+          The <code>count</code> value is put into a context, which each child reads from.
+        </Typography>
+        <Typography variant="subtitle1">
+          Each child is wrapped in a <code>PauseableContextContainer</code> whose{' '}
+          <code>shouldUpdate</code> prop is controlled by the checkbox.
+        </Typography>
+        <Button onClick={increment} variant="contained">
+          Increment
+        </Button>
+
+        <div>
+          Value in context:
+          <Chip label={count} />
+        </div>
+
+        <PauseableContainerWrapper
+          PauseableContainer={PauseableContextContainer}
+          Context={DemoContext}
+        >
+          <ContextDemoItem />
+        </PauseableContainerWrapper>
+        <PauseableContainerWrapper
+          PauseableContainer={PauseableContextContainer}
+          Context={DemoContext}
+        >
+          <ContextDemoItem />
+        </PauseableContainerWrapper>
+        <PauseableContainerWrapper
+          PauseableContainer={PauseableContextContainer}
+          Context={DemoContext}
+          initialState={false}
+        >
+          <ContextDemoItem />
+        </PauseableContainerWrapper>
+      </div>
+    </DemoContext.Provider>
+  );
+};
+PauseableContextContainerStory.storyName = 'PauseableContextContainer';
+
+/* PauseableComponentContainer
+ * One control sets and displays Redux state, each child reads from Redux.
+ */
+
+export const PauseableReduxContainerStory = () => {
   return (
     <div>
       <Typography variant="h4">
@@ -88,15 +161,11 @@ const PauseableReduxContainerDemo = () => {
       <PauseableContainerWrapper PauseableContainer={PauseableReduxContainer}>
         <ReduxDemoItem />
       </PauseableContainerWrapper>
-      <PauseableContainerWrapper PauseableContainer={PauseableReduxContainer}>
+      <PauseableContainerWrapper PauseableContainer={PauseableReduxContainer} initialState={false}>
         <ReduxDemoItem />
       </PauseableContainerWrapper>
     </div>
   );
-};
-
-export const PauseableReduxContainerStory = (): ReactNode => {
-  return <PauseableReduxContainerDemo />;
 };
 PauseableReduxContainerStory.storyName = 'PauseableReduxContainer';
 PauseableReduxContainerStory.decorators = [reduxDecorator];
