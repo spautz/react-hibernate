@@ -2,8 +2,6 @@
 
 Bring back previously-unmounted components and children -- state and all -- when they remount.
 
-**These packages are in active development. Things will change rapidly, and it is not yet production-ready. Feedback is welcome.**
-
 [![build status](https://img.shields.io/travis/com/spautz/react-hibernate/master.svg)](https://travis-ci.com/spautz/react-hibernate/branches)
 [![test coverage](https://img.shields.io/coveralls/github/spautz/react-hibernate/master.svg)](https://coveralls.io/github/spautz/react-hibernate?branch=master)
 
@@ -18,15 +16,15 @@ Instead of unmounting, the component tree goes into "hibernation". It will "wake
 internal state, as if you never left.
 
 - [React Router Hibernate](./packages/react-router-hibernate/) works per-route, if you're using
-  [React Router](https://reacttraining.com/react-router/) (v5)
-- [React Hibernate](./packages/react-hibernate/) works for any React subtree
+  [React Router](https://reacttraining.com/react-router/) v5
+- [React Hibernate](./packages/react-hibernate/) works for any React subtree (not yet published)
 - [React Pauseable Containers](./packages/react-pauseable-containers/) improve performances by freezing all updates
   to hibernated subtrees
 
 [Cache options are available](https://github.com/spautz/limited-cache/#options) to control how many subtrees may be
 hibernated at a time, and for how long.
 
-## Some Use Cases
+## Use Cases
 
 - Screens which are slow to initialize: avoid initializing a second time
 - Form values: restore half-completed form fields if the user leaves and come back later
@@ -34,8 +32,8 @@ hibernated at a time, and for how long.
 - Accordion panels, steps in a wizard, or other temporarily-hidden content
 
 In general, this is a "good enough" alternative to storing component state in Redux or an external cache: you _could_
-build a powerful system to track partially-completed forms, it would just take time and engineering. React Hibernate is
-just a quick, easy way to get "good enough" coverage for the common cases.
+build a powerful system to track internal state and restore partially-completed forms, it would just take development
+time. React Hibernate is just a quick, easy way to get "good enough" coverage for the common cases.
 
 ## Packages
 

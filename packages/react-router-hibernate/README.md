@@ -1,8 +1,6 @@
 # React-Router-Hibernate
 
-**This package is in active development. Things will change rapidly, and it is not yet production-ready. Feedback is welcome.**
-
-A react-router Switch which can leave inactive routes mounted-but-inactive until you navigate back.
+A React Router `<Switch>` which can leave inactive routes mounted-but-inactive until you navigate back.
 
 Part of [React Hibernate](https://github.com/spautz/react-hibernate)
 
@@ -12,7 +10,7 @@ Part of [React Hibernate](https://github.com/spautz/react-hibernate)
 ## Overview
 
 By defaut, navigating from one `<Route>` to another in react-router will unmount the old route's tree.
-If you return to it, it will be recreated from scratch.
+If you return to it, it will be remounted from scratch.
 
 This library adds `<HibernatingSwitch>` and `<HibernatingRoute>`: drop-in replacements for `<Switch>` and `<Route>`
 which do not immediately unmount components when you navigate away. If you return, the prior tree will be restored,
@@ -34,7 +32,7 @@ import { HibernatingSwitch, HibernatingRoute } from 'react-router-hibernate';
   <Route path="/baz" component={...} />
   <Redirect from="/something-else" to="/foo" />
 
-  {/* If you have your own custom components, you can add an isHibernatingRoute prop */}
+  {/* If you have your own custom components, add an isHibernatingRoute prop */}
   <MyPrivateRoute path="/secret" component={...} isHibernatingRoute />
 
 </HibernatingSwitch>
@@ -53,8 +51,8 @@ Time after which a subtree is removed from the cache. Set a falsy value to disab
 
 #### `WrapperComponent` (React component, default: none)
 
-A component which wraps all potentially-hibernatable routes. It receives a `shouldUpdate` prop. See the
-"Preventing Extra Work" section below.
+A component which wraps all potentially-hibernatable routes. It receives a `shouldUpdate` prop.
+[`React-Pauseable-Containers`](../react-pauseable-containers) was created for this.
 
 ## How it Works
 
@@ -76,35 +74,30 @@ For example: react-redux's [useSelector hook](https://react-redux.js.org/next/ap
 [forcing a rerender](https://github.com/reduxjs/react-redux/blob/5402f24db139f7ff01c7f873d136ea7ee3b8d1cb/src/hooks/useSelector.js#L15)
 outside of the normal render cycle by changing local state -- so suppressing the normal render cycle is not enough.
 
-In most cases this is fine -- inactive subtrees still use minimal resources -- but if the component itself performs
-a lot of work and has an expensive render then you may want to avoid running it at all.
+In most cases this is fine -- inactive subtrees still use minimal resources -- but if the component render is slow
+or has side effects then you may want to avoid running it at all.
 
-You can do this by replacing the contexts for inactive subtrees via `WrapperComponent`. For example, you can
-suppress all redux-related updates by providing a new store whose contents are frozen at whatever moment the subtree
-became inactive. This library includes a `PauseableReduxContainer` which does exactly that.
-
-This will cause one extra render cycle when a component becomes inactive (since the context values it receives will not
-strictly equal what it received before) but with memoization you can skip most of the work.
-
-Read more: [@TODO: move most of this section to docs]
+You can do that by setting a `WrapperComponent` which halts context updates.
+[`React-Pauseable-Containers`](../react-pauseable-containers) was created for this: you can use its components directly,
+compose them together to make your `WrapperComponent`, or follow the examples to make your own from scratch.
 
 ## Roadmap
 
 - [x] Proof of concept
 - [x] Project scaffolding
 - [x] Core functionality
-- [ ] Tests (in progress)
+- [x] Tests
 - [x] Demos
 - [x] Monorepo
-- [ ] Initial release
-- [ ] Explore: `useHibernatingEffect` hook (successfully prototyped)
-- [ ] Explore: `maxCacheTime` override per-route (successfully prototyped)
+- [x] Initial release
+- [ ] Add `useHibernatingEffect` hook (successfully prototyped)
+- [ ] Add `maxCacheTime` override per-route (successfully prototyped)
 - [ ] Explore: Options to better control which/when to add a subtree
 - [ ] Explore: React-Router v6
 
 #### Known Issues
 
-"Cannot update a component from inside the function body of a different component" warning in React 16.13
+"Cannot update a component from inside the function body of a different component" warning in React 16.13+
 
 - This will be addressed as part of supporting React-Router v6, when subtree activation will need to be done via a
   component instead of a callback.

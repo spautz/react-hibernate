@@ -20,14 +20,19 @@ Each receives a `shouldUpdate` prop: when set to false, changes in outside value
 
 ## Components
 
-#### PauseableComponentContainer
+#### `<PauseableComponentContainer>`
 
 Prevents children from rerendering when the parent component updates.
 This is essentially just a typescript-friendly version of [react-static-container](https://github.com/reactjs/react-static-container/)
 
-#### PauseableReduxContainer
+#### `<PauseableContextContainer Context={...}>`
+
+Freezes any React context, to prevent subscribed components in the subtree from updating when it changes.
+
+#### `<PauseableReduxContainer dispatchWhenPaused={boolean}>`
 
 Prevents subscribed components from rerendering when the redux state changes, or the return value from `useSelector`.
+The `dispatchWhenPaused` prop controls the `canDispatch` option of a [Redux-Pauseable-Store](../redux-pauseable-store).
 
 ## How to use this
 
@@ -35,5 +40,10 @@ With [React-Hibernate](../react-hibernate) or [React-Router-Hibernate](../react-
 components -- or a new component composed from several of them together -- can prevent subtrees from updating while
 they're hibernating, to avoid needless work.
 
-These can also be used on their own to prevent updates in components that are still mounted, such as the background
-screen behind a modal or dialog, or inactive tabs or panes when using a wizard, accordion, or tabs widget.
+These can also be used on their own.
+
+#### Use Cases
+
+- The background screen behind a modal or dialog
+- Inactive tabs or panes when using a wizard, accordion, or tabs widget.
+- Freezing UI updates and interactions while performing reauthentication or other blocking tasks

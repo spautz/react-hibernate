@@ -22,8 +22,8 @@ This package provides the main functionality for [React Hibernate](https://githu
 - [x] Demos
 - [x] Monorepo
 - [ ] Initial release
-- [ ] Explore: `useHibernatingEffect` hook (successfully prototyped)
-- [ ] Explore: `maxCacheTime` override per-route (successfully prototyped)
+- [ ] Add: `useHibernatingEffect` hook (successfully prototyped)
+- [ ] Add: `maxCacheTime` override per-route (successfully prototyped)
 - [ ] Explore: Options to better control which/when to add a subtree
 - [ ] Explore: React-Router v6
 
