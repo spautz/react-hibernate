@@ -1,7 +1,5 @@
 # React-Pauseable-Containers
 
-**This package is in active development. Things will change rapidly, and it is not yet production-ready. Feedback is welcome.**
-
 Prevent subtrees from rerendering when their parent changes, or when certain context values change.
 
 Part of [React Hibernate](https://github.com/spautz/react-hibernate)
