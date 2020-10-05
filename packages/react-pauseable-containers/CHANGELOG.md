@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.2.0](https://github.com/spautz/react-hibernate/compare/v0.0.4...v0.2.0) (2020-10-05)
+
+Update docs and README. Migrate to TSDX, update scripts and project config, update dependencies and devDependencies.
+
+### Features
+
+- Add pauseable context container ([#21](https://github.com/spautz/react-hibernate/issues/21)) ([da5c1fd](https://github.com/spautz/react-hibernate/commit/da5c1fd4f05fc26f27e6ad1042b252fd1c58f040))
+
 ### [0.1.0](https://github.com/spautz/react-hibernate/compare/v0.0.4...v0.1.0) (2020-08-16)
 
 Update dependencies, devDependencies, and project config. No breaking changes in the library itself.
