@@ -1,6 +1,6 @@
 {
   "name": "redux-pauseable-store",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Derive one redux store from another, then pause it",
   "keywords": [
     "hibernate",
@@ -61,7 +61,7 @@
     "types": "tsc --p tsconfig.json"
   },
   "devDependencies": {
-    "react-hibernate-dev-helpers": "0.1.0"
+    "react-hibernate-dev-helpers": "^0.2.0"
   },
   "peerDependencies": {
     "redux": "^4.0.0"

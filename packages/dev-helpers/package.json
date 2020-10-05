@@ -1,7 +1,7 @@
 {
   "name": "react-hibernate-dev-helpers",
   "private": true,
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Utilities for demonstrating React Hibernate",
   "license": "MIT",
   "homepage": "https://github.com/spautz/react-hibernate/packages/dev-helpers#readme",
@@ -65,7 +65,6 @@
     "redux-devtools-extension": "^2.13.8",
     "typeface-roboto": "^0.0.75"
   },
-  "devDependencies": {},
   "peerDependencies": {
     "react": ">=16.8.0",
     "react-dom": ">=16.8.0"
