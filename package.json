@@ -9,6 +9,10 @@
   "bugs": "https://github.com/spautz/react-hibernate/issues",
   "author": "Steven Pautz <spautz@gmail.com>",
   "sideEffects": false,
+  "engines": {
+    "node": ">=10",
+    "yarn": "1.*"
+  },
   "scripts": {
     "____ LIFECYCLE HOOKS _______________________________________________": "",
     "prepare": "lerna bootstrap && yon run packages:prepare",
