@@ -9,6 +9,10 @@
   "bugs": "https://github.com/spautz/react-hibernate/issues",
   "author": "Steven Pautz <spautz@gmail.com>",
   "sideEffects": false,
+  "engines": {
+    "node": ">=10",
+    "yarn": "1.*"
+  },
   "scripts": {
     "____ LIFECYCLE HOOKS _______________________________________________": "",
     "prepare": "lerna bootstrap && yon run packages:prepare",
@@ -53,10 +57,10 @@
   "dependencies": {},
   "devDependencies": {
     "@babel/core": "7.11.6",
-    "@storybook/addon-actions": "6.0.22",
-    "@storybook/addon-essentials": "6.0.22",
-    "@storybook/addon-links": "6.0.22",
-    "@storybook/react": "6.0.22",
+    "@storybook/addon-actions": "6.0.25",
+    "@storybook/addon-essentials": "6.0.25",
+    "@storybook/addon-links": "6.0.25",
+    "@storybook/react": "6.0.25",
     "@testing-library/jest-dom": "5.11.4",
     "@testing-library/react": "11.0.4",
     "@types/react": "16.9.50",
