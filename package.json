@@ -2,12 +2,18 @@
   "name": "react-hibernate-workspace",
   "private": true,
   "version": "0.2.1",
-  "description": "Root workspace for React Hibernate",
+  "description": "Root workspace for React-Hibernate",
   "license": "MIT",
   "homepage": "https://github.com/spautz/react-hibernate#readme",
-  "repository": "https://github.com/spautz/react-hibernate",
   "bugs": "https://github.com/spautz/react-hibernate/issues",
-  "author": "Steven Pautz <spautz@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/spautz/react-hibernate.git"
+  },
+  "author": {
+    "name": "Steven Pautz",
+    "url": "http://stevenpautz.com/"
+  },
   "sideEffects": false,
   "engines": {
     "node": ">=10",
@@ -18,11 +24,11 @@
     "prepare": "lerna bootstrap && yon run packages:prepare",
     "pretest": "yon run test:clean",
     "____ INTEGRATION ___________________________________________________": "",
-    "clean": "yon run storybook:clean && yon run test:clean && rimraf ./node_modules/.cache",
-    "test": "yon run test:watch",
+    "clean": "yon run storybook:clean && yon run test:clean && rimraf ./node_modules/.cache && yon run packages:clean",
+    "test": "yon run test:nowatch",
     "dev": "yon run format && yon run types && yon run lint",
     "dev:readonly": "yon run format:verify && yon run types && yon run lint",
-    "all": "yon run prepare && yon run dev && yon run test:nowatch && yon run build-storybook",
+    "all": "yon run clean && yon run prepare && yon run dev && yon run test:nowatch && yon run build-storybook",
     "all:readonly": "yon run dev:readonly && yon run test:nowatch",
     "ci": "yon run dev:readonly && yon run test:report && yon run build-storybook",
     "____ BATCH COMMANDS FOR PACKAGES ___________________________________": "",
@@ -95,16 +101,6 @@
     "scripts": {
       "postchangelog": "yon run format"
     }
-  },
-  "jest": {
-    "coverageDirectory": "coverage",
-    "collectCoverageFrom": [
-      "packages/*/src/**/*.{js,jsx,ts,tsx}"
-    ],
-    "coveragePathIgnorePatterns": [
-      ".*\\.(ignored|stories|test)\\.*",
-      "packages/dev-helpers/"
-    ]
   },
   "workspaces": [
     "packages/*"

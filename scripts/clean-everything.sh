@@ -20,7 +20,7 @@ if command_exists xcrun; then
 fi
 
 ##################################################################################################
-# Clear everything outside of the repo -- except for git
+# Clear caches
 
 run_npm_command jest --clearCache --config={}
 
@@ -36,7 +36,7 @@ run_command "rm -rf
   "
 
 ##################################################################################################
-# Reset everything inside the repo
+# Remove generated files
 
 run_command "rm -rf
   .yarn
@@ -49,13 +49,11 @@ run_command "rm -rf
   yarn-error.log*
   "
 
-for DIRNAME in packages/*/ ; do
-  run_command "rm -rf
-    ${DIRNAME}coverage-local
-    ${DIRNAME}dist
-    ${DIRNAME}node_modules
-    ${DIRNAME}npm-debug.log*
-    ${DIRNAME}yarn-debug.log*
-    ${DIRNAME}yarn-error.log*
-    "
-done
+run_command "rm -rf
+  packages/*/coverage-local
+  packages/*/dist
+  packages/*/node_modules
+  packages/*/npm-debug.log*
+  packages/*/yarn-debug.log*
+  packages/*/yarn-error.log*
+  "

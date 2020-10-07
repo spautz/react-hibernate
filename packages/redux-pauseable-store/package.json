@@ -18,7 +18,7 @@
   },
   "author": {
     "name": "Steven Pautz",
-    "url": "https://stevenpautz.com/"
+    "url": "http://stevenpautz.com/"
   },
   "files": [
     "dist/",
@@ -41,11 +41,11 @@
     "pretest": "yon run test:clean",
     "____ INTEGRATION ___________________________________________________": "",
     "clean": "yon run build:clean && yon run test:clean && rimraf ./node_modules/.cache",
-    "test": "yarn run test:watch",
-    "dev": "yarn run format && yarn run types && yarn run lint",
-    "dev:readonly": "yarn run format:verify && yarn run types && yarn run lint",
-    "all": "yarn run clean && yarn run dev && yarn run test:nowatch && yarn run build",
-    "all:readonly": "yarn run dev:readonly && yarn run test:nowatch",
+    "test": "yon run test:nowatch",
+    "dev": "yon run format && yon run types && yon run lint",
+    "dev:readonly": "yon run format:verify && yon run types && yon run lint",
+    "all": "yon run clean && yon run dev && yon run test:nowatch && yon run build",
+    "all:readonly": "yon run dev:readonly && yon run test:nowatch",
     "____ INDIVIDUAL COMMANDS ___________________________________________": "",
     "build": "tsdx build",
     "build:clean": "rimraf ./dist",
@@ -65,15 +65,6 @@
   },
   "peerDependencies": {
     "redux": "^4.0.0"
-  },
-  "jest": {
-    "coverageDirectory": "coverage-local",
-    "collectCoverageFrom": [
-      "src/**/*.{js,jsx,ts,tsx}"
-    ],
-    "coveragePathIgnorePatterns": [
-      ".*\\.(ignored|stories|test)\\.*"
-    ]
   },
   "gitHead": "ea7266569cd13e20be67f2ac7d50758a1151254a"
 }
