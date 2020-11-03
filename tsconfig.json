@@ -30,6 +30,8 @@
     /* Advanced Options */
     "forceConsistentCasingInFileNames": true
   },
+  // The "include" for the root is for typechecking the entire project (it includes directories like "tests" which
+  // the package-level tsconfigs don't include)
   "include": ["packages/*/src", "packages/*/tests", "packages/*/stories"],
   "exclude": ["node_modules"]
 }

@@ -68,8 +68,8 @@
     "react-hibernate-dev-helpers": "^0.2.0"
   },
   "peerDependencies": {
-    "react": ">=16.8.0",
-    "react-dom": ">=16.8.0",
+    "react": "^16.8.3 || ^17",
+    "react-dom": "^16.8.3 || ^17",
     "react-redux": ">=7.0.0"
   },
   "peerDependenciesMeta": {
