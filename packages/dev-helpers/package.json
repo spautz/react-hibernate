@@ -1,7 +1,7 @@
 {
   "name": "react-hibernate-dev-helpers",
   "private": true,
-  "version": "0.2.0",
+  "version": "0.2.2",
   "description": "Utilities for demonstrating React Hibernate",
   "license": "MIT",
   "homepage": "https://github.com/spautz/react-hibernate/packages/dev-helpers#readme",
