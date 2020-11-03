@@ -21,7 +21,7 @@
   },
   "scripts": {
     "____ LIFECYCLE HOOKS _______________________________________________": "",
-    "prepare": "lerna bootstrap && yon run packages:prepare",
+    "prepare": "yon run packages:prepare",
     "pretest": "yon run test:clean",
     "____ INTEGRATION ___________________________________________________": "",
     "clean": "yon run storybook:clean && yon run test:clean && rimraf ./node_modules/.cache && yon run packages:clean",
@@ -42,6 +42,7 @@
     "packages:build": "lerna run build",
     "packages:release:changelog": "lerna run release:changelog -- ",
     "____ INDIVIDUAL COMMANDS ___________________________________________": "",
+    "bootstrap": "lerna bootstrap",
     "demo:prepare": "yarn install && yarn build-storybook",
     "demo:deploy": "gh-pages -d ./storybook-static",
     "format": "prettier --write .",

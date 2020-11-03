@@ -5,6 +5,8 @@
     "rootDir": "./src",
     "baseUrl": "./"
   },
-  "include": ["./src", "./tests", "./stories"],
+  // The "include" for packages is specifically for build: the package-level typecheck doesn't check tests/
+  // The "include" for the root is for typechecking the entire project (but it doesn't affect the build)
+  "include": ["./src"],
   "exclude": ["node_modules"]
 }
