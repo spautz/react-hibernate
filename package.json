@@ -30,7 +30,7 @@
     "dev:readonly": "yon run format:verify && yon run types && yon run lint",
     "all": "yon run clean && yon run prepare && yon run dev && yon run test:nowatch && yon run build-storybook",
     "all:readonly": "yon run dev:readonly && yon run test:nowatch",
-    "ci": "yon run clean && yon run dev:readonly && yon run test:report && yon run build-storybook",
+    "ci": "yon run clean && yon run prepare && yon run dev:readonly && yon run test:report && yon run build-storybook",
     "____ BATCH COMMANDS FOR PACKAGES ___________________________________": "",
     "packages:prepare": "lerna run prepare",
     "packages:clean": "lerna run clean",
