@@ -20,7 +20,8 @@ CURRENT_BRANCH=$(git branch --show-current)
 # If we're on the main branch, report code coverage separately for each project
 if [ "${CURRENT_BRANCH}" = 'master' ] || true; then
   # Allow Coveralls to receive multiple reports from a single job
-  export COVERALLS_PARALLEL=true
+  COVERALLS_PARALLEL=true
+  ORIGINAL_TRAVIS_JOB_ID=$TRAVIS_JOB_ID
 
   for DIR in ./packages/*/; do
     DIR_IDENTIFIER=$(echo $DIR | sed -e 's/packages//gi' | sed -e 's/[^-a-z]//gi')
@@ -33,7 +34,8 @@ if [ "${CURRENT_BRANCH}" = 'master' ] || true; then
 #
 #    export COVERALLS_SERVICE_JOB_ID="$(git rev-parse --short HEAD)-${COVERAGE_REPORTING_BRANCH}"
 #    export COVERALLS_GIT_BRANCH=$COVERAGE_REPORTING_BRANCH
-    export TRAVIS_BRANCH=$COVERAGE_REPORTING_BRANCH
+    TRAVIS_BRANCH=$COVERAGE_REPORTING_BRANCH
+    TRAVIS_JOB_ID="${ORIGINAL_$TRAVIS_JOB_ID}-${COVERAGE_REPORTING_BRANCH}"
     run_command "yarn --cwd=${DIR} test:report-local"
   done
 fi
