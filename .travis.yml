@@ -8,7 +8,4 @@ cache: yarn
 
 script:
   - 'echo "yarn ci"'
-after_success:
   - "./scripts/branch-coverage-reporting.sh"
-notifications:
-  webhooks: https://coveralls.io/webhook
