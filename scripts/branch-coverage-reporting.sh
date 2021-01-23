@@ -35,8 +35,8 @@ if [ "${CURRENT_BRANCH}" = 'master' ] || true; then
     # https://github.com/nickmerwin/node-coveralls/blob/master/lib/getOptions.js#L25-L32
     TRAVIS_BRANCH=$COVERAGE_REPORTING_BRANCH
     TRAVIS_BUILD_NUMBER="${ORIGINAL_TRAVIS_BUILD_NUMBER}-${COVERAGE_REPORTING_BRANCH}"
-#    TRAVIS_JOB_ID="${ORIGINAL_TRAVIS_JOB_ID}-${COVERAGE_REPORTING_BRANCH}"
-    ((TRAVIS_JOB_ID++))
+    TRAVIS_JOB_ID="${ORIGINAL_TRAVIS_JOB_ID}-${COVERAGE_REPORTING_BRANCH}"
+#    ((TRAVIS_JOB_ID++))
 
     run_command "yarn --cwd=${DIR} test:report-local"
   done
