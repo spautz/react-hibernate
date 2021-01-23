@@ -38,6 +38,7 @@ if [ "${CURRENT_BRANCH}" = 'master' ] || true; then
     TRAVIS_JOB_ID="${ORIGINAL_TRAVIS_JOB_ID}-${COVERAGE_REPORTING_BRANCH}"
 #    ((TRAVIS_JOB_ID++))
 
+    git checkout -b $COVERAGE_REPORTING_BRANCH
     run_command "yarn --cwd=${DIR} test:report-local"
   done
 fi
