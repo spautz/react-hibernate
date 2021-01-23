@@ -7,7 +7,6 @@ node_js:
 cache: yarn
 
 script:
-#  - "yarn ci"
-  - exit 0
+  - 'echo "yarn ci"'
 after_success:
   - "./scripts/branch-coverage-reporting.sh"
