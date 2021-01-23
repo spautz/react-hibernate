@@ -16,6 +16,9 @@ run_command "./scripts/check-environment.sh"
 ###################################################################################################
 
 CURRENT_BRANCH=$(git branch --show-current)
+ORIGINAL_COVERALLS_SERVICE_JOB_ID=$COVERALLS_SERVICE_JOB_ID
+
+echo "ORIGINAL_COVERALLS_SERVICE_JOB_ID=${ORIGINAL_COVERALLS_SERVICE_JOB_ID}"
 
 # If we're on the main branch, report code coverage separately for each project
 if [ "${CURRENT_BRANCH}" = 'master' ] || true; then
@@ -25,7 +28,7 @@ if [ "${CURRENT_BRANCH}" = 'master' ] || true; then
     echo "setting GITHUB_HEAD_REF=refs/heads/x-cov-${dir}"
     export GITHUB_HEAD_REF="refs/heads/x-cov-${dir}"
 
-#    export COVERALLS_SERVICE_JOB_ID="x-cov-${dir}"
+    export COVERALLS_SERVICE_JOB_ID="${ORIGINAL_COVERALLS_SERVICE_JOB_ID}:x-cov-${dir}"
 #    export COVERALLS_GIT_BRANCH="x-cov-${dir}"
     run_command "yarn --cwd=${dir} test:report-local"
   done
