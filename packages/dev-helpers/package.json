@@ -53,6 +53,7 @@
     "test:nowatch": "tsdx test --coverage --passWithNoTests",
     "test:watch": "tsdx test --watch --passWithNoTests",
     "test:watchcoverage": "tsdx test --watchAll --coverage --passWithNoTests",
+    "test:report-local": "exit 0",
     "types": "tsc --p tsconfig.json"
   },
   "dependencies": {

@@ -56,9 +56,9 @@
     "release:postpublish": "standard-version --commit-all --sign --skip.changelog --release-as ",
     "test:clean": "rimraf ./coverage",
     "test:nowatch": "tsdx test --coverage",
-    "test:report": "tsdx test --coverage && coveralls < ./coverage/lcov.info",
     "test:watch": "tsdx test --watch",
     "test:watchcoverage": "tsdx test --watchAll --coverage",
+    "test:report": "tsdx test --coverage && coveralls < ./coverage/lcov.info",
     "types": "tsc --p tsconfig.json"
   },
   "dependencies": {},
