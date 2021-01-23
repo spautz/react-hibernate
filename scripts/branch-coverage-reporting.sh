@@ -32,7 +32,7 @@ if [ "${CURRENT_BRANCH}" = 'master' ] || true; then
     export GITHUB_HEAD_REF="refs/heads/${COVERAGE_REPORTING_BRANCH}"
 
     #export COVERALLS_SERVICE_JOB_ID="$(git rev-parse --short HEAD)-${COVERAGE_REPORTING_BRANCH}"
-    #export COVERALLS_GIT_BRANCH=$COVERAGE_REPORTING_BRANCH
+    export COVERALLS_GIT_BRANCH=$COVERAGE_REPORTING_BRANCH
     run_command "yarn --cwd=${DIR} test:report-local"
   done
 fi
