@@ -26,13 +26,13 @@ if [ "${CURRENT_BRANCH}" = 'master' ] || true; then
     DIR_IDENTIFIER=$(echo $DIR | sed -e 's/packages//gi' | sed -e 's/[^-a-z]//gi')
     COVERAGE_REPORTING_BRANCH="x-cov-${DIR_IDENTIFIER}"
 
-    echo "setting GITHUB_REF=refs/heads/${COVERAGE_REPORTING_BRANCH}"
-    export GITHUB_REF="refs/heads/${COVERAGE_REPORTING_BRANCH}"
-    echo "setting GITHUB_HEAD_REF=refs/heads/${COVERAGE_REPORTING_BRANCH}"
-    export GITHUB_HEAD_REF="refs/heads/${COVERAGE_REPORTING_BRANCH}"
-
-    #export COVERALLS_SERVICE_JOB_ID="$(git rev-parse --short HEAD)-${COVERAGE_REPORTING_BRANCH}"
-    export COVERALLS_GIT_BRANCH=$COVERAGE_REPORTING_BRANCH
+#    echo "setting GITHUB_REF=refs/heads/${COVERAGE_REPORTING_BRANCH}"
+#    export GITHUB_REF="refs/heads/${COVERAGE_REPORTING_BRANCH}"
+#    echo "setting GITHUB_HEAD_REF=refs/heads/${COVERAGE_REPORTING_BRANCH}"
+#    export GITHUB_HEAD_REF="refs/heads/${COVERAGE_REPORTING_BRANCH}"
+#
+#    export COVERALLS_SERVICE_JOB_ID="$(git rev-parse --short HEAD)-${COVERAGE_REPORTING_BRANCH}"
+#    export COVERALLS_GIT_BRANCH=$COVERAGE_REPORTING_BRANCH
     export TRAVIS_BRANCH=$COVERAGE_REPORTING_BRANCH
     run_command "yarn --cwd=${DIR} test:report-local"
   done
