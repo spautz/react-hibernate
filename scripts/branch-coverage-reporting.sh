@@ -19,8 +19,11 @@ CURRENT_BRANCH=$(git branch --show-current)
 
 # If we're on the main branch, report code coverage separately for each project
 if [ "${CURRENT_BRANCH}" = 'master' ] || true; then
+  # Allow Coveralls to receive multiple reports from a single job
+  export COVERALLS_PARALLEL=true
+
   for DIR in ./packages/*/; do
-    DIR_IDENTIFIER=$(echo $DIR | sed -e 's/packages//gi' | sed -e 's/[^-a-z]//gi'))
+    DIR_IDENTIFIER=$(echo $DIR | sed -e 's/packages//gi' | sed -e 's/[^-a-z]//gi')
     COVERAGE_REPORTING_BRANCH="x-cov-${DIR_IDENTIFIER}"
 
     echo "setting GITHUB_REF=refs/heads/${COVERAGE_REPORTING_BRANCH}"
