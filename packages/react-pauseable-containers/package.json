@@ -58,7 +58,7 @@
     "test:nowatch": "tsdx test --coverage",
     "test:watch": "tsdx test --watch",
     "test:watchcoverage": "tsdx test --watchAll --coverage",
-    "test:report-local": "tsdx test --coverage && coveralls < ./coverage-local/lcov.info",
+    "test:report-local": "echo \"COVERALLS_GIT_BRANCH=$COVERALLS_GIT_BRANCH\" && tsdx test --coverage && coveralls < ./coverage-local/lcov.info",
     "types": "tsc --p tsconfig.json"
   },
   "dependencies": {
