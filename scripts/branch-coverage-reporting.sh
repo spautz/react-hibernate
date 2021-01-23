@@ -20,7 +20,7 @@ CURRENT_BRANCH=$(git branch --show-current)
 # If we're on the main branch, report code coverage separately for each project
 if [ "${CURRENT_BRANCH}" = 'master' ] || true; then
   # Allow Coveralls to receive multiple reports from a single job
-  COVERALLS_PARALLEL=true
+#  COVERALLS_PARALLEL=true
   ORIGINAL_TRAVIS_JOB_ID=$TRAVIS_JOB_ID
   ORIGINAL_TRAVIS_BUILD_NUMBER=$TRAVIS_BUILD_NUMBER
 
@@ -34,7 +34,7 @@ if [ "${CURRENT_BRANCH}" = 'master' ] || true; then
     # Coveralls. Other services use other env vars:
     # https://github.com/nickmerwin/node-coveralls/blob/master/lib/getOptions.js#L25-L32
     TRAVIS_BRANCH=$COVERAGE_REPORTING_BRANCH
-#    TRAVIS_BUILD_NUMBER="${ORIGINAL_TRAVIS_BUILD_NUMBER}-${COVERAGE_REPORTING_BRANCH}"
+    TRAVIS_BUILD_NUMBER="${ORIGINAL_TRAVIS_BUILD_NUMBER}-${COVERAGE_REPORTING_BRANCH}"
     TRAVIS_JOB_ID="${ORIGINAL_TRAVIS_JOB_ID}-${COVERAGE_REPORTING_BRANCH}"
 #    ((TRAVIS_JOB_ID++))
 

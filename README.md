@@ -5,6 +5,11 @@ Bring back previously-unmounted components and children -- state and all -- when
 [![build status](https://img.shields.io/travis/com/spautz/react-hibernate/master.svg)](https://travis-ci.com/spautz/react-hibernate/branches)
 [![test coverage](https://img.shields.io/coveralls/github/spautz/react-hibernate/master.svg)](https://coveralls.io/github/spautz/react-hibernate?branch=master)
 
+[![test coverage: react-hibernate](https://img.shields.io/coveralls/github/spautz/react-hibernate/x-cov-react-hibernate.svg)](https://coveralls.io/github/spautz/react-hibernate?branch=x-cov-react-hibernate)
+[![test coverage: react-router-hibernate](https://img.shields.io/coveralls/github/spautz/react-hibernate/x-cov-react-router-hibernate.svg)](https://coveralls.io/github/spautz/react-hibernate?branch=x-cov-react-router-hibernate)
+[![test coverage: react-pauseable-containers](https://img.shields.io/coveralls/github/spautz/react-hibernate/x-cov-react-pauseable-containers.svg)](https://coveralls.io/github/spautz/react-hibernate?branch=x-cov-react-pauseable-containers)
+[![test coverage: redux-pauseable-store](https://img.shields.io/coveralls/github/spautz/react-hibernate/x-cov-redux-pauseable-store.svg)](https://coveralls.io/github/spautz/react-hibernate?branch=x-cov-redux-pauseable-store)
+
 ## Overview
 
 When a React component stops being rendered, it's gone: local state, dom state, etc are removed. If you want to retain
