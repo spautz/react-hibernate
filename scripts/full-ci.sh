@@ -28,6 +28,9 @@ if [ "${CURRENT_BRANCH}" = 'master' ] || true; then
     export GITHUB_REF="refs/heads/x-cov-${dir}"
     echo "setting GITHUB_HEAD_REF=refs/heads/x-cov-${dir}"
     export GITHUB_HEAD_REF="refs/heads/x-cov-${dir}"
+
+    export COVERALLS_SERVICE_JOB_ID="x-cov-${dir}"
+    export COVERALLS_GIT_BRANCH="x-cov-${dir}"
     run_command "yarn --cwd=${dir} test:report-local"
   done
 fi
