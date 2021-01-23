@@ -22,14 +22,16 @@ echo "ORIGINAL_COVERALLS_SERVICE_JOB_ID=${ORIGINAL_COVERALLS_SERVICE_JOB_ID}"
 
 # If we're on the main branch, report code coverage separately for each project
 if [ "${CURRENT_BRANCH}" = 'master' ] || true; then
-  for dir in ./packages/*/; do
-    echo "setting GITHUB_REF=refs/heads/x-cov-${dir}"
-    export GITHUB_REF="refs/heads/x-cov-${dir}"
-    echo "setting GITHUB_HEAD_REF=refs/heads/x-cov-${dir}"
-    export GITHUB_HEAD_REF="refs/heads/x-cov-${dir}"
+  for DIR in ./packages/*/; do
+    $COVERAGE_BRANCH = "x-cov-$(echo $DIR | sed -e 's/[^-a-z]//gi')"
 
-#    export COVERALLS_SERVICE_JOB_ID="${ORIGINAL_COVERALLS_SERVICE_JOB_ID}:x-cov-${dir}"
-    export COVERALLS_GIT_BRANCH="x-cov-${dir}"
-    run_command "yarn --cwd=${dir} test:report-local"
+    echo "setting GITHUB_REF=refs/heads/${COVERAGE_BRANCH}"
+    export GITHUB_REF="refs/heads/${COVERAGE_BRANCH}"
+    echo "setting GITHUB_HEAD_REF=refs/heads/${COVERAGE_BRANCH}"
+    export GITHUB_HEAD_REF="refs/heads/${COVERAGE_BRANCH}"
+
+#    export COVERALLS_SERVICE_JOB_ID="${ORIGINAL_COVERALLS_SERVICE_JOB_ID}:${COVERAGE_BRANCH}"
+    export COVERALLS_GIT_BRANCH=$COVERAGE_BRANCH
+    run_command "yarn --cwd=${DIR} test:report-local"
   done
 fi
