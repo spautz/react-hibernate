@@ -30,11 +30,8 @@ if [ "${CURRENT_BRANCH}" = 'master' ] || true; then
     DIR_IDENTIFIER=$(echo $DIR | sed -e 's/packages//gi' | sed -e 's/[^-a-z]//gi')
     COVERAGE_REPORTING_BRANCH="x-cov-${DIR_IDENTIFIER}"
 
-    echo "setting GITHUB_REF=refs/heads/${COVERAGE_REPORTING_BRANCH}"
-    export GITHUB_REF="refs/heads/${COVERAGE_REPORTING_BRANCH}"
-    echo "setting GITHUB_HEAD_REF=refs/heads/${COVERAGE_REPORTING_BRANCH}"
-    export GITHUB_HEAD_REF="refs/heads/${COVERAGE_REPORTING_BRANCH}"
-
+    GITHUB_REF="refs/heads/${COVERAGE_REPORTING_BRANCH}"
+    GITHUB_HEAD_REF="refs/heads/${COVERAGE_REPORTING_BRANCH}"
 
     # With node-coveralls package and Travis, we have to set these env variables to control what gets sent to
     # Coveralls. Other services use other env vars:
@@ -44,8 +41,8 @@ if [ "${CURRENT_BRANCH}" = 'master' ] || true; then
     TRAVIS_JOB_ID="${ORIGINAL_TRAVIS_JOB_ID}-${COVERAGE_REPORTING_BRANCH}"
 #    ((TRAVIS_JOB_ID++))
 
-    git checkout -b $COVERAGE_REPORTING_BRANCH
+    COVERALLS_GIT_COMMIT=$(git rev-parse --short HEAD)
+
     run_command "yarn --cwd=${DIR} test:report-local"
   done
 fi
-
