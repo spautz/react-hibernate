@@ -30,6 +30,12 @@ if [ "${CURRENT_BRANCH}" = 'master' ] || true; then
     DIR_IDENTIFIER=$(echo $DIR | sed -e 's/packages//gi' | sed -e 's/[^-a-z]//gi')
     COVERAGE_REPORTING_BRANCH="x-cov-${DIR_IDENTIFIER}"
 
+    echo "setting GITHUB_REF=refs/heads/${COVERAGE_REPORTING_BRANCH}"
+    export GITHUB_REF="refs/heads/${COVERAGE_REPORTING_BRANCH}"
+    echo "setting GITHUB_HEAD_REF=refs/heads/${COVERAGE_REPORTING_BRANCH}"
+    export GITHUB_HEAD_REF="refs/heads/${COVERAGE_REPORTING_BRANCH}"
+
+
     # With node-coveralls package and Travis, we have to set these env variables to control what gets sent to
     # Coveralls. Other services use other env vars:
     # https://github.com/nickmerwin/node-coveralls/blob/master/lib/getOptions.js#L25-L32
