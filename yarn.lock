@@ -5811,9 +5811,9 @@ cosmiconfig@^7.0.0:
     path-type "^4.0.0"
     yaml "^1.10.0"
 
-coveralls@spautz/node-coveralls#d983f5d9df3dc9de50651461bd9d6bff4e01451a:
+coveralls@spautz/node-coveralls#d9d41518ffb136b5d5592c3e5103c8204103d87e:
   version "3.1.0"
-  resolved "https://codeload.github.com/spautz/node-coveralls/tar.gz/d983f5d9df3dc9de50651461bd9d6bff4e01451a"
+  resolved "https://codeload.github.com/spautz/node-coveralls/tar.gz/d9d41518ffb136b5d5592c3e5103c8204103d87e"
   dependencies:
     js-yaml "^3.13.1"
     lcov-parse "^1.0.0"
