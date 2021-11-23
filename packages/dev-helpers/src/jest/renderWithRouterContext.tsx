@@ -1,4 +1,4 @@
-import React, { ReactElement, ComponentType } from 'react';
+import { ReactElement, ComponentType } from 'react';
 import { isElement } from 'react-is';
 import { MemoryRouter, MemoryRouterProps } from 'react-router';
 import { render } from '@testing-library/react';

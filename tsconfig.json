@@ -8,7 +8,7 @@
     "lib": ["dom", "ES2019"],
     "allowJs": true,
     "declaration": true,
-    "jsx": "react",
+    "jsx": "react-jsx",
     "noEmit": true,
     "sourceMap": true,
     "removeComments": false,

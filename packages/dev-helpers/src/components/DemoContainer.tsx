@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react';
+import React, { ReactElement, useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
@@ -24,7 +24,7 @@ const DemoContainer: React.FC<DemoContainerProps> = (props: DemoContainerProps):
   const { title, withRedux, onMount, onRender, onUnmount } = props;
 
   // A simple per-Component instance counter
-  const myInstanceNumRef = React.useRef(0);
+  const myInstanceNumRef = useRef(0);
   if (!myInstanceNumRef.current) {
     totalInstanceCount++;
     myInstanceNumRef.current = totalInstanceCount;
@@ -33,10 +33,10 @@ const DemoContainer: React.FC<DemoContainerProps> = (props: DemoContainerProps):
 
   const titleWithMyInstanceNum = `${title} (#${myInstanceNum})`;
 
-  const mountTimeString = React.useRef(new Date().toUTCString()).current;
-  const renderCount = ++React.useRef(0).current;
+  const mountTimeString = useRef(new Date().toUTCString()).current;
+  const renderCount = ++useRef(0).current;
 
-  React.useEffect((): (() => void) => {
+  useEffect((): (() => void) => {
     console.log(`DemoContainer ${titleWithMyInstanceNum} mounted`);
     if (onMount) {
       // Wait an extra tick for Storybook to catch up, or else actions won't be logged
@@ -51,7 +51,7 @@ const DemoContainer: React.FC<DemoContainerProps> = (props: DemoContainerProps):
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  React.useEffect(() => {
+  useEffect(() => {
     console.log(`DemoContainer ${titleWithMyInstanceNum} rendered`);
     if (onRender) {
       onRender(titleWithMyInstanceNum);
@@ -59,7 +59,7 @@ const DemoContainer: React.FC<DemoContainerProps> = (props: DemoContainerProps):
   });
 
   // Our own local state
-  const [value1, setValue1] = React.useState('');
+  const [value1, setValue1] = useState('');
   // Global state, if appropriate
   let reduxContent;
   if (withRedux) {

@@ -1,6 +1,5 @@
 /* eslint-env jest */
 import '@testing-library/jest-dom/extend-expect';
-import * as React from 'react';
 import { render, screen } from '@testing-library/react';
 
 import { PauseableComponentContainer } from '.';

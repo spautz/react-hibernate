@@ -1,4 +1,4 @@
-import React, { ReactElement, ComponentType } from 'react';
+import { ReactElement, ComponentType } from 'react';
 import { isElement } from 'react-is';
 import { Store } from 'redux';
 import { Provider } from 'react-redux';
