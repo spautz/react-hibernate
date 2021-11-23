@@ -66,10 +66,10 @@
     "types": "tsc --p tsconfig.json --noEmit"
   },
   "dependencies": {
-    "limited-cache": "^1.0.1",
+    "limited-cache": "^2.0.0",
     "prop-types": "^15.7.2",
     "react-is": "^16.8.3 || ^17",
-    "react-reverse-portal": "^2.0.1"
+    "react-reverse-portal": "^2.1.0"
   },
   "devDependencies": {
     "react-hibernate-dev-helpers": "^0.2.2",

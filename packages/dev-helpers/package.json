@@ -62,13 +62,13 @@
     "types": "tsc --p tsconfig.json --noEmit"
   },
   "dependencies": {
-    "@material-ui/core": "^4.11.0",
+    "@material-ui/core": "^4.12.3",
     "prop-types": "^15.7.2",
     "react-is": "^16.8.3 || ^17",
-    "react-redux": "^7.2.2",
-    "react-router": "^5.2.0",
-    "redux": "^4.0.5",
-    "redux-devtools-extension": "^2.13.8",
+    "react-redux": "^7.2.6",
+    "react-router": "^5.2.1",
+    "redux": "^4.1.2",
+    "redux-devtools-extension": "^2.13.9",
     "typeface-roboto": "^1.1.13"
   },
   "peerDependencies": {
