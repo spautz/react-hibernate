@@ -6,90 +6,90 @@ on:
       - github-actions
 
 jobs:
-  coverage--dev-helpers:
-    name: Test coverage for dev-helpers
-    runs-on: ubuntu-latest
+#  coverage--dev-helpers:
+#    name: Test coverage for dev-helpers
+#    runs-on: ubuntu-latest
+#
+#    steps:
+#      - uses: actions/checkout@v2
+#
+#      - name: Read .nvmrc
+#        run: echo NVMRC=`cat .nvmrc` >> $GITHUB_ENV
+#
+#      - name: Setup Node
+#        uses: actions/setup-node@v2
+#        with:
+#          node-version: ${{ env.NVMRC }}
+#
+#      - name: Get Yarn cache directory
+#        id: yarn-cache-dir-path
+#        run: echo "::set-output name=dir::$(yarn cache dir)"
+#
+#      - name: Use Yarn cache
+#        uses: actions/cache@v2
+#        id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
+#        with:
+#          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+#          key: ${{ runner.os }}-yarn-${{ env.NVMRC }}-${{ hashFiles('**/yarn.lock') }}
+#
+#      - name: Install dependencies
+#        run: yarn install --prefer-offline
+#
+#      - name: Run tests
+#        run: |
+#          cd packages/dev-helpers
+#          yarn run test:coverage
+#
+#      - name: Report package test coverage to coveralls.io
+#        uses: coverallsapp/github-action@1.1.3
+#        with:
+#          github-token: ${{ github.token }}
+#          path-to-lcov: packages/dev-helpers/coverage-local/lcov.info
+#          base-path: packages/dev-helpers
+#          git-branch: x-cov-dev-helpers
 
-    steps:
-      - uses: actions/checkout@v2
 
-      - name: Read .nvmrc
-        run: echo NVMRC=`cat .nvmrc` >> $GITHUB_ENV
-
-      - name: Setup Node
-        uses: actions/setup-node@v2
-        with:
-          node-version: ${{ env.NVMRC }}
-
-      - name: Get Yarn cache directory
-        id: yarn-cache-dir-path
-        run: echo "::set-output name=dir::$(yarn cache dir)"
-
-      - name: Use Yarn cache
-        uses: actions/cache@v2
-        id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
-        with:
-          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
-          key: ${{ runner.os }}-yarn-${{ env.NVMRC }}-${{ hashFiles('**/yarn.lock') }}
-
-      - name: Install dependencies
-        run: yarn install --prefer-offline
-
-      - name: Run tests
-        run: |
-          cd packages/dev-helpers
-          yarn run test:coverage
-
-      - name: Report package test coverage to coveralls.io
-        uses: coverallsapp/github-action@1.1.3
-        with:
-          github-token: ${{ github.token }}
-          path-to-lcov: packages/dev-helpers/coverage-local/lcov.info
-          base-path: packages/dev-helpers
-          git-branch: x-cov-dev-helpers
-
-
-  coverage--react-hibernate:
-    name: Test coverage for react-hibernate
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v2
-
-      - name: Read .nvmrc
-        run: echo NVMRC=`cat .nvmrc` >> $GITHUB_ENV
-
-      - name: Setup Node
-        uses: actions/setup-node@v2
-        with:
-          node-version: ${{ env.NVMRC }}
-
-      - name: Get Yarn cache directory
-        id: yarn-cache-dir-path
-        run: echo "::set-output name=dir::$(yarn cache dir)"
-
-      - name: Use Yarn cache
-        uses: actions/cache@v2
-        id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
-        with:
-          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
-          key: ${{ runner.os }}-yarn-${{ env.NVMRC }}-${{ hashFiles('**/yarn.lock') }}
-
-      - name: Install dependencies
-        run: yarn install --prefer-offline
-
-      - name: Run tests
-        run: |
-          cd packages/react-hibernate
-          yarn run test:coverage
-
-      - name: Report package test coverage to coveralls.io
-        uses: coverallsapp/github-action@1.1.3
-        with:
-          github-token: ${{ github.token }}
-          path-to-lcov: packages/react-hibernate/coverage-local/lcov.info
-          base-path: packages/react-hibernate
-          git-branch: x-cov-react-hibernate
+#  coverage--react-hibernate:
+#    name: Test coverage for react-hibernate
+#    runs-on: ubuntu-latest
+#
+#    steps:
+#      - uses: actions/checkout@v2
+#
+#      - name: Read .nvmrc
+#        run: echo NVMRC=`cat .nvmrc` >> $GITHUB_ENV
+#
+#      - name: Setup Node
+#        uses: actions/setup-node@v2
+#        with:
+#          node-version: ${{ env.NVMRC }}
+#
+#      - name: Get Yarn cache directory
+#        id: yarn-cache-dir-path
+#        run: echo "::set-output name=dir::$(yarn cache dir)"
+#
+#      - name: Use Yarn cache
+#        uses: actions/cache@v2
+#        id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
+#        with:
+#          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+#          key: ${{ runner.os }}-yarn-${{ env.NVMRC }}-${{ hashFiles('**/yarn.lock') }}
+#
+#      - name: Install dependencies
+#        run: yarn install --prefer-offline
+#
+#      - name: Run tests
+#        run: |
+#          cd packages/react-hibernate
+#          yarn run test:coverage
+#
+#      - name: Report package test coverage to coveralls.io
+#        uses: coverallsapp/github-action@1.1.3
+#        with:
+#          github-token: ${{ github.token }}
+#          path-to-lcov: packages/react-hibernate/coverage-local/lcov.info
+#          base-path: packages/react-hibernate
+#          git-branch: x-cov-react-hibernate
 
 
   coverage--react-pauseable-containers:

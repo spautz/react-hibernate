@@ -46,7 +46,7 @@ jobs:
         run: yarn packages:build
 
       - name: Check storybook
-        run: yarn build-storybook
+        run: yarn build-storybook:ci
 
       # This step may need to be commented out when running locally through act or actions-runner/Runner.Client
       - name: Report test coverage to coveralls.io
