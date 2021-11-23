@@ -14,8 +14,7 @@ describe('store interface', () => {
 
   it('adds listeners', () => {
     const myStore = createPauseableStore(rootStore);
-
-    const listenerFn = jest.fn(() => {});
+    const listenerFn = jest.fn();
 
     myStore.subscribe(listenerFn);
 
@@ -32,8 +31,7 @@ describe('store interface', () => {
       isPaused: true,
       notifyListersOnUnpause: false,
     });
-
-    const listenerFn = jest.fn(() => {});
+    const listenerFn = jest.fn();
 
     myStore.subscribe(listenerFn);
 
@@ -52,8 +50,7 @@ describe('store interface', () => {
       isPaused: true,
       notifyListersOnUnpause: true,
     });
-
-    const listenerFn = jest.fn(() => {});
+    const listenerFn = jest.fn();
 
     myStore.subscribe(listenerFn);
 
@@ -67,8 +64,7 @@ describe('store interface', () => {
 
   it('unsubscribes listeners', () => {
     const myStore = createPauseableStore(rootStore);
-
-    const listenerFn = jest.fn(() => {});
+    const listenerFn = jest.fn();
 
     const unsubscribeFn = myStore.subscribe(listenerFn);
 

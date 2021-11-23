@@ -3,8 +3,20 @@
 module.exports = {
   root: true,
   parser: '@typescript-eslint/parser',
-  plugins: ['@typescript-eslint', 'react'],
-  extends: ['eslint:recommended', 'plugin:@typescript-eslint/recommended', 'react-app', 'prettier'],
+  plugins: ['@typescript-eslint', 'react', 'react-hooks'],
+  extends: [
+    'eslint:recommended',
+    'plugin:@typescript-eslint/recommended',
+    'plugin:react/recommended',
+    'plugin:jsx-a11y/recommended',
+    'prettier',
+  ],
+
+  settings: {
+    react: {
+      version: 'detect',
+    },
+  },
 
   rules: {
     'react/jsx-uses-react': 'error',
@@ -13,7 +25,10 @@ module.exports = {
   overrides: [
     {
       // Allow `require` in dev configs
-      files: ['./*.config.*', './packages/*/*.config.*'],
+      files: ['./.storybook/*', './*.config.*', './packages/*/*.config.*'],
+      env: {
+        node: true,
+      },
       rules: {
         '@typescript-eslint/no-var-requires': 'off',
       },

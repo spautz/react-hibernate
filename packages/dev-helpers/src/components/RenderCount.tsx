@@ -9,7 +9,8 @@ const RenderCount: React.FC = () => {
 
   return (
     <Typography variant="body1">
-      (I've rendered {renderCountRef.current} {renderCountRef.current === 1 ? 'time' : 'times'})
+      (I&apos;ve rendered {renderCountRef.current} {renderCountRef.current === 1 ? 'time' : 'times'}
+      )
     </Typography>
   );
 };
