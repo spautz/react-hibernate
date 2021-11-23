@@ -1,0 +1,55 @@
+name: CI
+
+on:
+  push
+
+jobs:
+  build:
+    name: Build & test
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [ 12.x, 14.x, 16.x, 17.x ]
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      # This step may need to be uncommented when running locally through act or actions-runner/Runner.Client
+#      - name: Use Yarn
+#        run: npm install -g yarn
+
+      # This step may need to be commented out when running locally through act or actions-runner/Runner.Client
+      - name: Get Yarn cache directory
+        id: yarn-cache-dir-path
+        run: echo "::set-output name=dir::$(yarn cache dir)"
+
+      # This step may need to be commented out when running locally through act or actions-runner/Runner.Client
+      - name: Use Yarn cache
+        uses: actions/cache@v2
+        id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
+        with:
+          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ matrix.node-version }}-${{ hashFiles('**/yarn.lock') }}
+
+      - name: Install dependencies
+        run: yarn install --prefer-offline
+
+      - name: Run CI checks
+        run: yarn all:readonly
+
+      - name: Build all packages
+        run: yarn packages:build
+
+      - name: Check storybook
+        run: yarn build-storybook
+
+      # This step may need to be commented out when running locally through act or actions-runner/Runner.Client
+      - name: Report test coverage to coveralls.io
+        uses: coverallsapp/github-action@v1.1.2
+        with:
+          github-token: ${{ github.token }}
