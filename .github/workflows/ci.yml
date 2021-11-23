@@ -45,8 +45,13 @@ jobs:
       - name: Build all packages
         run: yarn packages:build
 
-      - name: Check storybook
-        run: yarn build-storybook:ci
+      - name: Check storybook (node <17)
+        if: ${{ matrix.node-version != '17.x' }}
+        run: yarn build-storybook
+
+      - name: Check storybook (node 17)
+        if: ${{ matrix.node-version == '17.x' }}
+        run: yarn build-storybook:node17
 
       # This step may need to be commented out when running locally through act or actions-runner/Runner.Client
       - name: Report test coverage to coveralls.io

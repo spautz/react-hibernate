@@ -51,7 +51,7 @@
     "storybook": "start-storybook -p 6006",
     "storybook:clean": "rimraf ./storybook-static",
     "build-storybook": "build-storybook",
-    "build-storybook:ci": "cross-env NODE_OPTIONS=--openssl-legacy-provider build-storybook",
+    "build-storybook:node17": "cross-env NODE_OPTIONS=--openssl-legacy-provider build-storybook",
     "test": "yon run test:coverage",
     "test:clean": "rimraf ./coverage",
     "test:coverage": "tsdx test --coverage",
