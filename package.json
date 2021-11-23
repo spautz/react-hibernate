@@ -91,11 +91,11 @@
     "husky": "7.0.4",
     "lerna": "4.0.0",
     "lint-staged": "11.2.6",
+    "microbundle": "0.14.2",
     "prettier": "2.4.1",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "standard-version": "9.3.2",
-    "tsdx": "0.14.1",
     "typescript": "3.9.7",
     "yarn-or-npm": "3.0.1"
   },
