@@ -16,8 +16,10 @@
 
 # Unless they're somewhere we can ignore
 build/
-dist/
 coverage/
 coverage-local/
+dist/
+legacy-types/
+lib-dist/
 node_modules/
 storybook-static/

@@ -4,6 +4,7 @@ import React, { Context, useContext, useRef } from 'react';
 import { PauseableContainerProps } from './types';
 
 export interface PauseableContextContainerProps extends PauseableContainerProps {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   Context: Context<any>;
 }
 

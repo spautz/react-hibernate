@@ -1,6 +1,11 @@
 # These are helpful functions for the other bash scripts in this directory.
 # Note that this is not a runnable script itself.
 
+if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
+  echo "Please run $0 with source, not as a standalone script"
+  exit 1;
+fi
+
 command_exists() {
   # This check is based on https://unix.stackexchange.com/questions/85249/why-not-use-which-what-to-use-then
   command -v "$1" > /dev/null 2>&1
@@ -36,6 +41,6 @@ run_npm_command() {
   if command_exists "$EXEC"; then
     run_command $FULL_COMMAND
   else
-    run_command npx $FULL_COMMAND
+    npm_config_yes=true run_command npx $FULL_COMMAND
   fi
 }

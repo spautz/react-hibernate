@@ -52,9 +52,7 @@ describe('dispatch with a chain of multiple parent stores', () => {
     myStore.dispatch(incrementAction());
 
     expect(console.warn).toHaveBeenCalledTimes(1);
-    expect(
-      console.warn,
-    ).toHaveBeenLastCalledWith(
+    expect(console.warn).toHaveBeenLastCalledWith(
       'Something is trying to dispatch an action to a paused PauseableStore. Set `canDispatch` to true or false to disable this warning.',
       { action: incrementAction(), pauseableStore: grandparentStore },
     );
@@ -74,9 +72,7 @@ describe('dispatch with a chain of multiple parent stores', () => {
     myStore.dispatch(incrementAction());
 
     expect(console.warn).toHaveBeenCalledTimes(1);
-    expect(
-      console.warn,
-    ).toHaveBeenLastCalledWith(
+    expect(console.warn).toHaveBeenLastCalledWith(
       'Something is trying to dispatch an action to a paused PauseableStore. Set `canDispatch` to true or false to disable this warning.',
       { action: incrementAction(), pauseableStore: parentStore },
     );

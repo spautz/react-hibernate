@@ -28,12 +28,8 @@ const HibernatingSubtree: React.FC<HibernatingSubtreeProps> = ({
     throw new Error('HibernatingSubtree must be given a subtreeId.');
   }
 
-  const [
-    getSubtreeEntry,
-    ,
-    markSubtreeActive,
-    markSubtreeInactive,
-  ] = useHibernationAccessorContext();
+  const [getSubtreeEntry, , markSubtreeActive, markSubtreeInactive] =
+    useHibernationAccessorContext();
 
   // Activation is synchronous (with a scheduled rerender); deactivation is async
   markSubtreeActive(subtreeId, children);

@@ -11,7 +11,7 @@ describe('PauseableContextContainer', () => {
   let TestConsumer: React.FC;
   beforeEach(() => {
     TestContext = React.createContext('default');
-    TestConsumer = () => {
+    TestConsumer = function TestConsumer() {
       const valueFromContext = useContext(TestContext);
       return <span>{valueFromContext}</span>;
     };

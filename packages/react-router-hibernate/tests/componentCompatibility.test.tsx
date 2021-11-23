@@ -36,9 +36,7 @@ describe('Compatibility with react-router components', () => {
       renderWithRouterContext(<HibernatingRoute>Children here</HibernatingRoute>);
 
       expect(console.warn).toHaveBeenCalledTimes(1);
-      expect(
-        console.warn,
-      ).toHaveBeenLastCalledWith(
+      expect(console.warn).toHaveBeenLastCalledWith(
         'HibernatingRoute is being used as a standalone component, instead of as a child of HibernatingSwitch. This will not do anything.',
         { children: 'Children here' },
       );
