@@ -4,9 +4,10 @@
 set -e
 
 # This script runs from the project root
-cd "$(dirname "$0")/.."
+THIS_SCRIPT_DIR=$(dirname "$BASH_SOURCE[0]" || dirname "$0")
+cd "${THIS_SCRIPT_DIR}/.."
 
-source scripts/helpers.sh
+source ./scripts/helpers/helpers.sh
 
 ###################################################################################################
 # Check versions of Node, Yarn, and any other tools required
@@ -30,6 +31,9 @@ if [ ! $HAS_ENGINES ] || [ ! $HAS_ENGINES_NODE ]; then
   fi
 fi
 
+yarn install --frozen-lockfile
+yarn check --integrity
+
 ###################################################################################################
 
-echo "All environment checks passed!"
+echo "Environment checks completed"
