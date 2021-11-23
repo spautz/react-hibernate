@@ -5,7 +5,9 @@ Prevent subtrees from rerendering when their parent changes, or when certain con
 Part of [React Hibernate](https://github.com/spautz/react-hibernate)
 
 [![npm version](https://img.shields.io/npm/v/react-pauseable-containers.svg)](https://www.npmjs.com/package/react-pauseable-containers)
-[![gzip size](https://img.shields.io/bundlephobia/minzip/react-pauseable-containers)](https://bundlephobia.com/result?p=react-pauseable-containers@latest)
+[![test coverage](https://coveralls.io/repos/github/spautz/react-hibernate/badge.svg?branch=x-cov-react-pauseable-containers)](https://coveralls.io/github/spautz/react-hibernate?branch=x-cov-react-pauseable-containers)
+[![dependencies status](https://img.shields.io/librariesio/release/npm/react-pauseable-containers.svg)](https://libraries.io/github/spautz/react-hibernate)
+[![gzip size](https://img.badgesize.io/https://unpkg.com/react-pauseable-containers@latest/dist/react-pauseable-containers.cjs.production.min.js?compression=gzip)](https://bundlephobia.com/result?p=react-pauseable-containers@latest)
 
 ## Overview
 
@@ -34,7 +36,7 @@ The `dispatchWhenPaused` prop controls the `canDispatch` option of a [Redux-Paus
 
 ## How to use this
 
-With [React-Hibernate](../react-hibernate) or [React-Router-Hibernate](../react-router-hibernate/), using one of these
+With [React-Hibernate](../react-hibernate) or [react-pauseable-containers](../react-pauseable-containers/), using one of these
 components -- or a new component composed from several of them together -- can prevent subtrees from updating while
 they're hibernating, to avoid needless work.
 
