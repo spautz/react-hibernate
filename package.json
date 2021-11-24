@@ -20,7 +20,7 @@
   },
   "scripts": {
     "____ LIFECYCLE HOOKS _______________________________________________": "",
-    "prepare": "yon run packages:prepare && husky install",
+    "prepare": "husky install && yon run packages:prepare",
     "pretest": "yon run test:clean",
     "____ INTEGRATION ___________________________________________________": "",
     "clean": "yon run storybook:clean && yon run test:clean && rimraf ./node_modules/.cache && yon run packages:clean",
@@ -60,14 +60,13 @@
     "test:watchcoverage": "jest --watchAll --coverage",
     "types": "tsc --p tsconfig.json --noEmit"
   },
-  "dependencies": {},
   "devDependencies": {
     "@babel/core": "7.16.0",
     "@storybook/addon-actions": "6.3.12",
     "@storybook/addon-essentials": "6.3.12",
     "@storybook/addon-links": "6.3.12",
     "@storybook/react": "6.3.12",
-    "@testing-library/jest-dom": "5.15.0",
+    "@testing-library/jest-dom": "5.15.1",
     "@testing-library/react": "12.1.2",
     "@tsconfig/recommended": "1.0.1",
     "@types/react": "17.0.36",

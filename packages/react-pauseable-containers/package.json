@@ -29,9 +29,10 @@
     "*.md"
   ],
   "source": "src/index.ts",
-  "main": "dist/index.js",
-  "module": "dist/react-pauseable-containers.esm.js",
-  "jsnext:main": "dist/react-pauseable-containers.esm.js",
+  "module": "dist/index.js",
+  "exports": {
+    "default": "./dist/index.js"
+  },
   "types": "dist/index.d.ts",
   "sideEffects": false,
   "scripts": {
@@ -73,7 +74,10 @@
     "redux-pauseable-store": "^0.2.2"
   },
   "devDependencies": {
-    "react-hibernate-dev-helpers": "^0.2.2"
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
+    "react-hibernate-dev-helpers": "0.2.2",
+    "react-redux": "7.2.6"
   },
   "peerDependencies": {
     "react": "^16.8.3 || ^17",
