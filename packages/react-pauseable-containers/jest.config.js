@@ -1,4 +1,7 @@
 /* eslint-env node */
 const baseConfig = require('../../jest-packages.config');
 
-module.exports = baseConfig;
+module.exports = {
+  ...baseConfig,
+  roots: ['<rootDir>/src'],
+};

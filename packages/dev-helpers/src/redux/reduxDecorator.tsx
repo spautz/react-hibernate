@@ -1,4 +1,4 @@
-import { ReactNode, useMemo } from 'react';
+import React, { ReactNode, useMemo } from 'react';
 import { Provider } from 'react-redux';
 
 import { createDevHelperStore } from './store';
