@@ -1,9 +1,9 @@
-export { default as PauseableContainerWrapper } from './PauseableContainerWrapper';
+export * from './PauseableContainerWrapper';
 
-export { default as ComponentDemoItem } from './ComponentDemoItem';
+export * from './ComponentDemoItem';
 
-export { default as ContextDemoItem } from './ContextDemoItem';
-export { DemoContext } from './ContextDemoItem';
+export * from './ContextDemoItem';
+export * from './ContextDemoItem';
 
-export { default as ReduxDemoItem } from './ReduxDemoItem';
-export { default as ReduxStateDisplay } from './ReduxStateDisplay';
+export * from './ReduxDemoItem';
+export * from './ReduxStateDisplay';

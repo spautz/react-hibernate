@@ -10,4 +10,4 @@ const reduxDecorator = (storyFn: () => ReactNode): ReactNode => {
   return <Provider store={devHelperStore}>{storyFn()}</Provider>;
 };
 
-export default reduxDecorator;
+export { reduxDecorator };

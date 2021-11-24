@@ -27,4 +27,4 @@ PauseableContextContainer.propTypes = {
   shouldUpdate: propTypes.bool.isRequired,
 };
 
-export default PauseableContextContainer;
+export { PauseableContextContainer };

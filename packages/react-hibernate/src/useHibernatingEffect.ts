@@ -18,4 +18,4 @@ const useHibernatingEffect = (
   );
 };
 
-export default useHibernatingEffect;
+export { useHibernatingEffect };

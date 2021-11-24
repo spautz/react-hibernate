@@ -4,4 +4,4 @@ const useIsHibernating = (): boolean => {
   return !useIsActiveContext();
 };
 
-export default useIsHibernating;
+export { useIsHibernating };

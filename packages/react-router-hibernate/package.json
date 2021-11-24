@@ -28,9 +28,10 @@
     "*.md"
   ],
   "source": "src/index.ts",
-  "main": "dist/index.js",
-  "module": "dist/react-router-hibernate.esm.js",
-  "jsnext:main": "dist/react-router-hibernate.esm.js",
+  "module": "dist/index.js",
+  "exports": {
+    "default": "./dist/index.js"
+  },
   "types": "dist/index.d.ts",
   "sideEffects": false,
   "scripts": {
@@ -74,7 +75,10 @@
     "react-reverse-portal": "^2.1.0"
   },
   "devDependencies": {
-    "react-hibernate-dev-helpers": "^0.2.2",
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
+    "react-hibernate-dev-helpers": "0.2.2",
+    "react-router": "5.2.1",
     "react-router-dom": "5.3.0"
   },
   "peerDependencies": {

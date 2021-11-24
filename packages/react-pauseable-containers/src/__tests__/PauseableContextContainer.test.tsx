@@ -1,10 +1,9 @@
 /* eslint-env jest */
-import React from 'react';
+import React, { Context, useContext } from 'react';
 import '@testing-library/jest-dom/extend-expect';
 import { render, screen } from '@testing-library/react';
 
-import { PauseableContextContainer } from '../index';
-import { Context, useContext } from 'react';
+import { PauseableContextContainer } from '../PauseableContextContainer';
 
 describe('PauseableContextContainer', () => {
   let TestContext: Context<string>;

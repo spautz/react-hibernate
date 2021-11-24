@@ -15,4 +15,4 @@ const ReduxDemoItem: React.FC = () => {
   );
 };
 
-export default ReduxDemoItem;
+export { ReduxDemoItem };

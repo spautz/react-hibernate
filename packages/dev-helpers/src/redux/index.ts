@@ -1,6 +1,6 @@
-export { default as reduxDecorator } from './reduxDecorator';
+export * from './reduxDecorator';
 
-export { default as useCountSelector } from './useCountSelector';
-export { default as useStateSelector } from './useStateSelector';
+export * from './useCountSelector';
+export * from './useStateSelector';
 
 export * from './store';

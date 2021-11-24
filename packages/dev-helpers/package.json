@@ -24,9 +24,10 @@
     "*.md"
   ],
   "source": "src/index.ts",
-  "main": "dist/index.js",
-  "module": "dist/react-hibernate-dev-helpers.esm.js",
-  "jsnext:main": "dist/react-hibernate-dev-helpers.esm.js",
+  "module": "dist/index.js",
+  "exports": {
+    "default": "./dist/index.js"
+  },
   "types": "dist/index.d.ts",
   "sideEffects": false,
   "scripts": {
@@ -64,14 +65,14 @@
     "types": "tsc --p tsconfig.json --noEmit"
   },
   "dependencies": {
-    "@material-ui/core": "^4.12.3",
-    "prop-types": "^15.7.2",
-    "react-is": "^16.8.3 || ^17",
-    "react-redux": "^7.2.6",
-    "react-router": "^5.2.1",
-    "redux": "^4.1.2",
-    "redux-devtools-extension": "^2.13.9",
-    "typeface-roboto": "^1.1.13"
+    "@material-ui/core": "4.12.3",
+    "prop-types": "15.7.2",
+    "react-is": "16.8.3 || 17",
+    "react-redux": "7.2.6",
+    "react-router": "5.2.1",
+    "redux": "4.1.2",
+    "redux-devtools-extension": "2.13.9",
+    "typeface-roboto": "1.1.13"
   },
   "peerDependencies": {
     "react": "^16.8.3 || ^17",
@@ -83,5 +84,9 @@
         "legacy-types/ts3.x/*"
       ]
     }
+  },
+  "devDependencies": {
+    "react": "17.0.2",
+    "react-dom": "17.0.2"
   }
 }

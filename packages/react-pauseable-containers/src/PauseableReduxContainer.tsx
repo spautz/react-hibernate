@@ -39,4 +39,4 @@ PauseableReduxContainer.propTypes = {
   shouldUpdate: PropTypes.bool.isRequired,
 };
 
-export default PauseableReduxContainer;
+export { PauseableReduxContainer };

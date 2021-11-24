@@ -45,4 +45,4 @@ const HibernatingSubtree: React.FC<HibernatingSubtreeProps> = ({
 };
 HibernatingSubtree.defaultProps = {};
 
-export default HibernatingSubtree;
+export { HibernatingSubtree };

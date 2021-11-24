@@ -8,4 +8,4 @@ const useStateSelector = (): DevHelperState => {
   return useSelector(stateSelector);
 };
 
-export default useStateSelector;
+export { useStateSelector };

@@ -25,4 +25,4 @@ const ReduxStateDisplay: React.FC = () => {
   );
 };
 
-export default ReduxStateDisplay;
+export { ReduxStateDisplay };

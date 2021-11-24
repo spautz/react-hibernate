@@ -178,4 +178,4 @@ HibernationProvider.defaultProps = {
   WrapperComponent: null,
 };
 
-export default HibernationProvider;
+export { HibernationProvider };

@@ -4,7 +4,8 @@ import { Store } from 'redux';
 
 import { createDevHelperStore, incrementAction } from 'react-hibernate-dev-helpers';
 
-import { createPauseableStore, PauseableStoreInstance } from '../index';
+import { createPauseableStore } from '../createPauseableStore';
+import { PauseableStoreInstance } from '../types';
 
 describe('getState with a chain of multiple parent stores', () => {
   let rootStore: Store;

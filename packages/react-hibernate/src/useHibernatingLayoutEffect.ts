@@ -18,4 +18,4 @@ const useHibernatingLayoutEffect = (
   );
 };
 
-export default useHibernatingLayoutEffect;
+export { useHibernatingLayoutEffect };

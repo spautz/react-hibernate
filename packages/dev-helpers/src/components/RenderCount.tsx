@@ -19,4 +19,4 @@ RenderCount.propTypes = {
   prefix: PropTypes.string,
 };
 
-export default RenderCount;
+export { RenderCount };
