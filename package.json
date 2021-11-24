@@ -89,6 +89,7 @@
     "eslint-plugin-react-hooks": "4.3.0",
     "gh-pages": "3.2.3",
     "husky": "7.0.4",
+    "jest": "27.3.1",
     "lerna": "4.0.0",
     "lint-staged": "11.2.6",
     "microbundle": "0.14.2",
@@ -96,6 +97,7 @@
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "standard-version": "9.3.2",
+    "ts-jest": "27.0.7",
     "typescript": "4.5.2",
     "yarn-or-npm": "3.0.1"
   },

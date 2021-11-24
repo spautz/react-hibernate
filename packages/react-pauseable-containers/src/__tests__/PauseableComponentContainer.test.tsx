@@ -2,7 +2,7 @@
 import '@testing-library/jest-dom/extend-expect';
 import { render, screen } from '@testing-library/react';
 
-import { PauseableComponentContainer } from '.';
+import { PauseableComponentContainer } from '../index';
 
 describe('PauseableComponentContainer', () => {
   it('allows updates', () => {

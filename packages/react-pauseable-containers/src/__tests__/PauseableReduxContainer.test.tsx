@@ -10,7 +10,7 @@ import {
   useCountSelector,
 } from 'react-hibernate-dev-helpers';
 
-import { PauseableReduxContainer } from '.';
+import { PauseableReduxContainer } from '../index';
 import { act } from 'react-dom/test-utils';
 
 const CountDisplay: React.FC = () => {
