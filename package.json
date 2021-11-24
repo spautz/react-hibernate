@@ -1,7 +1,7 @@
 {
   "name": "react-hibernate-workspace",
   "private": true,
-  "version": "0.2.2",
+  "version": "0.3.0",
   "description": "Root workspace for React-Hibernate",
   "license": "MIT",
   "homepage": "https://github.com/spautz/react-hibernate#readme",
