@@ -3,8 +3,8 @@
 
   "compilerOptions": {
     /* Basic Options */
-    "target": "ES2019",
-    "module": "esnext",
+    "target": "es6",
+    "module": "commonjs",
     "lib": ["dom", "ES2019"],
     "allowJs": true,
     "declaration": true,
@@ -32,8 +32,7 @@
     /* Advanced Options */
     "forceConsistentCasingInFileNames": true
   },
-  // The "include" for the root is for typechecking the entire project (it includes directories like "tests" which
-  // the package-level tsconfigs don't include)
+
   "include": ["packages/*/src"],
   "exclude": ["node_modules"]
 }

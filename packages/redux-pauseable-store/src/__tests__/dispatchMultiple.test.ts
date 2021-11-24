@@ -4,7 +4,7 @@ import { Store } from 'redux';
 
 import { createDevHelperStore, incrementAction } from 'react-hibernate-dev-helpers';
 
-import { createPauseableStore, PauseableStoreInstance } from '../src';
+import { createPauseableStore, PauseableStoreInstance } from '../index';
 
 describe('dispatch with a chain of multiple parent stores', () => {
   let rootStore: Store;

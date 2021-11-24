@@ -1,6 +1,6 @@
 /* eslint-env jest */
+import React from 'react';
 import '@testing-library/jest-dom/extend-expect';
-import * as React from 'react';
 import { screen } from '@testing-library/react';
 
 import {
@@ -10,7 +10,7 @@ import {
   useCountSelector,
 } from 'react-hibernate-dev-helpers';
 
-import { PauseableReduxContainer } from '.';
+import { PauseableReduxContainer } from '../index';
 import { act } from 'react-dom/test-utils';
 
 const CountDisplay: React.FC = () => {
