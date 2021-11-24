@@ -3,8 +3,8 @@
 
   "compilerOptions": {
     /* Basic Options */
-    "target": "ES2019",
-    "module": "esnext",
+    "target": "es6",
+    "module": "commonjs",
     "lib": ["dom", "ES2019"],
     "allowJs": true,
     "declaration": true,
