@@ -7,7 +7,7 @@ Part of [React Hibernate](https://github.com/spautz/react-hibernate)
 [![npm version](https://img.shields.io/npm/v/react-router-hibernate.svg)](https://www.npmjs.com/package/react-router-hibernate)
 [![test coverage](https://coveralls.io/repos/github/spautz/react-hibernate/badge.svg?branch=x-cov-react-router-hibernate)](https://coveralls.io/github/spautz/react-hibernate?branch=x-cov-react-router-hibernate)
 [![dependencies status](https://img.shields.io/librariesio/release/npm/react-router-hibernate.svg)](https://libraries.io/github/spautz/react-hibernate)
-[![gzip size](https://img.badgesize.io/https://unpkg.com/react-router-hibernate@latest/dist/react-router-hibernate.cjs.production.min.js?compression=gzip)](https://bundlephobia.com/result?p=react-router-hibernate@latest)
+[![gzip size](https://img.shields.io/bundlephobia/minzip/react-router-hibernate)](https://bundlephobia.com/result?p=react-router-hibernate@latest)
 
 ## Overview
 

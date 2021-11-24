@@ -1,7 +1,7 @@
 {
   "name": "react-hibernate",
   "private": true,
-  "version": "0.2.2",
+  "version": "0.3.0",
   "description": "Restore previously-unmounted subtrees -- state and all -- on remount.",
   "keywords": [],
   "license": "MIT",
@@ -74,7 +74,7 @@
   "devDependencies": {
     "react": "17.0.2",
     "react-dom": "17.0.2",
-    "react-hibernate-dev-helpers": "0.2.2"
+    "react-hibernate-dev-helpers": "^0.3.0"
   },
   "peerDependencies": {
     "react": "^16.8.3 || ^17",

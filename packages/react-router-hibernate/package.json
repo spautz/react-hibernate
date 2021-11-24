@@ -1,6 +1,6 @@
 {
   "name": "react-router-hibernate",
-  "version": "0.2.2",
+  "version": "0.3.0",
   "description": "Restore previously-unmounted routes -- state and all -- when you return",
   "keywords": [
     "hibernate",
@@ -77,7 +77,7 @@
   "devDependencies": {
     "react": "17.0.2",
     "react-dom": "17.0.2",
-    "react-hibernate-dev-helpers": "0.2.2",
+    "react-hibernate-dev-helpers": "^0.3.0",
     "react-router": "5.2.1",
     "react-router-dom": "5.3.0"
   },

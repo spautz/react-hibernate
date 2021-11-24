@@ -7,7 +7,7 @@ Part of [React Hibernate](https://github.com/spautz/react-hibernate)
 [![npm version](https://img.shields.io/npm/v/redux-pauseable-store.svg)](https://www.npmjs.com/package/redux-pauseable-store)
 [![test coverage](https://coveralls.io/repos/github/spautz/react-hibernate/badge.svg?branch=x-cov-redux-pauseable-store)](https://coveralls.io/github/spautz/react-hibernate?branch=x-cov-redux-pauseable-store)
 [![dependencies status](https://img.shields.io/librariesio/release/npm/redux-pauseable-store.svg)](https://libraries.io/github/spautz/react-hibernate)
-[![gzip size](https://img.badgesize.io/https://unpkg.com/redux-pauseable-store@latest/dist/redux-pauseable-store.cjs.production.min.js?compression=gzip)](https://bundlephobia.com/result?p=redux-pauseable-store@latest)
+[![gzip size](https://img.shields.io/bundlephobia/minzip/redux-pauseable-store)](https://bundlephobia.com/result?p=redux-pauseable-store@latest)
 
 ## Danger
 

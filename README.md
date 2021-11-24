@@ -50,7 +50,7 @@ Restore previously-unmounted subtrees -- state and all -- on remount.
 [![npm version](https://img.shields.io/npm/v/react-router-hibernate.svg)](https://www.npmjs.com/package/react-router-hibernate)
 [![test coverage](https://coveralls.io/repos/github/spautz/react-hibernate/badge.svg?branch=x-cov-react-router-hibernate)](https://coveralls.io/github/spautz/react-hibernate?branch=x-cov-react-router-hibernate)
 [![dependencies status](https://img.shields.io/librariesio/release/npm/react-router-hibernate.svg)](https://libraries.io/github/spautz/react-hibernate)
-[![gzip size](https://img.badgesize.io/https://unpkg.com/react-router-hibernate@latest/dist/react-router-hibernate.cjs.production.min.js?compression=gzip)](https://bundlephobia.com/result?p=react-router-hibernate@latest)
+[![gzip size](https://img.shields.io/bundlephobia/minzip/react-router-hibernate)](https://bundlephobia.com/result?p=react-router-hibernate@latest)
 
 A react-router Switch which can leave inactive routes mounted-but-inactive until you navigate back.
 
@@ -59,7 +59,7 @@ A react-router Switch which can leave inactive routes mounted-but-inactive until
 [![npm version](https://img.shields.io/npm/v/react-pauseable-containers.svg)](https://www.npmjs.com/package/react-pauseable-containers)
 [![test coverage](https://coveralls.io/repos/github/spautz/react-hibernate/badge.svg?branch=x-cov-react-pauseable-containers)](https://coveralls.io/github/spautz/react-hibernate?branch=x-cov-react-pauseable-containers)
 [![dependencies status](https://img.shields.io/librariesio/release/npm/react-pauseable-containers.svg)](https://libraries.io/github/spautz/react-hibernate)
-[![gzip size](https://img.badgesize.io/https://unpkg.com/react-pauseable-containers@latest/dist/react-pauseable-containers.cjs.production.min.js?compression=gzip)](https://bundlephobia.com/result?p=react-pauseable-containers@latest)
+[![gzip size](https://img.shields.io/bundlephobia/minzip/react-pauseable-containers)](https://bundlephobia.com/result?p=react-pauseable-containers@latest)
 
 Prevent subtrees from rerendering when their parent changes, or when values from context change.
 
@@ -68,6 +68,6 @@ Prevent subtrees from rerendering when their parent changes, or when values from
 [![npm version](https://img.shields.io/npm/v/redux-pauseable-store.svg)](https://www.npmjs.com/package/redux-pauseable-store)
 [![test coverage](https://coveralls.io/repos/github/spautz/react-hibernate/badge.svg?branch=x-cov-redux-pauseable-store)](https://coveralls.io/github/spautz/react-hibernate?branch=x-cov-redux-pauseable-store)
 [![dependencies status](https://img.shields.io/librariesio/release/npm/redux-pauseable-store.svg)](https://libraries.io/github/spautz/react-hibernate)
-[![gzip size](https://img.badgesize.io/https://unpkg.com/redux-pauseable-store@latest/dist/redux-pauseable-store.cjs.production.min.js?compression=gzip)](https://bundlephobia.com/result?p=redux-pauseable-store@latest)
+[![gzip size](https://img.shields.io/bundlephobia/minzip/redux-pauseable-store)](https://bundlephobia.com/result?p=redux-pauseable-store@latest)
 
 Derive one redux store from another, then pause its state and/or actions. This is used by react-pauseable-containers.

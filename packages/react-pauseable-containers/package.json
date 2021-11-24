@@ -1,6 +1,6 @@
 {
   "name": "react-pauseable-containers",
-  "version": "0.2.2",
+  "version": "0.3.0",
   "description": "Prevent React children from rerendering",
   "keywords": [
     "hibernate",
@@ -71,12 +71,12 @@
   },
   "dependencies": {
     "prop-types": "^15.7.2",
-    "redux-pauseable-store": "^0.2.2"
+    "redux-pauseable-store": "^0.3.0"
   },
   "devDependencies": {
     "react": "17.0.2",
     "react-dom": "17.0.2",
-    "react-hibernate-dev-helpers": "0.2.2",
+    "react-hibernate-dev-helpers": "^0.3.0",
     "react-redux": "7.2.6"
   },
   "peerDependencies": {
@@ -99,5 +99,5 @@
       ]
     }
   },
-  "gitHead": "ea7266569cd13e20be67f2ac7d50758a1151254a"
+  "gitHead": "b3c7b2798c03c21ae04aa07bc5ce8288ebdebc13"
 }
