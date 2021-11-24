@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react';
 import { Route, RouteProps } from 'react-router';
 
-type HibernatingRouteProps = RouteProps;
+export type HibernatingRouteProps = RouteProps;
 
 const HibernatingRoute: React.FC<HibernatingRouteProps> = (
   props: HibernatingRouteProps,
@@ -21,5 +21,4 @@ const HibernatingRoute: React.FC<HibernatingRouteProps> = (
   return <Route {...props} />;
 };
 
-export default HibernatingRoute;
-export { HibernatingRouteProps };
+export { HibernatingRoute };

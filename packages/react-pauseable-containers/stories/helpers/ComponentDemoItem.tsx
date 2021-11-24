@@ -19,4 +19,4 @@ const ComponentDemoItem: React.FC<PauseableComponentItemProps> = (props) => {
   );
 };
 
-export default ComponentDemoItem;
+export { ComponentDemoItem };

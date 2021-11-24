@@ -12,10 +12,10 @@ import {
   SwitchProps,
 } from 'react-router';
 
-import HibernatingRoute from './HibernatingRoute';
-import renderRoute from './renderRoute';
+import { HibernatingRoute } from './HibernatingRoute';
+import { renderRoute } from './renderRoute';
 
-interface HibernatingSwitchProps extends SwitchProps {
+export interface HibernatingSwitchProps extends SwitchProps {
   children: ReactNode;
   maxCacheSize?: number;
   maxCacheTime?: number;
@@ -205,5 +205,4 @@ HibernatingSwitch.defaultProps = {
   WrapperComponent: null,
 };
 
-export default HibernatingSwitch;
-export { HibernatingSwitchProps };
+export { HibernatingSwitch };

@@ -38,4 +38,4 @@ const PauseableContainerWrapper: React.FC<PauseableContainerWrapperProps> = (pro
   );
 };
 
-export default PauseableContainerWrapper;
+export { PauseableContainerWrapper };

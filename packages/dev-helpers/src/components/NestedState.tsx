@@ -16,4 +16,4 @@ const NestedState: React.FC = (): ReactElement => {
   );
 };
 
-export default NestedState;
+export { NestedState };

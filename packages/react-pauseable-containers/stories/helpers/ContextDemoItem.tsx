@@ -17,5 +17,4 @@ const ContextDemoItem: React.FC = () => {
   );
 };
 
-export default ContextDemoItem;
-export { DemoContext };
+export { ContextDemoItem, DemoContext };

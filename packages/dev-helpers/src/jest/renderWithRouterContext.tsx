@@ -12,4 +12,4 @@ const renderWithRouterContext = (
   );
 };
 
-export default renderWithRouterContext;
+export { renderWithRouterContext };

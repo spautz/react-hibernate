@@ -11,4 +11,4 @@ const renderWithReduxContext = (
   return render(<Provider store={store}>{isElement(AppRoot) ? AppRoot : <AppRoot />}</Provider>);
 };
 
-export default renderWithReduxContext;
+export { renderWithReduxContext };

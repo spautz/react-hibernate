@@ -8,4 +8,4 @@ const useCountSelector = (): number => {
   return useSelector(countSelector);
 };
 
-export default useCountSelector;
+export { useCountSelector };

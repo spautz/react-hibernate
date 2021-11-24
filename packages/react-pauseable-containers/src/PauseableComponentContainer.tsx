@@ -19,4 +19,4 @@ class PauseableComponentContainer extends React.Component<PauseableContainerProp
   }
 }
 
-export default PauseableComponentContainer;
+export { PauseableComponentContainer };

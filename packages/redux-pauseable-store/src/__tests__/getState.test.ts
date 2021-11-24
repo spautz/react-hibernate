@@ -4,7 +4,7 @@ import { Store } from 'redux';
 
 import { createDevHelperStore, incrementAction } from 'react-hibernate-dev-helpers';
 
-import { createPauseableStore } from '../index';
+import { createPauseableStore } from '../createPauseableStore';
 
 describe('getState', () => {
   let rootStore: Store;

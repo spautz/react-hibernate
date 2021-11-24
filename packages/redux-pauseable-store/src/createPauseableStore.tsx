@@ -113,4 +113,4 @@ const createPauseableStore = (
   return pauseableStore;
 };
 
-export default createPauseableStore;
+export { createPauseableStore };

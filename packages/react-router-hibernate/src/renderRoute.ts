@@ -26,4 +26,4 @@ const renderRoute = (routerProps: RouteComponentProps, routeProps: RouteProps): 
     : null;
 };
 
-export default renderRoute;
+export { renderRoute };
